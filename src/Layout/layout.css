@@ -1,35 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+:root {
+    --color-dark: #222;
+    --color-dark_50p: rgba(34, 34, 34, 0.466);
+    --color_blue: #1b2a41;
+    --color_blue_50p: #1b2a417c;
+    --color_charcoal: #324a5f;
+    --color_charcoal_50p: #324a5f7e;
+    --color_lavender: #ccc9dc;
+    --color_lavender_50p: #ccc9dc7e;
+    --color_bluePurple-light: #B2ABFF;
+    --color_bluePurple-light_50p: #b2abff79;
+    --color_purple-light: #D7CFFF;
+    --color_purple-light_50p: #d7cfff73;
+}
+
+
+
 .container-layout {
     display: flex;
     justify-content: space-between;
+    min-height: 150px;
+    background-color: var(--color_charcoal);    
 }
 
 .container-layout .nav-menu {
     display: flex;
     align-items: center;
+    margin-right: 2rem;
+}
+.container-layout .nav-menu .btn-img-profil .img-profil{
+    width: 35px;
+    height: 35px;
+    border-radius: 3rem;
+    margin-left: 20px;
+}
+.container-layout .nav-menu .btn-img-profil{
+    display: flex;
+    align-items: center;
 }
 
 .container-layout .nav-menu li {
-    margin: 0 1rem;
+    margin: 0 2rem;
     font-size: 1.5rem;
 }
 .container-layout .nav-menu li .menu-link {
     color:#fff;
     text-decoration: none;
+    font-family: 'DynaPuff', cursive;
+}
+.container-layout .nav-menu li .menu-link:hover {
+    color: var(--color_bluePurple-light);
 }
 
 .btn {
     font-size: 1rem;
+    padding: 1rem;
     line-height: 2rem;
     border-radius: 3rem;
     outline: transparent;
     border: transparent;
-    background-color: cornflowerblue;
+    background-color: var(--color_bluePurple-light);
+    font-family: 'DynaPuff', cursive;
+    color: #fff;
+    
 }
 .btn:hover {
     background-color: #fff;
-    color: cornflowerblue;
+    color: #222;
     cursor: pointer;
 }
+
+.title-layout {
+    font-size: 2.5rem;
+    margin-left: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.container-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DynaPuff', cursive;
+}
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:  var(--color_blue);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--color_lavender_50p);
+    border-radius: 3rem;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color_purple-light);
+  }
+
+  .container-title .fa-icon {
+    font-size: 2rem;
+    margin-left: 20px;
+    color: var(--color_purple-light);
+  }
 
 
 

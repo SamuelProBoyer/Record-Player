@@ -1,6 +1,7 @@
 import './recordPlayer.css';
 import Header from './Header';
 import Footer from './Footer';
+import { db } from '../config/firebase';
 
 
 
@@ -8,93 +9,94 @@ import Footer from './Footer';
 
 
 const RecordPlayer = () => {
+    console.log(db);
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <ul className="container">
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
                 <li className="item">
                     <img
                         className="playlist-image"
                         src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="Doggy"
+                        alt="lofi"
                     />
-                    <h3 className="playlist-name">Song 1</h3>
+                    <h3 className="playlist-name">Chanson 1</h3>
                 </li>
             </ul>
 
-            <Footer/>
+            {/* <Footer/> */}
         </>
     )
 }
