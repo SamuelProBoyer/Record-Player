@@ -1,4 +1,6 @@
 import './musiques.css';     
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
 
 
 const Musiques = () => {
@@ -12,6 +14,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -20,6 +23,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -28,6 +32,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -36,6 +41,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -44,6 +50,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -52,6 +59,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
         <li className="item">
@@ -60,6 +68,7 @@ const Musiques = () => {
             src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
             alt="lofi"
           />
+          <button className='fa-icons-record'><FontAwesomeIcon icon={faCirclePlay} /></button>
           <h3 className="playlist-name">Chanson 1</h3>
         </li>
       </ul>

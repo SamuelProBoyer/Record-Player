@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
 import { authContext } from "./AuthContext/authContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import './login.css';
 
 
 const Login = () => {
@@ -18,16 +21,17 @@ const Login = () => {
 
     return (
         <>
-        <div className="container-login">
-            <div className="container-title"><h1>Log in Page</h1></div>
-
-            <div className="container-form">
-                <form noValidate onSubmit={submitHandler}>
-                    <button>
-                        <input type="submit" value="Login" />
-                    </button>
-
-                </form>
+        <div className="page-wrapper">
+            <div className="container-login">
+            <div className="fa-icon-login"><FontAwesomeIcon icon={faRecordVinyl} /></div>
+                <div className="container-title-login"><h1>Joueur de musiques</h1></div>
+                <div className="container-form">
+                    <form noValidate onSubmit={submitHandler}>
+                        <button className="btn-login">
+                            <input type="submit" value="Se connecter" />
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         

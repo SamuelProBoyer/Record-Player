@@ -24,24 +24,46 @@
   }
 
   .container {
+    position: relative;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 2rem 0;
   }
-
+  
   .container .item {
+    position: relative;
     margin: 0 2rem;
   }
-  .container .item .playlist-image:hover{
-    filter: grayscale();
-  }
-  .container .item:hover {
-    cursor: pointer;
+  .container .item .fa-icons-record{
+    position: absolute;
+    font-size: 3rem;
+    top: 90px;
+    left: 30px;
+    color: var(--color_purple-light);
+    padding: 10px;
+    background-color: transparent;
+    border: none;
     
   }
+  .container .item .fa-icons-record:hover {
+    cursor: pointer;
+    color: #fff;
+  }
+  .container .item .playlist-name{
+    font-family: 'PlayFair Display', sans-serif;
+  }
+  /* .container .item .playlist-image:hover{
+    filter: grayscale();
+  } */
+  /* .container .item:hover {
+    cursor: pointer;
+    
+  } */
   
   .playlist-image {
     max-width: 300px;
     border-radius: 1rem;
   }
+
+

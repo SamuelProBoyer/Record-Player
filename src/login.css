@@ -1,0 +1,75 @@
+:root {
+    --color-dark: #222;
+    --color-dark_50p: rgba(34, 34, 34, 0.466);
+    --color_blue: #1b2a41;
+    --color_blue_50p: #1b2a417c;
+    --color_charcoal: #324a5f;
+    --color_charcoal_50p: #324a5f7e;
+    --color_lavender: #ccc9dc;
+    --color_lavender_50p: #ccc9dc7e;
+    --color_bluePurple-light: #B2ABFF;
+    --color_bluePurple-light_50p: #b2abff79;
+    --color_purple-light: #D7CFFF;
+    --color_purple-light_50p: #d7cfff73;
+}
+
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 935px;
+    background: linear-gradient(45deg, var(--color_bluePurple-light), var(--color_blue));
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color_charcoal_50p);
+    border-radius: 2rem;
+    width: 600px;
+    height: 600px;
+}
+.container-login h1 {
+    margin-left: 0px;
+    font-family: 'DynaPuff', cursive;
+    margin-bottom: 4rem;
+    
+}
+
+.container-login .fa-icon-login {
+    margin-top: -150px;
+    padding: 2.5rem;
+    font-size: 100px;
+}
+
+.container-form .btn-login {
+    line-height: 1rem;
+    border-radius: 2rem;
+    background-color: var(--color_purple-light);
+    outline: transparent;
+    border: transparent;
+}
+.container-form .btn-login:hover {
+    background-color: var(--color_blue);
+    color: #fff;
+    cursor: pointer;
+}
+.container-form .btn-login input{
+    font-size: 1.5rem;
+    font-family: 'PlayFair Display', sans-serif;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: var(--color_purple-light);
+    outline: transparent;
+    border: transparent;
+    
+}
+.container-form .btn-login input:hover{
+   background-color: var(--color_blue);
+   color: #fff;
+   cursor: pointer;
+    
+}

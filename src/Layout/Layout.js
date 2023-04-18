@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { authContext } from "../AuthContext/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
+import { faRecordVinyl, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../composante/Footer";
 import Header from "../composante/Header";
 import { auth } from "../config/firebase";
@@ -19,8 +19,10 @@ const Layout = () => {
 
         <div className="container-layout">
         <div className="container-title">
-            <h1 className="title-layout">Joueur de musiques</h1>
+                <h1 className="title-layout">Joueur de musiques de  {user.displayName}</h1>
+            <Link to="/">
             <span className="fa-icon"><FontAwesomeIcon icon={faRecordVinyl} /></span>
+            </Link>
         </div>
             <ul className="nav-menu">
                 <li>
@@ -37,7 +39,7 @@ const Layout = () => {
                     <button className="btn" onClick={logout}>
                         Déconnexion
                     </button>
-                    <img className="img-profil" src={user.photoURL} alt={user.displayName} />
+                    <img className="img-profil" src={user.photoURL === undefined ? <FontAwesomeIcon icon={faUserAstronaut} /> : user.photoURL} alt={user.displayName} />
                 </li>
             </ul>
         </div>

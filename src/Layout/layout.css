@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Playfair+Display&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
 :root {
@@ -22,7 +22,10 @@
     display: flex;
     justify-content: space-between;
     min-height: 150px;
-    background-color: var(--color_charcoal);    
+    /* background-color: ;     */
+    background: linear-gradient(45deg, var(--color_bluePurple-light), var(--color_blue));
+    
+      
 }
 
 .container-layout .nav-menu {
@@ -43,7 +46,7 @@
 
 .container-layout .nav-menu li {
     margin: 0 2rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .container-layout .nav-menu li .menu-link {
     color:#fff;
@@ -62,7 +65,7 @@
     outline: transparent;
     border: transparent;
     background-color: var(--color_bluePurple-light);
-    font-family: 'DynaPuff', cursive;
+    font-family: 'PlayFair Display', sans-serif;
     color: #fff;
     
 }
@@ -73,7 +76,8 @@
 }
 
 .title-layout {
-    font-size: 2.5rem;
+    font-family: 'PlayFair Display', sans-serif;
+    font-size: 2rem;
     margin-left: 30px;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -84,6 +88,9 @@
     align-items: center;
     justify-content: center;
     font-family: 'DynaPuff', cursive;
+}
+.container-title .fa-icon:hover{
+    color: #fff;
 }
 
 
@@ -110,7 +117,7 @@
   }
 
   .container-title .fa-icon {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-left: 20px;
     color: var(--color_purple-light);
   }
