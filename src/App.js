@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import {RouterProvider, createBrowserRouter, Navigate} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import {doc, getDocs, onSnapchot} from 'firebase/firestore';
+import {db} from './config/firebase';
+import Layout from './Layout/Layout';
+import RecordPlayer from './composante/RecordPlayer';
 import './App.css';
 
 function App() {
+  const routes = [
+    {
+      path: '/',
+      element: <Layout/>,
+      children: [
+        {
+          index:true,
+          element: <Navigate to='/recordplayer' replace/>
+        }, {
+          path: '/recordplayer',
+          element: <RecordPlayer />
+        }
+      ]
+    }
+  ]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={createBrowserRouter(routes)} />
   );
 }
-
 export default App;

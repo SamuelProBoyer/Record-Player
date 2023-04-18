@@ -1,0 +1,36 @@
+.container-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-layout .nav-menu {
+    display: flex;
+    align-items: center;
+}
+
+.container-layout .nav-menu li {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+}
+.container-layout .nav-menu li .menu-link {
+    color:#fff;
+    text-decoration: none;
+}
+
+.btn {
+    font-size: 1rem;
+    line-height: 2rem;
+    border-radius: 3rem;
+    outline: transparent;
+    border: transparent;
+    background-color: cornflowerblue;
+}
+.btn:hover {
+    background-color: #fff;
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
+
+
+
