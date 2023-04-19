@@ -1,131 +1,111 @@
-import './musiques.css';     
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
-import { useRef } from 'react';
-import audioFile from '../SEMILOFI.mp3';
 import { Link } from 'react-router-dom';
 import AnimatedPage from './AnimatedPage';
+// import Modal from '../Modal/Modal';
+import { useEffect, useContext } from 'react';
+import { authContext } from '../AuthContext/authContext';
+import { collection,  getDocs } from '@firebase/firestore';
+import { db } from '../config/firebase';
+import "./musiques.css";
 
 
 const Musiques = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-    const song = audioFile;
-    const audioRef = useRef(null);
-    
-    
+  const [isPlaying, setIsPlaying] = useState([]);
+  const [show, setShow] = useState(false);
+  const [chansonsListe, setChansonListe] = useState([]);
+  const { user } = useContext(authContext);
+  console.log(user);
+  console.log(show);
 
+  const audioRefs = useRef([]);
 
-    // A changer pour handle le commencement des musiques. !!!
-    const handleClick = () => {
-        const audioElement = audioRef.current;
-        if(audioElement.paused) {
-            audioElement.play();
-        } else {
-            audioElement.pause();
-        }
-        setIsPlaying(!isPlaying);
-    };
+//   useEffect(() => {
+//     const fetchChansons = async () => {
+//       const chansons = await getDocs(collection(db, 'musiques'));
+//       const chansonsListe = chansons.docs.map((doc) => doc.data());
+//       setChansonListe(chansonsListe);
+//       setIsPlaying(new Array(chansonsListe.length).fill(false));
+//       audioRefs.current = audioRefs.current.slice(0, chansonsListe.length);
+//     };
+//     fetchChansons();
+//   }, []);
+
+//   useEffect(()=> {
+//     if (user.uid) {
+//       const chansons = [];
+//       const trouvreLesChansons = async() => {
+//         const chansonsRef = collection(db, "users");
+//         const q = query(chansonsRef, where("chansons", "array-contains", user.uid));
+//         const querySnapshot = await getDocs(q);
+//         querySnapshot.forEach((doc) => {
+//           const data = doc.data();
+//           data.id = doc.id;
+//           chansons.push(data);
+//           console.log(data);
+//         });
+//         setChansonListe(chansons);
+//       }
+//       trouvreLesChansons();
+//     }
+//   }, [user.uid]);
+
+ 
+    useEffect(() => {
+        const getCol = async() => {
+            const maCol = await getDocs(collection(db, "users"));
+            const documents = maCol.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id
+            }));
+            // console.log(documents[0].chansons);
+            setChansonListe(documents[0].chansons);
+        };
+        getCol();
+    },[]);
+
+  const handleClick = (index) => {
+    const audioElement = audioRefs.current[index];
+    const isPlayingCopy = [...isPlaying];
+    if (audioElement.paused) {
+      audioRefs.current.forEach((element) => element.pause());
+      isPlayingCopy.fill(false);
+      audioElement.play();
+      setShow(true);
+      isPlayingCopy[index] = true;
+    } else {
+        audioElement.pause();
+        setShow(false);
+        isPlayingCopy[index] = false;
+    }
+    setIsPlaying(isPlayingCopy);
+  };
+
   return (
     <>
       <AnimatedPage>
         <div className="title-ari-container">
           <h1>Mes musiques</h1>
-          <p><Link to="/">Accueil</Link> / <span>Musiques</span></p>
+          <p>
+            <Link to="/">Accueil</Link> / <span>Musiques</span>
+          </p>
         </div>
         <ul className="container">
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <audio ref={audioRef} src={song}></audio>
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-                  <li className="item">
-                      <img
-                          className="playlist-image"
-                          src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                          alt="lofi"
-                      />
-                      <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                      <h3 className="playlist-name">Chanson 1</h3>
-                  </li>
-              </ul>
+          {chansonsListe.map((chanson, index) => (
+            <li className="item" key={index}>
+              <img className="playlist-image" src={chanson.image} alt={chanson.namesong} />
+              <audio ref={(el) => (audioRefs.current[index] = el)} src="../SEMILOFI.mp3"></audio>
+              <button onClick={() => handleClick(index)} className="fa-icons-record">
+                <FontAwesomeIcon icon={isPlaying[index] ? faCirclePause : faCirclePlay} />
+              </button>
+              <h3 className="playlist-name">{chanson.namesong}</h3>
+            </li>
+          ))}
+        </ul>
+        <div className="modal-container">
+          {/* <Modal show={show} onClose={() => setShow(false)} /> */}
+        </div>
       </AnimatedPage>
     </>
   );

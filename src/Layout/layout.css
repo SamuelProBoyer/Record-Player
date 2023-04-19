@@ -54,7 +54,7 @@
 
 .container-layout .nav-menu li {
     margin: 0 2rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .container-layout .nav-menu li .menu-link {
     color:#fff;
@@ -73,7 +73,7 @@
     outline: transparent;
     border: transparent;
     background-color: var(--color_mauve);
-    font-family: 'PlayFair Display', sans-serif;
+    font-family: 'DynaPuff', cursive;
     color: #fff;
     
 }

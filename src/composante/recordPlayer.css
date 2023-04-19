@@ -25,13 +25,15 @@
   font-family: 'PlayFair Display', sans-serif;
   padding: 0 2rem;
 }
+
 .container-accueil .img-accueil {
   /* border-radius: 2rem; */
   padding: 0 2rem;
 }
-.container-accueil .img-accueil img{
+
+.container-accueil .img-accueil img {
   border-radius: 2rem;
-  
+
 }
 
 body {
@@ -56,7 +58,7 @@ ul {
 
 .container .item {
   position: relative;
-  margin:2rem;
+  margin: 2rem;
   border-radius: 2rem;
   padding: 1rem;
   background: linear-gradient(145deg, #2d659621, #26557e25);
@@ -77,27 +79,56 @@ ul {
 
 }
 
+.container .item .fa-icons-plus {
+  position: absolute;
+  top: 125px;
+  right: 30px;
+  font-size: 3rem;
+  color: var(--color_yellow);
+  background-color: transparent;
+  border: none;
+}
+
 .container .item .fa-icons-record:hover {
+  cursor: pointer;
+  color: var(--color_mauve);
+}
+.container .item .fa-icons-plus:hover {
   cursor: pointer;
   color: var(--color_mauve);
 }
 
 .container .item .playlist-name {
   font-family: 'DynaPuff', cursive;
-  
+
 }
 
 /* .container .item .playlist-image:hover{
-    filter: grayscale();
-  } */
+  filter: grayscale();
+} */
 /* .container .item:hover {
-    cursor: pointer;
-    
-  } */
+  cursor: pointer;
+  
+} */
 
 .playlist-image {
   max-width: 300px;
   border-radius: 1rem;
   /* border-radius: 58px; */
-  
+
+}
+
+.featured-title {
+  font-family: 'DynaPuff', cursive;
+  margin-left: 70px;
+}
+
+.featured-title .icon-music {
+  margin-left: 15px;
+  color: var(--color_yellow);
+}
+
+.chansonsVedettes {
+  margin-top: 9rem;
+  height: 600px;
 }

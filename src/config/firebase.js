@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore";
 import {getAuth, GoogleAuthProvider} from "firebase/auth";
+import {getStorage} from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,5 +22,36 @@ const Googleprovider = new GoogleAuthProvider();
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
-export {db, auth, Googleprovider, firebaseConfig}
+export {db, auth, Googleprovider, firebaseConfig, storage}
+
+
+
+
+
+
+
+
+
+// const [mesMusiques, setMesMusiques] = useState([]);
+
+    // useEffect(() => {
+    //     if(user.uid) {
+    //         const musiques = [];
+    //         const trouverMusiques = async() => {
+    //             const musiquesRef = collection(db, "musiques");
+    //             const q = query(musiquesRef, where("userId", "array-contains", user.uid));
+    //             const querySnapshot = await getDocs(q);
+    //             querySnapshot.forEach((doc) => {
+    //                 const data = doc.data();
+    //                 data.id = doc.id;
+    //                 musiques.push(data);
+                    
+    //             });
+    //             setMesMusiques(musiques);
+    //         }
+    //         trouverMusiques();
+    //     }
+    // }, [user?.uid]);
+    // console.log(mesMusiques);
