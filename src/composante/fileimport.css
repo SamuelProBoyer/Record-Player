@@ -26,10 +26,18 @@
 .wrapper .input-container {
     display: flex;
     flex-direction: column;
-    margin: 2.5rem 0;
+    margin: 5rem 0;
     justify-content: center;
     max-width: 500px;
     width: 500px;
+
+}
+.wrapper .input-container .input{
+    outline: transparent;
+    border: transparent;
+    border-radius: 3rem;
+    line-height: 1rem;
+    padding: .5rem;
 
 }
 .wrapper .input-container p{

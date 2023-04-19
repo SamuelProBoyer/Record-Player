@@ -41,11 +41,11 @@ function FileImport() {
           <div className="wrapper">
             <div className="input-container">
               <p>Nom du fichier : {newChanson.filename}</p>
-              <input maxlength="30" type="text" name="filename" value={newChanson.filename} onChange={handleChange} />
+              <input className="input" maxlength="30" type="text" name="filename" value={newChanson.filename} onChange={handleChange} />
               <p>Nom de la chanson :  {newChanson.namesong}</p>
-              <input maxlength="30" type="text" name="namesong" value={newChanson.namesong} onChange={handleChange} />
+              <input className="input" maxlength="30" type="text" name="namesong" value={newChanson.namesong} onChange={handleChange} />
               <p>Thumbnail  : </p>
-              <input type="file" name="image" value={newChanson.image} onChange={handleChange} />
+              <input className="input" type="file" name="image" value={newChanson.image} onChange={handleChange} />
             </div>
             <button className="btn">
               Upload dans mes musiques
