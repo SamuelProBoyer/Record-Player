@@ -23,6 +23,11 @@ const Footer = () => {
             Mes playlists
           </Link>
         </li>
+        <li>
+          <Link className="menu-link-footer" to="/fileimport">
+            Importer mes musiques
+          </Link>
+        </li>
         <div className="socials">
           <li>
             <Link className="menu-link-footer" to="https://github.com/SamuelProBoyer" target="_blank">

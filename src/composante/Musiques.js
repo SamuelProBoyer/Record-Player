@@ -32,24 +32,7 @@ const Musiques = () => {
 //     fetchChansons();
 //   }, []);
 
-//   useEffect(()=> {
-//     if (user.uid) {
-//       const chansons = [];
-//       const trouvreLesChansons = async() => {
-//         const chansonsRef = collection(db, "users");
-//         const q = query(chansonsRef, where("chansons", "array-contains", user.uid));
-//         const querySnapshot = await getDocs(q);
-//         querySnapshot.forEach((doc) => {
-//           const data = doc.data();
-//           data.id = doc.id;
-//           chansons.push(data);
-//           console.log(data);
-//         });
-//         setChansonListe(chansons);
-//       }
-//       trouvreLesChansons();
-//     }
-//   }, [user.uid]);
+
 
  
     useEffect(() => {

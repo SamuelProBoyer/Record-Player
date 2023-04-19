@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 700px;
+    margin: 2rem 0;
     background-color: rgba(34, 34, 34, 0.301);
     border-radius: 3rem;
 }
@@ -20,4 +21,19 @@
     border: transparent;
     font-size: 1rem;
     outline: transparent;
+}
+
+.wrapper .input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 2.5rem 0;
+    justify-content: center;
+    max-width: 500px;
+    width: 500px;
+
+}
+.wrapper .input-container p{
+    display: flex;
+    font-size: 1.5rem;
+    font-family: "PlayFair Display", sans-serif;  
 }

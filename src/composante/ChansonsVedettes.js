@@ -3,12 +3,12 @@ import { useState,useRef, useEffect } from 'react';
 import { collection, getDocs } from '@firebase/firestore';
 import { db } from '../config/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay, faCirclePause, faMusic, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay, faCirclePause, faMusic, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 
 const ChansonsVedettes = () => {
     const [isPlaying, setIsPlaying] = useState([]);
-    // const [isAdd, setIsAdd] = useState([]);
+    const [isAdded, setIsAdded] = useState(false);
     const [chansonsListe, setChansonListe] = useState([]);
     const audioRefs = useRef([]);
     
@@ -39,6 +39,15 @@ const ChansonsVedettes = () => {
         }
         setIsPlaying(isPlayingCopy);
       };
+
+      const handleAddChanson = (index) => {
+        if (!isAdded) {
+          setIsAdded(true);
+        } else {
+          setIsAdded(false);
+        }
+      };
+
     return (
         <>
             <AnimatedPage>
@@ -48,11 +57,11 @@ const ChansonsVedettes = () => {
                         <li className="item" key={index}>
                         <img className="playlist-image" src={chanson.image} alt={chanson.namesong} />
                         <audio ref={(el) => (audioRefs.current[index] = el)} src="../SEMILOFI.mp3"></audio>
-                        <button onClick={() => handleClick(index)} className="fa-icons-record">
+                        <button onClick={(e) => handleClick(index)} className="fa-icons-record">
                             <FontAwesomeIcon icon={isPlaying[index] ? faCirclePause : faCirclePlay} />
                         </button>
-                        <button className="fa-icons-plus">
-                            <FontAwesomeIcon icon={faPlus} />
+                        <button onClick={() => handleAddChanson(index)} className="fa-icons-plus">
+                            <FontAwesomeIcon icon={isAdded ? faMinus : faPlus} />
                         </button>
                         <h3 className="playlist-name">{chanson.namesong}</h3>
                         </li>

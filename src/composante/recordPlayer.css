@@ -81,10 +81,10 @@ ul {
 
 .container .item .fa-icons-plus {
   position: absolute;
-  top: 125px;
+  bottom: 25px;
   right: 30px;
-  font-size: 3rem;
-  color: var(--color_yellow);
+  font-size: 2rem;
+  color: #fff;
   background-color: transparent;
   border: none;
 }
