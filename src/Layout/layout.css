@@ -14,6 +14,13 @@
     --color_bluePurple-light_50p: #b2abff79;
     --color_purple-light: #D7CFFF;
     --color_purple-light_50p: #d7cfff73;
+
+    /* Test nouvelles couleurs */
+    --color_rose: #F2858E;
+    --color_mauve: #44428C;
+    --color_bleu: #2A5E8C;
+    --color_yellow: #F2AA6B;
+    --color_orange: #F28066;
 }
 
 
@@ -23,7 +30,8 @@
     justify-content: space-between;
     min-height: 150px;
     /* background-color: ;     */
-    background: linear-gradient(45deg, var(--color_bluePurple-light), var(--color_blue));
+    background: linear-gradient(20deg, var(--color-dark), var(--color-dark_50p));
+    
     
       
 }
@@ -46,15 +54,15 @@
 
 .container-layout .nav-menu li {
     margin: 0 2rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .container-layout .nav-menu li .menu-link {
     color:#fff;
     text-decoration: none;
-    font-family: 'DynaPuff', cursive;
+    font-family: 'PlayFair Display', sans-serif;
 }
 .container-layout .nav-menu li .menu-link:hover {
-    color: var(--color_bluePurple-light);
+    color: var(--color_mauve);
 }
 
 .btn {
@@ -64,19 +72,19 @@
     border-radius: 3rem;
     outline: transparent;
     border: transparent;
-    background-color: var(--color_bluePurple-light);
+    background-color: var(--color_mauve);
     font-family: 'PlayFair Display', sans-serif;
     color: #fff;
     
 }
 .btn:hover {
-    background-color: #fff;
-    color: #222;
+    background-color: var(--color_yellow);
+    color: #fff;
     cursor: pointer;
 }
 
 .title-layout {
-    font-family: 'PlayFair Display', sans-serif;
+    font-family: 'DynaPuff', cursive;
     font-size: 2rem;
     margin-left: 30px;
     margin-bottom: 0px;
@@ -90,7 +98,7 @@
     font-family: 'DynaPuff', cursive;
 }
 .container-title .fa-icon:hover{
-    color: #fff;
+    color: var(--color_yellow);
 }
 
 
@@ -102,24 +110,24 @@
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background:  var(--color_blue);
+    background:  var(--color-dark);
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--color_lavender_50p);
+    background: var(--color_mauve);
     border-radius: 3rem;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color_purple-light);
+    background: var(--color_rose);
   }
 
   .container-title .fa-icon {
     font-size: 3rem;
     margin-left: 20px;
-    color: var(--color_purple-light);
+    color: var(--color_mauve);
   }
 
 

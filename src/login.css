@@ -17,8 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 935px;
-    background: linear-gradient(45deg, var(--color_bluePurple-light), var(--color_blue));
+    height: 946px;
+    background: linear-gradient(0deg, var(--color_mauve), var(--color-dark), var(--color-dark));
 }
 
 .container-login {
@@ -26,50 +26,61 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: var(--color_charcoal_50p);
-    border-radius: 2rem;
+    /* background-color: var(--color_charcoal_50p); */
+    /* background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18); */
+    /* border-radius: 2rem; */
     width: 600px;
     height: 600px;
 }
+
 .container-login h1 {
     margin-left: 0px;
     font-family: 'DynaPuff', cursive;
     margin-bottom: 4rem;
-    
+    font-size: 3rem;
+
 }
 
 .container-login .fa-icon-login {
     margin-top: -150px;
-    padding: 2.5rem;
-    font-size: 100px;
+    padding: 2rem;
+    font-size: 60px;
 }
 
 .container-form .btn-login {
     line-height: 1rem;
     border-radius: 2rem;
-    background-color: var(--color_purple-light);
+    background-color: var(--color_mauve);
     outline: transparent;
     border: transparent;
 }
+
 .container-form .btn-login:hover {
-    background-color: var(--color_blue);
+    background-color: var(--color_yellow);
     color: #fff;
     cursor: pointer;
 }
-.container-form .btn-login input{
+
+.container-form .btn-login input {
     font-size: 1.5rem;
     font-family: 'PlayFair Display', sans-serif;
     color: #fff;
     padding: 1rem;
     border-radius: 2rem;
-    background-color: var(--color_purple-light);
+    background-color: var(--color_mauve);
     outline: transparent;
     border: transparent;
-    
+
 }
-.container-form .btn-login input:hover{
-   background-color: var(--color_blue);
-   color: #fff;
-   cursor: pointer;
-    
+
+.container-form .btn-login input:hover {
+    background-color: var(--color_yellow);
+    color: #fff;
+    cursor: pointer;
+
 }

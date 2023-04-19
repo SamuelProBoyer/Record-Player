@@ -7,7 +7,8 @@ import { db } from '../config/firebase';
 import { useState } from 'react';
 import { useRef } from 'react';
 import audioFile from '../SEMILOFI.mp3';
-
+import { Link } from 'react-router-dom';
+import AnimatedPage from './AnimatedPage';
 
 
 
@@ -37,102 +38,18 @@ const RecordPlayer = () => {
     // console.log(audio);
     return (
         <>
-            {/* <Header /> */}
-            <ul className="container">
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <audio ref={audioRef} src={song}></audio>
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-                <li className="item">
-                    <img
-                        className="playlist-image"
-                        src="https://cdn.pixabay.com/photo/2022/10/17/01/21/chill-7526430_1280.jpg"
-                        alt="lofi"
-                    />
-                    <button onClick={handleClick} className='fa-icons-record'><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
-                    <h3 className="playlist-name">Chanson 1</h3>
-                </li>
-            </ul>
 
-            {/* <Footer/> */}
+                <AnimatedPage>
+                    <h1>Accueil</h1>
+                    <div className='container-accueil'>
+                        <div className="img-accueil"><img src="https://cdn.pixabay.com/photo/2023/02/14/23/57/sunset-7790623_960_720.jpg" alt="img" /></div>
+                        <div className='text-accueil'>
+                            <p>Bienvenue dans LofiTunes, l'application web ultime pour les amateurs de musique lofi ! Si vous êtes passionné par les rythmes apaisants et les mélodies relaxantes du lofi, alors vous êtes au bon endroit. Notre application vous permet de stocker et d'organiser facilement votre collection de musiques lofi préférées pour les écouter à tout moment, où que vous soyez.</p>
+                            <Link to="/musiques"><button className='btn'>Gérer mes musiques</button></Link>
+                        </div>
+                    </div>
+                </AnimatedPage>
+           
         </>
     )
 }

@@ -4,3 +4,22 @@ h1 {
     padding: 2rem;
     font-family: 'DynaPuff', cursive;
 }
+
+.title-ari-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title-ari-container p {
+    font-size: 1rem;
+    margin-right: 200px;
+    font-family: 'DynaPuff', cursive;
+}
+.title-ari-container p span{
+    color: var(--color_mauve);
+}
+a {
+    text-decoration: none;
+    color: white;
+}

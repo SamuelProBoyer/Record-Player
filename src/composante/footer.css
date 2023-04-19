@@ -14,10 +14,21 @@
     --color_bluePurple-light_50p: #b2abff79;
     --color_purple-light: #D7CFFF;
     --color_purple-light_50p: #d7cfff73;
+
+     /* Test nouvelles couleurs */
+     --color_rose: #F2858E;
+     --color_mauve: #44428C;
+     --color_bleu: #2A5E8C;
+     --color_yellow: #F2AA6B;
+     --color_orange: #F28066;
 }
 
 footer {
-    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    /* background: linear-gradient(20deg, var(--color-dark), var(--color-dark_50p)); */
 }
 
 .nav-menu-footer {
@@ -36,7 +47,7 @@ footer {
 
 .nav-menu-footer li {
     margin: .5rem 0;
-    font-family: 'DynaPuff', cursive;
+    font-family: 'PlayFair Display', sans-serif;
 }
 
 
@@ -45,10 +56,9 @@ footer {
     color: #fff;
 }
 .nav-menu-footer .menu-link-footer:hover {
-   
-    color: var(--color_bluePurple-light);
+    color: var(--color_yellow);
 }
 
 .nav-menu-footer .socials li {
-    margin: 0 1rem;
+    margin: 2rem;
 }

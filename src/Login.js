@@ -24,7 +24,7 @@ const Login = () => {
         <div className="page-wrapper">
             <div className="container-login">
             <div className="fa-icon-login"><FontAwesomeIcon icon={faRecordVinyl} /></div>
-                <div className="container-title-login"><h1>Joueur de musiques</h1></div>
+                <div className="container-title-login"><h1>LofiTunes</h1></div>
                 <div className="container-form">
                     <form noValidate onSubmit={submitHandler}>
                         <button className="btn-login">

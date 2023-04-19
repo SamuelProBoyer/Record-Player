@@ -9,6 +9,7 @@ import Playlists from './composante/Playlists';
 import Login from './Login';
 import './App.css';
 import { authContext } from './AuthContext/authContext';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const {user} = useContext(authContext);
@@ -59,7 +60,9 @@ function App() {
     }
   ]
   return (
-    <RouterProvider router={createBrowserRouter(routes)} />
+
+      <RouterProvider router={createBrowserRouter(routes)} />
+ 
   );
 }
 export default App;
