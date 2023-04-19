@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection } from "@firebase/firestore";
+// import { addDoc, collection } from "@firebase/firestore";
 import "./fileimport.css";
 import { db } from "../config/firebase";
 import AnimatedPage from "./AnimatedPage";
@@ -12,14 +12,14 @@ function FileImport() {
     namesong: "",
     image: "",
   });
-  const addDoc = async () => {
-    const docRef = await addDoc(collection(db, "users"), {
-      filename: newChanson.filename,
-      namesong: newChanson.namesong,
-      image: newChanson.image,
-    });
-    console.log(docRef.id);
-  };
+  // const saveDoc = async () => {
+  //   const docRef = await addDoc(collection(db, "users"), {
+  //     filename: newChanson.filename,
+  //     namesong: newChanson.namesong,
+  //     image: newChanson.image,
+  //   });
+  //   console.log(docRef.id);
+  // };
 
   function handleChange(event) {
     const { name, value } = event.target;
