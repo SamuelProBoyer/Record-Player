@@ -29,7 +29,7 @@ const Login = () => {
                 <div className="container-form">
                     <form noValidate onSubmit={submitHandler}>
                         <button className="btn-login">
-                            <input type="submit" value="Se connecter" />
+                            <input type="submit" value="Connexion avec Google" />
                         </button>
                     </form>
                 </div>
