@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { collection } from "@firebase/firestore";
+import { addDoc, collection } from "@firebase/firestore";
 import "./fileimport.css";
 import { db } from "../config/firebase";
 import AnimatedPage from "./AnimatedPage";
