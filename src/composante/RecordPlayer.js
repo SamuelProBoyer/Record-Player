@@ -1,12 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
 import './recordPlayer.css';
-import Header from './Header';
-import Footer from './Footer';
-import { db } from '../config/firebase';
-import { useState } from 'react';
-import { useRef } from 'react';
-import audioFile from '../SEMILOFI.mp3';
 import { Link } from 'react-router-dom';
 import AnimatedPage from './AnimatedPage';
 
@@ -16,23 +8,23 @@ import AnimatedPage from './AnimatedPage';
 
 const RecordPlayer = () => {
 
-    const [isPlaying, setIsPlaying] = useState(false);
-    const song = audioFile;
-    const audioRef = useRef(null);
+    // const [isPlaying, setIsPlaying] = useState(false);
+    // const song = audioFile;
+    // const audioRef = useRef(null);
     
     
 
 
-    // A changer pour handle le commencement des musiques. !!!
-    const handleClick = () => {
-        const audioElement = audioRef.current;
-        if(audioElement.paused) {
-            audioElement.play();
-        } else {
-            audioElement.pause();
-        }
-        setIsPlaying(!isPlaying);
-    };
+    // // A changer pour handle le commencement des musiques. !!!
+    // const handleClick = () => {
+    //     const audioElement = audioRef.current;
+    //     if(audioElement.paused) {
+    //         audioElement.play();
+    //     } else {
+    //         audioElement.pause();
+    //     }
+    //     setIsPlaying(!isPlaying);
+    // };
 
 
     // console.log(audio);

@@ -1,6 +1,6 @@
 import './musiques.css';     
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { useRef } from 'react';
 import audioFile from '../SEMILOFI.mp3';

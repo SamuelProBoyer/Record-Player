@@ -1,7 +1,5 @@
 import {RouterProvider, createBrowserRouter, Navigate} from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
-import {doc, getDocs, onSnapchot} from 'firebase/firestore';
-import {db} from './config/firebase';
+import { useContext } from 'react';
 import Layout from './Layout/Layout';
 import RecordPlayer from './composante/RecordPlayer';
 import Musiques from './composante/Musiques';
@@ -9,7 +7,6 @@ import Playlists from './composante/Playlists';
 import Login from './Login';
 import './App.css';
 import { authContext } from './AuthContext/authContext';
-import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const {user} = useContext(authContext);
