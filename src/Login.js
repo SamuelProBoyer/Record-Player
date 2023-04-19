@@ -10,6 +10,7 @@ const Login = () => {
         email: "",
         password: ""
     });
+    console.log(setAuth);
 
     const { login } = useContext(authContext);
 
