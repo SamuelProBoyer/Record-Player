@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { addDoc, collection } from "@firebase/firestore";
 import "./fileimport.css";
-import { db } from "../config/firebase";
+// import { db } from "../config/firebase";
 import AnimatedPage from "./AnimatedPage";
 import { Link } from "react-router-dom";
 
