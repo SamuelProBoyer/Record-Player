@@ -5,9 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRecordVinyl, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../composante/Footer";
 import Header from "../composante/Header";
-import { auth } from "../config/firebase";
-// import AnimationPage from "../composante/AnimatedPage";
-import AnimatedPage from "../composante/AnimatedPage";
 import './layout.css';
 
 
