@@ -28,6 +28,7 @@ footer {
     justify-content: center;
     align-items: center;
     height: 300px;
+    margin: 2rem 0;
     /* background: linear-gradient(20deg, var(--color-dark), var(--color-dark_50p)); */
 }
 

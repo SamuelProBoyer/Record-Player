@@ -35,18 +35,18 @@ const Musiques = () => {
 
 
  
-    useEffect(() => {
-        const getCol = async() => {
-            const maCol = await getDocs(collection(db, "users"));
-            const documents = maCol.docs.map(doc => ({
-                ...doc.data(),
-                id: doc.id
-            }));
-            // console.log(documents[0].chansons);
-            setChansonListe(documents[0].chansons);
-        };
-        getCol();
-    },[]);
+    // useEffect(() => {
+    //     const getCol = async() => {
+    //         const maCol = await getDocs(collection(db, "users"));
+    //         const documents = maCol.docs.map(doc => ({
+    //             ...doc.data(),
+    //             id: doc.id
+    //         }));
+    //         // console.log(documents[0].chansons);
+    //         setChansonListe(documents[0].chansons);
+    //     };
+    //     getCol();
+    // },[]);
 
   const handleClick = (index) => {
     const audioElement = audioRefs.current[index];
@@ -75,16 +75,7 @@ const Musiques = () => {
           </p>
         </div>
         <ul className="container">
-          {chansonsListe.map((chanson, index) => (
-            <li className="item" key={index}>
-              <img className="playlist-image" src={chanson.image} alt={chanson.namesong} />
-              <audio ref={(el) => (audioRefs.current[index] = el)} src="../SEMILOFI.mp3"></audio>
-              <button onClick={() => handleClick(index)} className="fa-icons-record">
-                <FontAwesomeIcon icon={isPlaying[index] ? faCirclePause : faCirclePlay} />
-              </button>
-              <h3 className="playlist-name">{chanson.namesong}</h3>
-            </li>
-          ))}
+        
         </ul>
         <div className="modal-container">
           {/* <Modal show={show} onClose={() => setShow(false)} /> */}

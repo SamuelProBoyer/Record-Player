@@ -39,7 +39,6 @@
 .container-layout .nav-menu {
     display: flex;
     align-items: center;
-    margin-right: 2rem;
 }
 .container-layout .nav-menu .btn-img-profil .img-profil{
     width: 35px;
