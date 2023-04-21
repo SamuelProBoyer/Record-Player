@@ -59,6 +59,7 @@
     color:#fff;
     text-decoration: none;
     font-family: 'PlayFair Display', sans-serif;
+    transition: background-color 0.3s ease-in-out;
 }
 .container-layout .nav-menu li .menu-link:hover {
     color: var(--color_mauve);
@@ -74,6 +75,7 @@
     background-color: var(--color_mauve);
     font-family: 'DynaPuff', cursive;
     color: #fff;
+    transition: background-color 0.3s ease-in-out;
     
 }
 .btn:hover {
@@ -127,6 +129,7 @@
     font-size: 3rem;
     margin-left: 20px;
     color: var(--color_mauve);
+    transition: background-color 0.3s ease-in-out;
   }
 
 

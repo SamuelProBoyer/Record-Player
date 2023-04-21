@@ -24,11 +24,7 @@ function FileImport() {
   console.log(setAllFiles);
 
 
-  // const [newSong, setNewSong] = useState({
-  //   filename: file.name,
-  //   url: "",
-  //   image: ""
-  // });
+
 
   // const updateSongs = (props, value) => {
   //   setNewSong((pervious) => {
@@ -54,14 +50,20 @@ function FileImport() {
 
 
 
-  console.log(i);
+  // console.log(i);
+  // const [newSong, setNewSong] = useState({
+  //   filename: "",
+  //   url: "",
+  //   image: ""
+  // });
   const handleUpload = () => {
-    
     if (!file) {
       alert("Ajoute une chanson avant !");
     }
+
     const storageRef = ref(storage, `/musiques/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -75,22 +77,29 @@ function FileImport() {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           handleIncrementation();
 
+          // Create a new song object with the image, name, and URL of the newly uploaded song
+          const newSong = {
+            image: "New song image URL",
+            namesong: "New song name",
+            url: url
+          };
+
           const usersRef = collection(db, "users");
           const userRef = doc(usersRef, user.uid);
 
           getDoc(userRef)
             .then((docSnap) => {
               if (docSnap.exists()) {
-                const userChansons = docSnap.data().songs;
-                const updatedChansons = { ...userChansons, [i]: url };
-                return updateDoc(userRef, { songs: updatedChansons });
-                
+                const userSongs = docSnap.data().songs;
+                const songsArray = Object.values(userSongs); // Convert to array
+                const updatedSongs = [...songsArray, newSong]; // Add new song
+                return updateDoc(userRef, { songs: updatedSongs });
               } else {
                 console.log("User document does not exist");
               }
             })
             .then(() => {
-              console.log("URL added to user chansons");
+              console.log("Song added to user's collection");
             })
             .catch((error) => {
               console.log(error);
@@ -107,6 +116,9 @@ function FileImport() {
       }
     );
   };
+
+
+
 
 
 

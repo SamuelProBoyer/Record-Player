@@ -1,69 +1,46 @@
-import { useState, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import AnimatedPage from './AnimatedPage';
+import { useState } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import AnimatedPage from "./AnimatedPage";
 // import Modal from '../Modal/Modal';
-import { useEffect, useContext } from 'react';
-import { authContext } from '../AuthContext/authContext';
-import { collection,  getDocs } from '@firebase/firestore';
-import { db } from '../config/firebase';
+import { useEffect, useContext } from "react";
+import { collection, getDoc, doc } from "@firebase/firestore";
+import { db } from "../config/firebase";
 import "./musiques.css";
-
+import { authContext } from "../AuthContext/authContext";
 
 const Musiques = () => {
-  const [isPlaying, setIsPlaying] = useState([]);
-  const [show, setShow] = useState(false);
-  const [chansonsListe, setChansonListe] = useState([]);
-  const { user } = useContext(authContext);
-  console.log(user);
-  console.log(show);
+  // const [isPlaying, setIsPlaying] = useState([]);
+  // const [show, setShow] = useState(false);
+  // const audioRefs = useRef([]);
+  const [songs, setSongs] = useState([]);
+  const {user} = useContext(authContext);
 
-  const audioRefs = useRef([]);
-
-//   useEffect(() => {
-//     const fetchChansons = async () => {
-//       const chansons = await getDocs(collection(db, 'musiques'));
-//       const chansonsListe = chansons.docs.map((doc) => doc.data());
-//       setChansonListe(chansonsListe);
-//       setIsPlaying(new Array(chansonsListe.length).fill(false));
-//       audioRefs.current = audioRefs.current.slice(0, chansonsListe.length);
-//     };
-//     fetchChansons();
-//   }, []);
-
-
-
- 
-    // useEffect(() => {
-    //     const getCol = async() => {
-    //         const maCol = await getDocs(collection(db, "users"));
-    //         const documents = maCol.docs.map(doc => ({
-    //             ...doc.data(),
-    //             id: doc.id
-    //         }));
-    //         // console.log(documents[0].chansons);
-    //         setChansonListe(documents[0].chansons);
-    //     };
-    //     getCol();
-    // },[]);
-
-  const handleClick = (index) => {
-    const audioElement = audioRefs.current[index];
-    const isPlayingCopy = [...isPlaying];
-    if (audioElement.paused) {
-      audioRefs.current.forEach((element) => element.pause());
-      isPlayingCopy.fill(false);
-      audioElement.play();
-      setShow(true);
-      isPlayingCopy[index] = true;
-    } else {
-        audioElement.pause();
-        setShow(false);
-        isPlayingCopy[index] = false;
-    }
-    setIsPlaying(isPlayingCopy);
-  };
+  // Permet daller chercher les chansons upload par lutilisateur
+  useEffect(() => {
+    const fetchSongs = async () => {
+      const collectionRef = collection(db, "users");
+      const userDocRef = doc(collectionRef, user.uid);
+      const docSnap = await getDoc(userDocRef);
+      if (docSnap.exists()) {
+        const userSongs = docSnap.data().songs;
+        const songObjects = Object.values(userSongs);
+        const songUrls = songObjects.map((song) => {
+          return {
+            url: song.url,
+            namesong: song.namesong,
+            image: song.image,
+          };
+        });
+        
+        setSongs(songUrls);
+      } else {
+        console.log("Document utilisateur nexiste pas");
+      }
+    };
+    fetchSongs(); 
+  }, [user.uid]);
 
   return (
     <>
@@ -75,7 +52,16 @@ const Musiques = () => {
           </p>
         </div>
         <ul className="container">
-        
+          {songs.map((songUrl, index) => (
+            <div className="card-container" key={index} style={{ backgroundImage: `url(${songUrl.image})` }}>
+              <h3>{songUrl.namesong}</h3>
+              {/* <img src={songUrl.image} alt={songUrl.namesong} /> */}
+              <audio controls>
+                <source src={songUrl.url} type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          ))}
         </ul>
         <div className="modal-container">
           {/* <Modal show={show} onClose={() => setShow(false)} /> */}

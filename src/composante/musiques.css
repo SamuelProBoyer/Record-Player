@@ -23,3 +23,23 @@ a {
     text-decoration: none;
     color: white;
 }
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    border: 3px solid var(--color_bleu);
+    border-radius: 2rem;
+    margin: 0 2rem;
+    height: 250px;
+    padding: 1rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+audio::-webkit-media-controls-panel {
+    justify-self: flex-end;
+    background-color: #56AEFF;
+  }

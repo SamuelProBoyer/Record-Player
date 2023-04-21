@@ -1,8 +1,18 @@
+:root {
+     /* Test nouvelles couleurs */
+    --color_rose: #F2858E;
+    --color_mauve: #44428C;
+    --color_bleu: #2A5E8C;
+    --color_yellow: #F2AA6B;
+    --color_orange: #F28066;
+
+}
+
 .upload-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 700px;
+    height: 900px;
     margin: 2rem 0;
     background-color: rgba(34, 34, 34, 0.301);
     border-radius: 3rem;
@@ -12,6 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;  
+    margin: 3rem 0;
 }
 
 .upload-text {
@@ -19,14 +30,29 @@
     font-size: 2rem;
 }
 
-.wrapper .upload-input {
-    display: flex;
-    margin: 2rem 0;
-    border-radius: 3rem;
-    border: transparent;
-    font-size: 1rem;
-    outline: transparent;
-}
+.upload-input {
+    border: none;
+    border-radius: 20px;
+    padding: 15px 20px;
+    background-color: var(--color_mauve);
+    color: #fff;
+    font-size: 16px;
+    font-family: "DynaPuff", cursive;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .upload-input:hover {
+    background-color: var(--color_yellow);
+  }
+  
+  .upload-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #999;
+  }
+  
+
+
 
 .wrapper .input-container {
     display: flex;
@@ -66,3 +92,4 @@
     color: #fff;
     cursor: pointer;
 }
+
