@@ -2,17 +2,19 @@ import { useState, useContext } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db } from "../config/firebase";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import "./fileimport.css";
 import { storage } from "../config/firebase";
 import { authContext } from "../AuthContext/authContext";
+import "./fileimport.css";
+import { useNavigate } from "react-router-dom";
 
 function FileImport() {
   const [file, setFile] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const [isPlaying, setIsPlaying] = useState(false);
   const { user } = useContext(authContext);
+  const navigate = useNavigate();
 
   let i = 0;
   const handleIncrementation = () => {
@@ -65,22 +67,26 @@ function FileImport() {
               }
             })
             .then(() => {
+              // navigate("/musiques");
               console.log("Song ajouter a ma collection user");
+              
+              
             })
             .catch((error) => {
               console.log(error);
             });
 
-          const audio = new Audio(url);
+          // const audio = new Audio(url);
 
-          const playButton = document.getElementById("playButton");
-          playButton.addEventListener("click", () => {
-            setIsPlaying(!isPlaying);
-            isPlaying ? audio.pause() : audio.play();
-          });
+          // const playButton = document.getElementById("playButton");
+          // playButton.addEventListener("click", () => {
+          //   setIsPlaying(!isPlaying);
+          //   isPlaying ? audio.pause() : audio.play();
+          // });
         });
       }
     );
+    
   };
 
   const handleImg = (e) => {
@@ -95,34 +101,45 @@ function FileImport() {
   return (
     <>
       <h1>Importer mes musiques</h1>
-      <div className="upload-container">
+      <div id="fileimport" className="upload-container">
         <div className="wrapper">
-          <div
-            className="card-container"
-            style={{ backgroundImage: `url(${imageSrc})` }}
-          >
+          <div className="card-container" style={{ backgroundImage: `url(${imageSrc})` }}>
             <h3 className="title-song">{inputValue}</h3>
             <div className="audio-container">
               <audio controls src=""></audio>
             </div>
           </div>
-          <input
-            type="text"
-            placeholder="Nom de la chanson"
-            onChange={(e) => setInputValue(e.target.value)}
-            value={inputValue}
-          />
-          <input
-            className="upload-input"
-            type="file"
-            onChange={handleChange}
-            accept="/musiques/*"
-          />
-          <input className="upload-input" type="file" onChange={handleImg} />
-          <button className="btn" onClick={handleUpload}>
-            Upload dans mes musiques
-          </button>
-          <p className="uplaod-percent">{percent} "% complété"</p>
+          <div className="input-container">
+            <input
+              className="input-title"
+              type="text"
+              placeholder="Nom de la chanson"
+              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue}
+              maxLength={25}
+            />
+            <div className="container-input">
+              <label>Choisir votre chanson</label>
+              <input
+                className="upload-input"
+                type="file"
+                onChange={handleChange}
+                accept="/musiques/*"
+              />
+            </div>
+            <div className="container-input">
+              <label>Choisir votre image</label>
+              <input
+                className="upload-input"
+                type="file"
+                onChange={handleImg}
+              />
+            </div>
+            <button className="btn" onClick={handleUpload}>
+              Upload dans mes musiques
+            </button>
+            <p className="uplaod-percent">{percent} "% complété"</p>
+          </div>
         </div>
       </div>
     </>

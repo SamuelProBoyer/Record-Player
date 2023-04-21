@@ -1,5 +1,5 @@
 :root {
-     /* Test nouvelles couleurs */
+    /* Test nouvelles couleurs */
     --color_rose: #F2858E;
     --color_mauve: #44428C;
     --color_bleu: #2A5E8C;
@@ -8,7 +8,8 @@
 
 }
 
-.upload-container {
+
+/* .upload-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +22,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;  
+    align-items: center;
     margin: 3rem 0;
 }
 
@@ -41,17 +42,44 @@
     font-family: "DynaPuff", cursive;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-  }
-  
-  .upload-input:hover {
+}
+
+.upload-input #file-upload-button {
+    display: none;
+}
+
+.input-title {
+    border: transparent;
+    border-radius: 3rem;
+    padding: 1rem;
+}
+.input-title:focus {
+    outline: transparent;
+}
+
+.container-input {
+    display: flex;
+    padding: 1.5rem 0;
+    flex-direction: column;
+}
+
+
+
+
+.upload-input:hover {
     background-color: var(--color_yellow);
-  }
-  
-  .upload-input:focus {
+}
+
+.upload-input:focus {
     outline: none;
     box-shadow: 0 0 5px #999;
-  }
-  
+}
+
+.uplaod-percent {
+    font-family: "Gloria Hallelujah", cursive;
+}
+
+
 
 
 
@@ -64,7 +92,8 @@
     width: 500px;
 
 }
-.wrapper .input-container .input{
+
+.wrapper .input-container .input {
     outline: transparent;
     border: transparent;
     border-radius: 3rem;
@@ -72,34 +101,105 @@
     padding: .5rem;
 
 }
+
 .wrapper .input-container .input[type="text"] {
     font-family: "  PlayFair Display", sans-serif;
 
 }
-.wrapper .input-container p{
+
+.wrapper .input-container p {
     display: flex;
     font-size: 1.5rem;
-    font-family: "PlayFair Display", sans-serif;  
+    font-family: "PlayFair Display", sans-serif;
 }
 
-#playButton {
-    margin: 2rem 0;
-    background-color: transparent;
-    color: var(--color_yellow);
-    border: none;
-    font-size: 4rem;
-}
-#playButton:hover {
-    color: #fff;
-    cursor: pointer;
-}
+
 
 .wrapper .card-container {
     border: 3px solid var(--color_bleu);
     height: 250px;
     width: 300px;
 }
-.wrapper .card-container .audio-container{
-    margin-top: 75px;
-}
+*/
 
+.wrapper .card-container .audio-container {
+    margin-top: 60px;
+} 
+
+.upload-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 700px;
+  }
+  
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: 3rem;
+    padding: 2rem 0;
+    background-color: #22222250;
+    border-radius: 3rem;
+  }
+  
+  .wrapper .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    border-radius: 2rem;
+    margin:2rem;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+
+  .title-song {
+    margin: 16px;
+    font-size: 16px;
+  }
+  
+  .audio-container {
+    margin: 16px;
+  }
+  
+  .container-input {
+    margin: 16px 0;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .upload-input {
+    margin-bottom: 16px;
+  }
+  
+  .input-title {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+  }
+  
+  
+  .uplaod-percent {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 3rem;
+  }
+  

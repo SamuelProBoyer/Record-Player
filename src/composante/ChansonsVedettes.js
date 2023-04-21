@@ -23,6 +23,7 @@ const ChansonsVedettes = () => {
         const sortedSongs = songObjects.sort(
           (a, b) => b.timestamp - a.timestamp
         );
+        console.log(sortedSongs);
         const latestSongs = sortedSongs.slice(0, 4);
 
         const songUrls = latestSongs.map((song) => {
@@ -30,6 +31,7 @@ const ChansonsVedettes = () => {
             url: song.url,
             namesong: song.namesong,
             image: song.image,
+            timestamp: new Date()
           };
         });
         setSongs(songUrls);
@@ -50,10 +52,10 @@ const ChansonsVedettes = () => {
           </span>
         </h2>
         <ul className="container container-last-song">
-          {songs.map(({ image, namesong, index, url }) => (
+          {songs.map(({ image, namesong, url }) => (
             <div
               className="card-container"
-              key={index}
+              key={url}
               style={{ backgroundImage: `url(${image})` }}
             >
               <h3 className="title-song">{namesong}</h3>

@@ -23,8 +23,11 @@ a {
     text-decoration: none;
     color: white;
 }
+.container {
+    justify-content: center;
+}
 
-.card-container {
+.container .card-container {
     display: flex;
     flex-direction: column;
     align-items: center;    
