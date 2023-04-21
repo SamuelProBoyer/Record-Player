@@ -1,61 +1,30 @@
 import { useState, useContext } from "react";
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db } from "../config/firebase";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import "./fileimport.css";
 import { storage } from "../config/firebase";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay, faCirclePause } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
 import { authContext } from "../AuthContext/authContext";
 
-
-
 function FileImport() {
-
   const [file, setFile] = useState("");
-  const [allFiles, setAllFiles] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const { user } = useContext(authContext);
-  console.log(setAllFiles);
-
-
-
-
-  // const updateSongs = (props, value) => {
-  //   setNewSong((pervious) => {
-  //     return {
-  //     ...pervious,
-  //       [props]: value,
-  //     };
-  //   });
-  // };
-
-
-
-
 
   let i = 0;
   const handleIncrementation = () => {
     i++;
     console.log(i);
-  }
+  };
   function handleChange(event) {
     setFile(event.target.files[i]);
   }
 
-
-
-  // console.log(i);
-  // const [newSong, setNewSong] = useState({
-  //   filename: "",
-  //   url: "",
-  //   image: ""
-  // });
   const handleUpload = () => {
     if (!file) {
       alert("Ajoute une chanson avant !");
@@ -77,11 +46,10 @@ function FileImport() {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           handleIncrementation();
 
-          // Create a new song object with the image, name, and URL of the newly uploaded song
           const newSong = {
-            image: "New song image URL",
-            namesong: "New song name",
-            url: url
+            image: imageSrc,
+            namesong: inputValue,
+            url: url,
           };
 
           const usersRef = collection(db, "users");
@@ -91,15 +59,15 @@ function FileImport() {
             .then((docSnap) => {
               if (docSnap.exists()) {
                 const userSongs = docSnap.data().songs;
-                const songsArray = Object.values(userSongs); // Convert to array
-                const updatedSongs = [...songsArray, newSong]; // Add new song
+                const songsArray = Object.values(userSongs); // conversion en tableau
+                const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
                 return updateDoc(userRef, { songs: updatedSongs });
               } else {
-                console.log("User document does not exist");
+                console.log("Document de user nexiste pas");
               }
             })
             .then(() => {
-              console.log("Song added to user's collection");
+              console.log("Song ajouter a ma collection user");
             })
             .catch((error) => {
               console.log(error);
@@ -117,37 +85,46 @@ function FileImport() {
     );
   };
 
-
-
-
-
-
+  const handleImg = (e) => {
+    const file = e.target.files[i];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setImageSrc(reader.result);
+    };
+  };
 
   return (
     <>
       <h1>Importer mes musiques</h1>
       <div className="upload-container">
-        <div className="files">
-          {allFiles.map((file) => {
-            return (
-              <div className="file" key={Math.random()}>
-                <p>{file.url}</p>
-                <p>{file.name}</p>
-                <button></button>
-              </div>
-            )
-          })}
-        </div>
         <div className="wrapper">
+          <div
+            className="card-container"
+            style={{ backgroundImage: `url(${imageSrc})` }}
+          >
+            <h3 className="title-song">{inputValue}</h3>
+            <div className="audio-container">
+              <audio controls src=""></audio>
+            </div>
+          </div>
+          <input
+            type="text"
+            placeholder="Nom de la chanson"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+          />
           <input
             className="upload-input"
             type="file"
             onChange={handleChange}
             accept="/musiques/*"
           />
-          <div className="contentDiv">{file.name}</div>
-          <p className="upload-text">Joue moi</p>
-          <button id="playButton"><FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} /></button>
+          <input className="upload-input" type="file" onChange={handleImg} />
+          {/* <p className="upload-text">Joue moi</p>
+          <button id="playButton">
+            <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
+          </button> */}
 
           <button className="btn" onClick={handleUpload}>
             Upload dans mes musiques

@@ -52,14 +52,16 @@ const Musiques = () => {
           </p>
         </div>
         <ul className="container">
-          {songs.map((songUrl, index) => (
-            <div className="card-container" key={index} style={{ backgroundImage: `url(${songUrl.image})` }}>
-              <h3>{songUrl.namesong}</h3>
+          {songs.map(({namesong, url, image}) => (
+            <div className="card-container" key={url} style={{ backgroundImage: `url(${image})` }}>
+              <h3 className="title-song">{namesong}</h3>
               {/* <img src={songUrl.image} alt={songUrl.namesong} /> */}
-              <audio controls>
-                <source src={songUrl.url} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
+              <div className="audio-container">
+                <audio controls>
+                  <source src={url} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
             </div>
           ))}
         </ul>

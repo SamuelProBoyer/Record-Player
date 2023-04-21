@@ -13,7 +13,7 @@ h1 {
 
 .title-ari-container p {
     font-size: 1rem;
-    margin-right: 200px;
+    margin-right: 90px;
     font-family: 'DynaPuff', cursive;
 }
 .title-ari-container p span{
@@ -29,17 +29,28 @@ a {
     flex-direction: column;
     align-items: center;    
     justify-content: center;
-    border: 3px solid var(--color_bleu);
     border-radius: 2rem;
-    margin: 0 2rem;
+    margin:2rem;
     height: 250px;
-    padding: 1rem;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
+.card-container .title-song {
+    color: var(--color-dark);
+    font-family:"DynaPuff", cursive;
+    padding: 15px;
+    margin-bottom: 5rem;
+    border-radius: 2rem;
+    background-color: #56AEFF;
+}
+
+.card-container .audio-container {
+    margin-top: 3.5rem;
+}
+
+
 audio::-webkit-media-controls-panel {
-    justify-self: flex-end;
     background-color: #56AEFF;
   }

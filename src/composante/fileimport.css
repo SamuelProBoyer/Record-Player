@@ -34,6 +34,7 @@
     border: none;
     border-radius: 20px;
     padding: 15px 20px;
+    margin: 15px;
     background-color: var(--color_mauve);
     color: #fff;
     font-size: 16px;
@@ -91,5 +92,14 @@
 #playButton:hover {
     color: #fff;
     cursor: pointer;
+}
+
+.wrapper .card-container {
+    border: 3px solid var(--color_bleu);
+    height: 250px;
+    width: 300px;
+}
+.wrapper .card-container .audio-container{
+    margin-top: 75px;
 }
 
