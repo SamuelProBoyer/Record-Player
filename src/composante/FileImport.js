@@ -4,8 +4,6 @@ import { db } from "../config/firebase";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import "./fileimport.css";
 import { storage } from "../config/firebase";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
 import { authContext } from "../AuthContext/authContext";
 
 function FileImport() {
@@ -121,11 +119,6 @@ function FileImport() {
             accept="/musiques/*"
           />
           <input className="upload-input" type="file" onChange={handleImg} />
-          {/* <p className="upload-text">Joue moi</p>
-          <button id="playButton">
-            <FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
-          </button> */}
-
           <button className="btn" onClick={handleUpload}>
             Upload dans mes musiques
           </button>

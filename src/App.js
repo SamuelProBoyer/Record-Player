@@ -7,7 +7,7 @@ import { useContext } from "react";
 import Layout from "./Layout/Layout";
 import RecordPlayer from "./composante/RecordPlayer";
 import Musiques from "./composante/Musiques";
-import Playlists from "./composante/Playlists";
+// import Playlists from "./composante/Playlists";
 import Login from "./Login";
 import "./App.css";
 import { authContext } from "./AuthContext/authContext";
@@ -34,10 +34,10 @@ function App() {
               path: "/musiques",
               element: <Musiques />,
             },
-            {
-              path: "/playlists",
-              element: <Playlists />,
-            },
+            // {
+            //   path: "/playlists",
+            //   element: <Playlists />,
+            // },
             {
               path: "/fileimport",
               element: <FileImport />,

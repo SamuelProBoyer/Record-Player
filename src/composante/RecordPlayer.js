@@ -10,19 +10,6 @@ import ChansonsVedettes from './ChansonsVedettes';
 
 
 const RecordPlayer = () => {
-    // // A changer pour handle le commencement des musiques. !!!
-    // const handleClick = () => {
-    //     const audioElement = audioRef.current;
-    //     if(audioElement.paused) {
-    //         audioElement.play();
-    //     } else {
-    //         audioElement.pause();
-    //     }
-    //     setIsPlaying(!isPlaying);
-    // };
-
-
-    // console.log(audio);
     return (
         <>
 

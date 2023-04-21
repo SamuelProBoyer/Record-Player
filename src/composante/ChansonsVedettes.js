@@ -1,95 +1,69 @@
 import AnimatedPage from "./AnimatedPage";
-import { useState, useRef, useEffect } from "react";
-import { collection, getDocs } from "@firebase/firestore";
+import { useState, useEffect } from "react";
+import { collection, doc, getDoc } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCirclePlay,
-  faCirclePause,
-  faMusic,
-  faPlus,
-  faMinus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { authContext } from "../AuthContext/authContext";
 
 const ChansonsVedettes = () => {
-  const [isPlaying, setIsPlaying] = useState([]);
-  const [isAdded, setIsAdded] = useState(false);
-  const [chansonsListe, setChansonListe] = useState([]);
-  const audioRefs = useRef([]);
+  const [songs, setSongs] = useState([]);
+  const { user } = useContext(authContext);
 
+  // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
-    const fetchChansons = async () => {
-      const chansons = await getDocs(collection(db, "musiques"));
-      const chansonsListe = chansons.docs.map((doc) => doc.data());
-      setChansonListe(chansonsListe);
-      setIsPlaying(new Array(chansonsListe.length).fill(false));
-      audioRefs.current = audioRefs.current.slice(0, chansonsListe.length);
+    const fetchSongs = async () => {
+      const collectionRef = collection(db, "users");
+      const userDocRef = doc(collectionRef, user.uid);
+      const docSnap = await getDoc(userDocRef);
+      if (docSnap.exists()) {
+        const userSongs = docSnap.data().songs;
+        const songObjects = Object.values(userSongs);
+        const sortedSongs = songObjects.sort(
+          (a, b) => b.timestamp - a.timestamp
+        );
+        const latestSongs = sortedSongs.slice(0, 4);
+
+        const songUrls = latestSongs.map((song) => {
+          return {
+            url: song.url,
+            namesong: song.namesong,
+            image: song.image,
+          };
+        });
+        setSongs(songUrls);
+      } else {
+        console.log("Document utilisateur nexiste pas");
+      }
     };
-    fetchChansons();
-  }, []);
 
-  const handleClick = (index) => {
-    const audioElement = audioRefs.current[index];
-    const isPlayingCopy = [...isPlaying];
-    if (audioElement.paused) {
-      audioRefs.current.forEach((element) => element.pause());
-      isPlayingCopy.fill(false);
-      audioElement.play();
-      //   setShow(true);
-      isPlayingCopy[index] = true;
-    } else {
-      audioElement.pause();
-      // setShow(false);
-      isPlayingCopy[index] = false;
-    }
-    setIsPlaying(isPlayingCopy);
-  };
-
-  const handleAddChanson = (index) => {
-    if (!isAdded) {
-      setIsAdded(true);
-    } else {
-      setIsAdded(false);
-    }
-  };
-
+    fetchSongs();
+  }, [user.uid]);
   return (
     <>
       <AnimatedPage>
         <h2 className="featured-title">
-          Chansons en vedettes{" "}
+          Dernière chansons ajoutées
           <span className="icon-music">
             <FontAwesomeIcon icon={faMusic} />
           </span>
         </h2>
-        <ul className="container">
-          {chansonsListe.map(({image, namesong, index}) => (
-            <li className="item" key={index}>
-              <img
-                className="playlist-image"
-                src={image}
-                alt={namesong}
-              />
-              <audio
-                ref={(el) => (audioRefs.current[index] = el)}
-                src="../SEMILOFI.mp3"
-              ></audio>
-              <button
-                onClick={(e) => handleClick(index)}
-                className="fa-icons-record"
-              >
-                <FontAwesomeIcon
-                  icon={isPlaying[index] ? faCirclePause : faCirclePlay}
-                />
-              </button>
-              <button
-                onClick={() => handleAddChanson(index)}
-                className="fa-icons-plus"
-              >
-                <FontAwesomeIcon icon={isAdded ? faMinus : faPlus} />
-              </button>
-              <h3 className="playlist-name">{namesong}</h3>
-            </li>
+        <ul className="container container-last-song">
+          {songs.map(({ image, namesong, index, url }) => (
+            <div
+              className="card-container"
+              key={index}
+              style={{ backgroundImage: `url(${image})` }}
+            >
+              <h3 className="title-song">{namesong}</h3>
+              <div className="audio-container">
+                <audio controls>
+                  <source src={url} type="audio/mpeg" />
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
           ))}
         </ul>
       </AnimatedPage>

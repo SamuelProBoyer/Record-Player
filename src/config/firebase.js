@@ -26,33 +26,3 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 
 export {db, auth, Googleprovider, firebaseConfig, storage}
-
-
-
-
-
-
-
-
-
-// const [mesMusiques, setMesMusiques] = useState([]);
-
-    // useEffect(() => {
-    //     if(user.uid) {
-    //         const musiques = [];
-    //         const trouverMusiques = async() => {
-    //             const musiquesRef = collection(db, "musiques");
-    //             const q = query(musiquesRef, where("userId", "array-contains", user.uid));
-    //             const querySnapshot = await getDocs(q);
-    //             querySnapshot.forEach((doc) => {
-    //                 const data = doc.data();
-    //                 data.id = doc.id;
-    //                 musiques.push(data);
-                    
-    //             });
-    //             setMesMusiques(musiques);
-    //         }
-    //         trouverMusiques();
-    //     }
-    // }, [user?.uid]);
-    // console.log(mesMusiques);

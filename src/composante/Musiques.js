@@ -1,21 +1,16 @@
 import { useState } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCirclePlay, faCirclePause } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
-// import Modal from '../Modal/Modal';
 import { useEffect, useContext } from "react";
 import { collection, getDoc, doc } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import "./musiques.css";
 import { authContext } from "../AuthContext/authContext";
+// import Modal from '../Modal/Modal';
 
 const Musiques = () => {
-  // const [isPlaying, setIsPlaying] = useState([]);
-  // const [show, setShow] = useState(false);
-  // const audioRefs = useRef([]);
   const [songs, setSongs] = useState([]);
-  const {user} = useContext(authContext);
+  const { user } = useContext(authContext);
 
   // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
@@ -33,13 +28,13 @@ const Musiques = () => {
             image: song.image,
           };
         });
-        
+
         setSongs(songUrls);
       } else {
         console.log("Document utilisateur nexiste pas");
       }
     };
-    fetchSongs(); 
+    fetchSongs();
   }, [user.uid]);
 
   return (
@@ -52,10 +47,9 @@ const Musiques = () => {
           </p>
         </div>
         <ul className="container">
-          {songs.map(({namesong, url, image}) => (
+          {songs.map(({ namesong, url, image }) => (
             <div className="card-container" key={url} style={{ backgroundImage: `url(${image})` }}>
               <h3 className="title-song">{namesong}</h3>
-              {/* <img src={songUrl.image} alt={songUrl.namesong} /> */}
               <div className="audio-container">
                 <audio controls>
                   <source src={url} type="audio/mpeg" />

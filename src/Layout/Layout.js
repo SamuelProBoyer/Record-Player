@@ -31,9 +31,9 @@ const Layout = () => {
                     <li>
                         <Link className="menu-link" to='/musiques'>Mes musiques</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link className="menu-link" to='/playlists'>Mes playlists</Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link className="menu-link" to='/fileimport'>Importer mes musiques</Link>
                     </li>
