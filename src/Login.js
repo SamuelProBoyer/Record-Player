@@ -16,7 +16,6 @@ const Login = () => {
 
     const submitHandler = async(e) => {
         e.preventDefault();
-        console.log("Test authentification");
         await login(auth);
     };
 

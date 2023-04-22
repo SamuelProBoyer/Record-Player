@@ -18,7 +18,7 @@
     /* Test nouvelles couleurs */
     --color_rose: #F2858E;
     --color_mauve: #44428C;
-    --color_bleu: #2A5E8C;
+    --color_bleu: #56AEFF;
     --color_yellow: #F2AA6B;
     --color_orange: #F28066;
 }
@@ -62,7 +62,7 @@
     transition: background-color 0.3s ease-in-out;
 }
 .container-layout .nav-menu li .menu-link:hover {
-    color: var(--color_mauve);
+    color: var(--color_bleu);
 }
 
 .btn {
@@ -79,7 +79,7 @@
     
 }
 .btn:hover {
-    background-color: var(--color_yellow);
+    background-color: var(--color_bleu);
     color: #fff;
     cursor: pointer;
 }
@@ -99,7 +99,7 @@
     font-family: 'DynaPuff', cursive;
 }
 .container-title .fa-icon:hover{
-    color: var(--color_yellow);
+    color: var(--color_bleu);
 }
 
 

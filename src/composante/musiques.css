@@ -38,6 +38,7 @@ a {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    box-shadow: 10px 10px 10px var(--color-dark);
 }
 
 .card-container .title-song {

@@ -6,6 +6,7 @@ import { storage } from "../config/firebase";
 import { authContext } from "../AuthContext/authContext";
 import "./fileimport.css";
 import { useNavigate } from "react-router-dom";
+import AnimatedPage from "./AnimatedPage";
 
 function FileImport() {
   const [file, setFile] = useState("");
@@ -19,7 +20,6 @@ function FileImport() {
   let i = 0;
   const handleIncrementation = () => {
     i++;
-    console.log(i);
   };
   function handleChange(event) {
     setFile(event.target.files[i]);
@@ -69,24 +69,13 @@ function FileImport() {
             .then(() => {
               // navigate("/musiques");
               console.log("Song ajouter a ma collection user");
-              
-              
             })
             .catch((error) => {
               console.log(error);
             });
-
-          // const audio = new Audio(url);
-
-          // const playButton = document.getElementById("playButton");
-          // playButton.addEventListener("click", () => {
-          //   setIsPlaying(!isPlaying);
-          //   isPlaying ? audio.pause() : audio.play();
-          // });
         });
       }
     );
-    
   };
 
   const handleImg = (e) => {
@@ -100,48 +89,53 @@ function FileImport() {
 
   return (
     <>
-      <h1>Importer mes musiques</h1>
-      <div id="fileimport" className="upload-container">
-        <div className="wrapper">
-          <div className="card-container" style={{ backgroundImage: `url(${imageSrc})` }}>
-            <h3 className="title-song">{inputValue}</h3>
-            <div className="audio-container">
-              <audio controls src=""></audio>
+      <AnimatedPage>
+        <h1>Importer mes musiques</h1>
+        <div id="fileimport" className="upload-container">
+          <div className="wrapper">
+            <div
+              className="card-container"
+              style={{ backgroundImage: `url(${imageSrc})` }}
+            >
+              <h3 className="title-song">{inputValue}</h3>
+              <div className="audio-container">
+                <audio controls src=""></audio>
+              </div>
             </div>
-          </div>
-          <div className="input-container">
-            <input
-              className="input-title"
-              type="text"
-              placeholder="Nom de la chanson"
-              onChange={(e) => setInputValue(e.target.value)}
-              value={inputValue}
-              maxLength={25}
-            />
-            <div className="container-input">
-              <label>Choisir votre chanson</label>
+            <div className="input-container">
               <input
-                className="upload-input"
-                type="file"
-                onChange={handleChange}
-                accept="/musiques/*"
+                className="input-title"
+                type="text"
+                placeholder="Nom de la chanson"
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue}
+                maxLength={25}
               />
+              <div className="container-input">
+                <label className="label-name">Choisir votre chanson</label>
+                <input
+                  className="upload-input"
+                  type="file"
+                  onChange={handleChange}
+                  accept="/musiques/*"
+                />
+              </div>
+              <div className="container-input">
+                <label className="label-name">Choisir votre image</label>
+                <input
+                  className="upload-input"
+                  type="file"
+                  onChange={handleImg}
+                />
+              </div>
+              <button className="btn" onClick={handleUpload}>
+                Upload dans mes musiques
+              </button>
+              <p className="uplaod-percent">{percent} "% complété"</p>
             </div>
-            <div className="container-input">
-              <label>Choisir votre image</label>
-              <input
-                className="upload-input"
-                type="file"
-                onChange={handleImg}
-              />
-            </div>
-            <button className="btn" onClick={handleUpload}>
-              Upload dans mes musiques
-            </button>
-            <p className="uplaod-percent">{percent} "% complété"</p>
           </div>
         </div>
-      </div>
+      </AnimatedPage>
     </>
   );
 }

@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --color-dark: #222;
     --color-dark_50p: rgba(34, 34, 34, 0.466);
     --color_blue: #1b2a41;
@@ -11,7 +11,7 @@
     --color_bluePurple-light_50p: #b2abff79;
     --color_purple-light: #D7CFFF;
     --color_purple-light_50p: #d7cfff73;
-  }
+  } */
 
   .container-playlists {
     display: flex;

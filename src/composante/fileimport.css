@@ -1,126 +1,13 @@
-:root {
-    /* Test nouvelles couleurs */
-    --color_rose: #F2858E;
-    --color_mauve: #44428C;
-    --color_bleu: #2A5E8C;
-    --color_yellow: #F2AA6B;
-    --color_orange: #F28066;
-
-}
-
-
-/* .upload-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 900px;
-    margin: 2rem 0;
-    background-color: rgba(34, 34, 34, 0.301);
-    border-radius: 3rem;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 3rem 0;
-}
-
-.upload-text {
-    font-family: "DynaPuff", cursives;
-    font-size: 2rem;
-}
-
-.upload-input {
-    border: none;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 15px;
-    background-color: var(--color_mauve);
-    color: #fff;
-    font-size: 16px;
-    font-family: "DynaPuff", cursive;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.upload-input #file-upload-button {
-    display: none;
-}
-
-.input-title {
-    border: transparent;
-    border-radius: 3rem;
-    padding: 1rem;
-}
-.input-title:focus {
-    outline: transparent;
-}
-
-.container-input {
-    display: flex;
-    padding: 1.5rem 0;
-    flex-direction: column;
-}
-
-
-
-
-.upload-input:hover {
-    background-color: var(--color_yellow);
-}
-
-.upload-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px #999;
+.label-name {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 1.5rem;
+  color: var(--color_bleu);
 }
 
 .uplaod-percent {
-    font-family: "Gloria Hallelujah", cursive;
+  font-family: 'Gloria Hallelujah', cursive;
+  color: var(--color_bleu);
 }
-
-
-
-
-
-.wrapper .input-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-    justify-content: center;
-    max-width: 500px;
-    width: 500px;
-
-}
-
-.wrapper .input-container .input {
-    outline: transparent;
-    border: transparent;
-    border-radius: 3rem;
-    line-height: 1rem;
-    padding: .5rem;
-
-}
-
-.wrapper .input-container .input[type="text"] {
-    font-family: "  PlayFair Display", sans-serif;
-
-}
-
-.wrapper .input-container p {
-    display: flex;
-    font-size: 1.5rem;
-    font-family: "PlayFair Display", sans-serif;
-}
-
-
-
-.wrapper .card-container {
-    border: 3px solid var(--color_bleu);
-    height: 250px;
-    width: 300px;
-}
-*/
 
 .wrapper .card-container .audio-container {
     margin-top: 60px;
@@ -143,6 +30,7 @@
     padding: 2rem 0;
     background-color: #22222250;
     border-radius: 3rem;
+    box-shadow: 10px 10px 10px var(--color-dark);
   }
   
   .wrapper .card-container {
