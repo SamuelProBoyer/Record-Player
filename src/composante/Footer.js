@@ -40,6 +40,7 @@ const Footer = () => {
             </Link>
           </li>
         </div>
+        <span>Record Player fait par Samuel Boyer&copy;</span>
       </ul>
     </footer>
   );

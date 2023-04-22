@@ -1,35 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 
-/* :root {
-    --color-dark: #222;
-    --color-dark_50p: rgba(34, 34, 34, 0.466);
-    --color_blue: #1b2a41;
-    --color_blue_50p: #1b2a417c;
-    --color_charcoal: #324a5f;
-    --color_charcoal_50p: #324a5f7e;
-    --color_lavender: #ccc9dc;
-    --color_lavender_50p: #ccc9dc7e;
-    --color_bluePurple-light: #B2ABFF;
-    --color_bluePurple-light_50p: #b2abff79;
-    --color_purple-light: #D7CFFF;
-    --color_purple-light_50p: #d7cfff73;
-
-
-     --color_rose: #F2858E;
-     --color_mauve: #44428C;
-     --color_bleu: #2A5E8C;
-     --color_yellow: #F2AA6B;
-     --color_orange: #F28066;
-} */
 
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    margin: 2rem 0;
-    /* background: linear-gradient(20deg, var(--color-dark), var(--color-dark_50p)); */
+    height: 355px;
+    margin-top: 5rem;
+}
+span {
+    margin-bottom: 2rem;
+    color: #22222280;
+    font-family: "DynaPuff", cursive;
 }
 
 .nav-menu-footer {

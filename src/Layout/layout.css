@@ -21,6 +21,12 @@
     --color_bleu: #56AEFF;
     --color_yellow: #F2AA6B;
     --color_orange: #F28066;
+
+
+    /*Font size*/
+    --fontSmall: 12px;
+    --fontMed: 1rem;
+    --fontLarge: 64px;
 }
 
 
@@ -53,7 +59,7 @@
 
 .container-layout .nav-menu li {
     margin: 0 2rem;
-    font-size: 1rem;
+    font-size: var(--fontMed);
 }
 .container-layout .nav-menu li .menu-link {
     color:#fff;
@@ -66,7 +72,7 @@
 }
 
 .btn {
-    font-size: 1rem;
+    font-size: var(--fontMed);
     padding: 1rem;
     line-height: 2rem;
     border-radius: 3rem;
