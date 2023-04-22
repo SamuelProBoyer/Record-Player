@@ -123,3 +123,19 @@ ul {
 .container-last-song {
   justify-content: center;
 }
+
+
+@media (max-width: 720px) {
+  .container-accueil {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 700px;
+  }
+  
+  .container-title .fa-icon {
+    margin-top: 1rem;
+  }
+
+}

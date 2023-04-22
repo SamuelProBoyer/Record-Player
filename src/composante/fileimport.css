@@ -1,6 +1,16 @@
 .label-name {
   font-family: 'Gloria Hallelujah', cursive;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  color: var(--color_bleu);
+  border-bottom: 2px solid var(--color-dark);
+}
+label:hover {
+  border-bottom: 2px solid var(--color_bleu);
+  
+}
+
+.label-name span {
+  margin-left: 10px;
   color: var(--color_bleu);
 }
 
@@ -63,10 +73,14 @@
   label {
     display: block;
     margin-bottom: 8px;
+    cursor: pointer;
   }
+
+ 
   
   .upload-input {
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
+    display: none;
   }
   
   .input-title {

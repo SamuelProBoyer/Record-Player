@@ -5,17 +5,18 @@ import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import { storage } from "../config/firebase";
 import { authContext } from "../AuthContext/authContext";
 import "./fileimport.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 function FileImport() {
   const [file, setFile] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
-  // const [isPlaying, setIsPlaying] = useState(false);
   const { user } = useContext(authContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   let i = 0;
   const handleIncrementation = () => {
@@ -112,21 +113,31 @@ function FileImport() {
                 maxLength={25}
               />
               <div className="container-input">
-                <label className="label-name">Choisir votre chanson</label>
+                <label className="label-name">
+                  Choisir votre chanson
+                <span>
+                  <FontAwesomeIcon icon={faMusic} />
+                </span>
                 <input
                   className="upload-input"
                   type="file"
                   onChange={handleChange}
                   accept="/musiques/*"
                 />
+                </label>
               </div>
               <div className="container-input">
-                <label className="label-name">Choisir votre image</label>
+                <label className="label-name">
+                  Choisir votre image
+                  <span>
+                    <FontAwesomeIcon icon={faImage} />
+                  </span>
                 <input
                   className="upload-input"
                   type="file"
                   onChange={handleImg}
                 />
+              </label>
               </div>
               <button className="btn" onClick={handleUpload}>
                 Upload dans mes musiques
