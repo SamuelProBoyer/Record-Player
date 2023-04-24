@@ -52,6 +52,9 @@ const BottomNavPlayer = ({ songs }) => {
         <img src={songs[currentSongIndex]?.image} alt={songs[currentSongIndex]?.namesong} />
         <div className="song-info">
           <h3>{songs[currentSongIndex]?.namesong}</h3>
+          <audio controls src={songs[currentSongIndex]?.url}>
+
+          </audio>
         </div>
       </div>
       <div className="player-controls">

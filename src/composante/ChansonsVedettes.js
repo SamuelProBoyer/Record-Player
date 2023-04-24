@@ -13,6 +13,7 @@ const ChansonsVedettes = () => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
   const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
@@ -48,6 +49,7 @@ const ChansonsVedettes = () => {
 
   const handleSongClick = (song) => {
     setCurrentSong(song);
+    setIsPlaying(true);
   };
 
   return (
@@ -68,20 +70,28 @@ const ChansonsVedettes = () => {
               key={url}
               style={{ backgroundImage: `url(${image})` }}
             >
-              <h3 className="title-song" onClick={() => handleSongClick({url, namesong, image})}>{namesong}</h3>
+              <h3 className="title-song" >{namesong}</h3>
               <div className="audio-container">
-                <audio controls>
+                <audio controls onPlay={() => handleSongClick({ url, namesong, image })}>
                   <source src={url} type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
+
               </div>
             </div>
           ))}
         </ul>
-        <BottomNavPlayer songs={songs} currentSong={currentSong} />
+        {isPlaying && <BottomNavPlayer
+         songs={songs} 
+         currentSong={currentSong}
+         setCurrentSong={setCurrentSong}
+         isPlaying={isPlaying}
+         setIsPlaying={setIsPlaying}
+         />}
       </AnimatedPage>
     </>
   );
-};
+}
 
 export default ChansonsVedettes;
+
