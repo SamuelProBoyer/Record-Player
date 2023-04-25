@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AnimatedPage from './AnimatedPage';
 import ChansonsVedettes from './ChansonsVedettes';
 import ComposanteRename from './ComposanteRename';
+import ConsulteMusiques from './ConsulteMusiques';
 
 
 
@@ -13,7 +14,6 @@ import ComposanteRename from './ComposanteRename';
 const RecordPlayer = () => {
     return (
         <>
-
             <AnimatedPage>
                 <h1>Accueil</h1>
                 <div className='container-accueil'>
@@ -29,8 +29,8 @@ const RecordPlayer = () => {
                 <div className="container-accueil">
                     <ComposanteRename />
                 </div>
+                    <ConsulteMusiques />
             </AnimatedPage>
-
         </>
     )
 }

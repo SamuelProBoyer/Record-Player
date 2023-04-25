@@ -5,10 +5,10 @@ import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import { storage } from "../config/firebase";
 import { authContext } from "../AuthContext/authContext";
 import "./fileimport.css";
-// import { useNavigate } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
 function FileImport() {
   const [file, setFile] = useState("");
@@ -16,7 +16,6 @@ function FileImport() {
   const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
   const { user } = useContext(authContext);
-  // const navigate = useNavigate();
 
   let i = 0;
   const handleIncrementation = () => {
@@ -26,7 +25,7 @@ function FileImport() {
     setFile(event.target.files[i]);
   }
 
-  const handleUpload = () => {
+  const handleUpload = async() => {
     if (!file) {
       alert("Ajoute une chanson avant !");
     }
@@ -51,24 +50,24 @@ function FileImport() {
             image: imageSrc,
             namesong: inputValue,
             url: url,
+            timestamp: new Date()
           };
-
           const usersRef = collection(db, "users");
           const userRef = doc(usersRef, user.uid);
-
           getDoc(userRef)
             .then((docSnap) => {
-              if (docSnap.exists()) {
-                const userSongs = docSnap.data().songs;
-                const songsArray = Object.values(userSongs); // conversion en tableau
-                const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
-                return updateDoc(userRef, { songs: updatedSongs });
-              } else {
-                console.log("Document de user nexiste pas");
+              if(!docSnap.exists()){
+                return console.log("Document de user nexiste pas");
               }
+              const userSongs = docSnap.data().songs;
+              const songsArray = Object.values(userSongs); // conversion en tableau
+              const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
+              return updateDoc(userRef, { songs: updatedSongs });
             })
             .then(() => {
-              // navigate("/musiques");
+              setFile("");
+              setInputValue("");
+              setImageSrc("");
               console.log("Song ajouter a ma collection user");
             })
             .catch((error) => {
@@ -91,7 +90,12 @@ function FileImport() {
   return (
     <>
       <AnimatedPage>
-        <h1>Importer mes musiques</h1>
+      <div className="title-ari-container">
+          <h1>Importer mes musiques</h1>
+          <p>
+            <Link to="/">Accueil</Link> / <span>Importer musiques</span>
+          </p>
+        </div>
         <div id="fileimport" className="upload-container">
           <div className="wrapper">
             <div

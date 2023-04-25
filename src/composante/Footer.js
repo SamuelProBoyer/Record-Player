@@ -14,15 +14,15 @@ const Footer = () => {
           </Link>
         </li>
         <li>
+          <Link className="menu-link-footer" to="/allsongs">
+            Toutes les musiques
+          </Link>
+        </li>
+        <li>
           <Link className="menu-link-footer" to="/musiques">
             Mes musiques
           </Link>
         </li>
-        {/* <li>
-          <Link className="menu-link-footer" to="/playlists">
-            Mes playlists
-          </Link>
-        </li> */}
         <li>
           <Link className="menu-link-footer" to="/fileimport">
             Importer mes musiques

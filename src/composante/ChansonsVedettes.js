@@ -9,11 +9,14 @@ import { authContext } from "../AuthContext/authContext";
 import { Link } from "react-router-dom";
 import BottomNavPlayer from "./BottomNavPlayer";
 
+
 const ChansonsVedettes = () => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+
 
   // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
@@ -23,8 +26,7 @@ const ChansonsVedettes = () => {
       const docSnap = await getDoc(userDocRef);
       if (docSnap.exists()) {
         const userSongs = docSnap.data().songs;
-        const songObjects = Object.values(userSongs);
-        const sortedSongs = songObjects.sort(
+        const sortedSongs = userSongs.sort(
           (a, b) => b.timestamp - a.timestamp
         );
         console.log(sortedSongs);
@@ -35,7 +37,7 @@ const ChansonsVedettes = () => {
             url: song.url,
             namesong: song.namesong,
             image: song.image,
-            timestamp: new Date()
+            timestamp: song.timestamp,
           };
         });
         setSongs(songUrls);
@@ -56,7 +58,7 @@ const ChansonsVedettes = () => {
     <>
       <AnimatedPage>
         <h2 className="featured-title">
-          Dernière chansons ajoutées
+          Dernière chansons ajoutées par vous
           <Link to="/musiques">
             <span className="icon-music">
               <FontAwesomeIcon icon={faMusic} />
@@ -70,6 +72,7 @@ const ChansonsVedettes = () => {
               key={url}
               style={{ backgroundImage: `url(${image})` }}
             >
+
               <h3 className="title-song" >{namesong}</h3>
               <div className="audio-container">
                 <audio controls onPlay={() => handleSongClick({ url, namesong, image })}>
@@ -82,12 +85,12 @@ const ChansonsVedettes = () => {
           ))}
         </ul>
         {isPlaying && <BottomNavPlayer
-         songs={songs} 
-         currentSong={currentSong}
-         setCurrentSong={setCurrentSong}
-         isPlaying={isPlaying}
-         setIsPlaying={setIsPlaying}
-         />}
+          songs={songs}
+          currentSong={currentSong}
+          setCurrentSong={setCurrentSong}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />}
       </AnimatedPage>
     </>
   );

@@ -89,6 +89,19 @@ ul {
 
 }
 
+
+.container-musiques {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 2rem;
+  padding: 0 3rem;
+  background-color: rgba(34, 34, 34, 0.541);
+  height: 250px;
+}
+
 /* .container .item .playlist-image:hover{
   filter: grayscale();
 } */
@@ -107,7 +120,7 @@ ul {
 .featured-title {
   font-family: 'DynaPuff', cursive;
   font-size: 2rem;
-  margin-left: 70px;
+  margin-left: 43px;
 }
 
 .featured-title .icon-music {

@@ -9,6 +9,7 @@ import RecordPlayer from "./composante/RecordPlayer";
 import Musiques from "./composante/Musiques";
 // import Playlists from "./composante/Playlists";
 import Login from "./Login";
+import AllSongs from "./composante/AllSongs";
 import "./App.css";
 import { authContext } from "./AuthContext/authContext";
 import FileImport from "./composante/FileImport";
@@ -34,10 +35,10 @@ function App() {
               path: "/musiques",
               element: <Musiques />,
             },
-            // {
-            //   path: "/playlists",
-            //   element: <Playlists />,
-            // },
+            {
+              path: "/allsongs",
+              element: <AllSongs />,
+            },
             {
               path: "/fileimport",
               element: <FileImport />,
