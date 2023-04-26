@@ -17,7 +17,7 @@ const BottomNavPlayer = ({ songs }) => {
     if (isPlaying) {
       audio.play();
     }
-  }, [currentSongIndex]);
+  }, [currentSongIndex, audio, isPlaying, songs]);
 
   const togglePlayPause = () => {
     if (isPlaying) {
