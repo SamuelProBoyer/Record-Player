@@ -15,7 +15,7 @@ const Footer = () => {
         </li>
         <li>
           <Link className="menu-link-footer" to="/allsongs">
-            Toutes les musiques
+            Toutes les Tunes
           </Link>
         </li>
         <li>
@@ -40,7 +40,7 @@ const Footer = () => {
             </Link>
           </li>
         </div>
-        <span>Record Player fait par Samuel Boyer&copy;</span>
+        <span>LofiTunes fait par Samuel Boyer&copy;</span>
       </ul>
     </footer>
   );

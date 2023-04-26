@@ -2,8 +2,6 @@ import AnimatedPage from "./AnimatedPage";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../config/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { authContext } from "../AuthContext/authContext";
 import { Link } from "react-router-dom";
@@ -20,24 +18,13 @@ const AllSongs = () => {
     const fetchSongs = async () => {
       const querySnapshot = await getDocs(collection(db, "musiques"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         setSongs((prevSongs) => [...prevSongs, doc.data()]);
       });
     };
 
     fetchSongs();
   }, [user.uid]);
-
-  // const handleAddSongs = async(song) => {
-  //   const docRef = await addDoc(collection(db, "musiques"), {
-  //     namesong: song.namesong,
-  //     url: song.url,
-  //     image: song.image,
-  //     timestamp: song.timestamp,
-  //   });
-  //   console.log("Document written with ID: ", docRef.id);
-  // }
-
+  // Permet d'afficher les chansons upload par lutilisateur
   const handleSongClick = (song) => {
     setCurrentSong(song);
     setIsPlaying(true);
@@ -47,16 +34,9 @@ const AllSongs = () => {
     <>
       <AnimatedPage>
         <div className="title-ari-container">
-          <h2 className="featured-title">
-            Toutes les chansons
-            <Link to="/musiques">
-              <span className="icon-music">
-                <FontAwesomeIcon icon={faMusic} />
-              </span>
-            </Link>
-          </h2>
+          <h1 className="feature-title">Toutes les musiques</h1>
           <p>
-            <Link to="/">Accueil</Link> / <span>Tous les musiques</span>
+            <Link to="/">Accueil</Link> / <span>Toutes les musiques</span>
           </p>
         </div>
         <ul className="container container-last-song">
@@ -66,7 +46,11 @@ const AllSongs = () => {
               key={url}
               style={{ backgroundImage: `url(${image})` }}
             >
-              <h3 className="title-song">{namesong}</h3>
+              <div className="btn-add-remove">
+                <button className="btn-small"></button>
+              <h3 className="title-songs">{namesong}</h3>
+                <button className="btn-small"></button>
+              </div>
               <div className="audio-container">
                 <audio
                   controls

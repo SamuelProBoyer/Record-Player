@@ -1,60 +1,47 @@
-import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import "./BottomNavPlayer.css";
 
-const BottomNavPlayer = ({ songs }) => {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audio] = useState(new Audio(songs[currentSongIndex]?.url));
-  console.log(songs[currentSongIndex]);
-
-  useEffect(() => {
-    // Update the audio object whenever the current song changes
-    audio.src = songs[currentSongIndex]?.url;
-
-    // If the player is supposed to be playing, play the new song automatically
-    if (isPlaying) {
-      audio.play();
-    }
-  }, [currentSongIndex, audio, isPlaying, songs]);
-
+const BottomNavPlayer = ({
+  songs,
+  isPlaying,
+  setIsPlaying,
+  currentSong,
+  setCurrentSong,
+}) => {
   const togglePlayPause = () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
     setIsPlaying(!isPlaying);
   };
 
   const handleNextSong = () => {
-    if (currentSongIndex === songs.length - 1) {
-      setCurrentSongIndex(0);
+    if (currentSong === songs.length - 1) {
+      setCurrentSong(songs[currentSong]);
     } else {
-      setCurrentSongIndex(currentSongIndex + 1);
+      setCurrentSong(songs[currentSong] + 1);
     }
     setIsPlaying(true);
   };
 
   const handlePrevSong = () => {
-    if (currentSongIndex === 0) {
-      setCurrentSongIndex(songs.length - 1);
+    if (currentSong === 0) {
+      setCurrentSong(songs[currentSong] - 1);
     } else {
-      setCurrentSongIndex(currentSongIndex - 1);
+      setCurrentSong(songs[currentSong] - 1);
     }
     setIsPlaying(true);
   };
 
+  console.log(songs[currentSong]);
+
   return (
     <div className="bottom-nav-player">
       <div className="player-info">
-        <img src={songs[currentSongIndex]?.image} alt={songs[currentSongIndex]?.namesong} />
+        <img
+          src={songs[currentSong]?.image}
+          alt={songs[currentSong]?.namesong}
+        />
         <div className="song-info">
-          <h3>{songs[currentSongIndex]?.namesong}</h3>
-          <audio controls src={songs[currentSongIndex]?.url}>
-
-          </audio>
+          <h3>{songs[currentSong]?.namesong}</h3>
         </div>
       </div>
       <div className="player-controls">

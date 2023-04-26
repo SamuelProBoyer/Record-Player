@@ -7,7 +7,6 @@ import { useContext } from "react";
 import Layout from "./Layout/Layout";
 import RecordPlayer from "./composante/RecordPlayer";
 import Musiques from "./composante/Musiques";
-// import Playlists from "./composante/Playlists";
 import Login from "./Login";
 import AllSongs from "./composante/AllSongs";
 import "./App.css";
@@ -16,7 +15,7 @@ import FileImport from "./composante/FileImport";
 
 function App() {
   const { user } = useContext(authContext);
-
+  
   const routes = user
     ? [
         {
@@ -70,6 +69,10 @@ function App() {
           element: <Navigate to="/login" replace />,
         },
       ];
-  return <RouterProvider router={createBrowserRouter(routes)} />;
+  return (
+    
+      <RouterProvider router={createBrowserRouter(routes)} />
+
+  );
 }
 export default App;

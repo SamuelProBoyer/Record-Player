@@ -19,6 +19,8 @@
     --color_rose: #F2858E;
     --color_mauve: #44428C;
     --color_bleu: #56AEFF;
+    --color_bleu-fonce: #3e7eb9;
+    --color_bleu-75p: #3e7db9c4;
     --color_yellow: #F2AA6B;
     --color_orange: #F28066;
 
@@ -58,7 +60,7 @@
 }
 
 .container-layout .nav-menu li {
-    margin: 0 2rem;
+    margin: 0 1rem;
     font-size: var(--fontMed);
 }
 .container-layout .nav-menu li .menu-link {
@@ -69,6 +71,7 @@
 }
 .container-layout .nav-menu li .menu-link:hover {
     color: var(--color_bleu);
+    border-bottom: 2px solid var(--color_bleu);
 }
 
 .btn {

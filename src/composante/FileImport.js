@@ -7,7 +7,7 @@ import { authContext } from "../AuthContext/authContext";
 import "./fileimport.css";
 import AnimatedPage from "./AnimatedPage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImage, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faMusic, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 
 function FileImport() {
@@ -29,10 +29,10 @@ function FileImport() {
     if (!file) {
       alert("Ajoute une chanson avant !");
     }
-
+  
     const storageRef = ref(storage, `/musiques/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
-
+  
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -42,10 +42,11 @@ function FileImport() {
         setPercent(percent);
       },
       (err) => console.log(err),
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+      async () => {
+        try {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
           handleIncrementation();
-
+  
           const newSong = {
             image: imageSrc,
             namesong: inputValue,
@@ -54,29 +55,26 @@ function FileImport() {
           };
           const usersRef = collection(db, "users");
           const userRef = doc(usersRef, user.uid);
-          getDoc(userRef)
-            .then((docSnap) => {
-              if(!docSnap.exists()){
-                return console.log("Document de user nexiste pas");
-              }
-              const userSongs = docSnap.data().songs;
-              const songsArray = Object.values(userSongs); // conversion en tableau
-              const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
-              return updateDoc(userRef, { songs: updatedSongs });
-            })
-            .then(() => {
-              setFile("");
-              setInputValue("");
-              setImageSrc("");
-              console.log("Song ajouter a ma collection user");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        });
+          const docSnap = await getDoc(userRef);
+          if (!docSnap.exists()) {
+            return console.log("Document de user nexiste pas");
+          }
+          const userSongs = docSnap.data().songs;
+          const songsArray = Object.values(userSongs); // conversion en tableau
+          const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
+          await updateDoc(userRef, { songs: updatedSongs });
+  
+          setFile("");
+          setInputValue("");
+          setImageSrc("");
+          console.log("Song ajouter a ma collection user");
+        } catch (error) {
+          console.log(error);
+        }
       }
     );
   };
+  
 
   const handleImg = (e) => {
     const file = e.target.files[i];
@@ -102,23 +100,29 @@ function FileImport() {
               className="card-container"
               style={{ backgroundImage: `url(${imageSrc})` }}
             >
-              <h3 className="title-song">{inputValue}</h3>
-              <div className="audio-container">
+              <div className="btn-add-remove">
+                   <button  className="btn-small"><FontAwesomeIcon icon={faPlus} /></button>
+                    <h3 className="title-songs">{inputValue}</h3>
+                   <button className="btn-small"><FontAwesomeIcon icon={faMinus} /></button>
+                 </div>
+              {/* <div className="audio-container">
                 <audio controls src=""></audio>
-              </div>
+              </div> */}
             </div>
             <div className="input-container">
+              <label className="label-name">
               <input
                 className="input-title"
                 type="text"
-                placeholder="Nom de la chanson"
+                placeholder="Nom de la Tune"
                 onChange={(e) => setInputValue(e.target.value)}
                 value={inputValue}
-                maxLength={25}
+                maxLength={20}
               />
+              </label>
               <div className="container-input">
                 <label className="label-name">
-                  Choisir votre chanson
+                  Choisir votre Tune
                 <span>
                   <FontAwesomeIcon icon={faMusic} />
                 </span>
@@ -144,7 +148,7 @@ function FileImport() {
               </label>
               </div>
               <button className="btn" onClick={handleUpload}>
-                Upload dans mes musiques
+                Upload dans ma bibliothèque
               </button>
               <p className="uplaod-percent">{percent} "% complété"</p>
             </div>

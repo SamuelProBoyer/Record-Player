@@ -32,17 +32,17 @@ const Layout = () => {
           </li>
           <li>
             <Link className="menu-link" to="/allsongs">
-              Toutes les musiques
+              Toutes les Tunes
             </Link>
           </li>
           <li>
             <Link className="menu-link" to="/musiques">
-              Mes musiques
+              Ma Bibliothèque
             </Link>
           </li>
           <li>
             <Link className="menu-link" to="/fileimport">
-              Importer mes musiques
+              Importer une Tune
             </Link>
           </li>
 
@@ -68,6 +68,7 @@ const Layout = () => {
       <div className="container-outlet">
         <Outlet />
       </div>
+
       <Footer />
     </>
   );
