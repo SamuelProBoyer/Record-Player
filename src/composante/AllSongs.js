@@ -1,6 +1,6 @@
 import AnimatedPage from "./AnimatedPage";
 import { useState, useEffect } from "react";
-import { collection, doc, getDocs, addDoc } from "@firebase/firestore";
+import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
