@@ -1,45 +1,20 @@
 import AnimatedPage from "./AnimatedPage";
-import { useState, useEffect } from "react";
-import { collection, doc, getDoc } from "@firebase/firestore";
-import { db } from "../config/firebase";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
-import { authContext } from "../AuthContext/authContext";
+import { songsContext } from "../Providers/SongProvider";
 import { Link } from "react-router-dom";
 
 const ChansonsVedettes = () => {
-  const [songs, setSongs] = useState([]);
-  const { user } = useContext(authContext);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const { songs } = useContext(songsContext);
+  const lastFourSongs = songs.slice(-4);
+  const sortedLastFourSongs = [...lastFourSongs].sort((a, b) =>
+    a.namesong.localeCompare(b.namesong)
+  );
   console.log(currentSong);
-
-  // Permet daller chercher les chansons upload par lutilisateur
-  useEffect(() => {
-    const fetchSongs = async () => {
-      const collectionRef = collection(db, "users");
-      const userDocRef = doc(collectionRef, user.uid);
-      const docSnap = await getDoc(userDocRef);
-      if (!docSnap.exists()) {
-        return console.log("No such document!");
-      }
-      const userSongs = docSnap.data().songs;
-      const sortedSongs = userSongs.sort((a, b) => b.timestamp - a.timestamp);
-      const latestSongs = sortedSongs.slice(0, 4);
-
-      const songUrls = latestSongs.map((song) => {
-        return {
-          url: song.url,
-          namesong: song.namesong,
-          image: song.image,
-          timestamp: song.timestamp,
-        };
-      });
-      setSongs(songUrls);
-    };
-    fetchSongs();
-  }, [user.uid]);
 
   const handleSongClick = (song) => {
     setCurrentSong(song);
@@ -62,9 +37,9 @@ const ChansonsVedettes = () => {
         </span>
       </div>
       <AnimatedPage>
-        {songs ? (
+        {sortedLastFourSongs ? (
           <ul className="container container-last-song">
-            {songs.map(({ image, namesong, url }) => (
+            {sortedLastFourSongs.map(({ image, namesong, url }) => (
               <div
                 className="card-container"
                 key={url}

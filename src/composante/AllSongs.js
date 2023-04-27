@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import { useContext } from "react";
-import { authContext } from "../AuthContext/authContext";
+import { authContext } from "../Providers/authContext";
+// import { songsContext } from "../SongContext/SongProvider";
 import { Link } from "react-router-dom";
 import BottomNavPlayer from "./BottomNavPlayer";
 
@@ -31,6 +32,7 @@ const AllSongs = () => {
     setIsAble(!isAble);
     setIsPlaying(!isPlaying);
   };
+  console.log(currentSong);
 
   return (
     <>
@@ -72,7 +74,6 @@ const AllSongs = () => {
             setCurrentSong={setCurrentSong}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
-            handleSongClickFn={() => handleSongClick()}
           />
         )}
       </AnimatedPage>

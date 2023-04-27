@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
 
-const ComposanteRename = () => {
+const ComposanteInfoImport = () => {
   return (
     <>
       <AnimatedPage>
@@ -28,4 +28,4 @@ const ComposanteRename = () => {
   );
 };
 
-export default ComposanteRename;
+export default ComposanteInfoImport;

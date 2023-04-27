@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { songsContext } from "../SongContext/SongProvider";
-import { authContext } from "../AuthContext/authContext";
+import { songsContext, SongsProvider } from "../Providers/SongProvider";
+import { authContext } from "../Providers/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRecordVinyl,
@@ -18,7 +18,7 @@ const Layout = () => {
 
   return (
     <>
-    
+      <SongsProvider>
         <div className="container-layout">
           <div className="container-title">
             <h1 className="title-layout">LofiTunes de {user.displayName}</h1>
@@ -73,7 +73,7 @@ const Layout = () => {
           <Outlet />
         </div>
         <Footer />
-  
+      </SongsProvider>
     </>
   );
 };

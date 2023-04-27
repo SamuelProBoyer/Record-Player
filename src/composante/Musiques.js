@@ -1,53 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import {
   collection,
-  getDoc,
   getDocs,
   where,
-  doc,
   query,
   addDoc,
   deleteDoc,
 } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import "./musiques.css";
-import { authContext } from "../AuthContext/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-// import { songsContext } from "../SongContext/SongProvider";
+import { songsContext } from "../Providers/SongProvider";
 const Musiques = () => {
-  const [songs, setSongs] = useState([]);
-  const { user } = useContext(authContext);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
-  // const {songs} = useContext(songsContext);
-  // console.log(songs);
-  // Permet d'aller chercher les chansons uploadées par l'utilisateur
-  useEffect(() => {
-    const fetchSongs = async () => {
-      const collectionRef = collection(db, "users");
-      const userDocRef = doc(collectionRef, user.uid);
-      const docSnap = await getDoc(userDocRef);
-      if (!docSnap.exists()) {
-        return console.log("Document utilisateur n'existe pas");
-      }
-      const userSongs = docSnap.data().songs;
-      const songObjects = Object.values(userSongs);
-      const songUrls = songObjects.map((song, i) => {
-        return {
-          url: song.url,
-          namesong: song.namesong,
-          image: song.image,
-          timestamp: song.timestamp,
-        };
-      });
-      setSongs(songUrls);
-    };
-    fetchSongs();
-  }, [user.uid]);
+  const { songs } = useContext(songsContext);
 
   // Ajouter une musique à toutes les musiques
   const handleAddSongs = async (song) => {

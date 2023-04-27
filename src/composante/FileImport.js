@@ -3,7 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db } from "../config/firebase";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
 import { storage } from "../config/firebase";
-import { authContext } from "../AuthContext/authContext";
+import { authContext } from "../Providers/authContext";
 import "./fileimport.css";
 import AnimatedPage from "./AnimatedPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,7 +28,6 @@ function FileImport() {
   };
   function handleChange(event) {
     setFile(event.target.files[i]);
- 
   }
 
   const handleUpload = async () => {
@@ -73,7 +72,7 @@ function FileImport() {
           setFile("");
           setInputValue("");
           setImageSrc("");
-         
+
           console.log("Song ajouter a ma collection user");
         } catch (error) {
           console.log(error);

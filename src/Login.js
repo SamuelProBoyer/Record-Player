@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { authContext } from "./AuthContext/authContext";
+import { authContext } from "./Providers/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRecordVinyl } from "@fortawesome/free-solid-svg-icons";
 import "./login.css";

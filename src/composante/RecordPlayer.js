@@ -1,10 +1,10 @@
 import "./recordPlayer.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { songsContext } from "../SongContext/SongProvider";
+import { songsContext } from "../Providers/SongProvider";
 import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
-import ComposanteRename from "./ComposanteRename";
+import ComposanteInfoImport from "./ComposanteInfoImport";
 import ConsulteMusiques from "./ConsulteMusiques";
 
 const RecordPlayer = () => {
@@ -38,7 +38,7 @@ const RecordPlayer = () => {
           <ChansonsVedettes />
         </div>
         <div className="container-accueil">
-          <ComposanteRename />
+          <ComposanteInfoImport />
         </div>
         <ConsulteMusiques />
     </>

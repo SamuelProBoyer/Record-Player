@@ -10,13 +10,14 @@ import Musiques from "./composante/Musiques";
 import Login from "./Login";
 import AllSongs from "./composante/AllSongs";
 import "./App.css";
-import { authContext } from "./AuthContext/authContext";
+import { authContext } from "./Providers/authContext";
 import FileImport from "./composante/FileImport";
-import { songsContext } from "./SongContext/SongProvider";
+import { songsContext } from "./Providers/SongProvider";
 
 function App() {
   const { user } = useContext(authContext);
   const {songs} = useContext(songsContext);
+  console.log(songs);
 
   const routes = user
     ? [
