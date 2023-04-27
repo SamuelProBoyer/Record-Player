@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { songsContext, SongsProvider } from "../Providers/SongProvider";
+import { SongsProvider } from "../Providers/SongProvider";
 import { authContext } from "../Providers/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,13 +8,12 @@ import {
   faUserAstronaut,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../composante/Footer";
-import Header from "../composante/Header";
 import "./layout.css";
+// import BottomNavPlayer from "../composante/BottomNavPlayer";
 
 const Layout = () => {
   const { user, logout } = useContext(authContext);
-  const { songs } = useContext(songsContext);
-  console.log(songs);
+  // const { songs } = useContext(songsContext);
 
   return (
     <>
@@ -68,9 +67,10 @@ const Layout = () => {
             </li>
           </ul>
         </div>
-        <Header />
+        {/* <Header /> */}
         <div className="container-outlet">
           <Outlet />
+          {/* <BottomNavPlayer songs={songs}/> */}
         </div>
         <Footer />
       </SongsProvider>

@@ -82,6 +82,10 @@ a {
   font-size: 20px;
 }
 
+.btn-small:hover {
+  color: var(--color_bleu-75p);
+}
+
 .title-songs {
   font-family: 'Gloria Hallelujah', cursive;
   font-size: 1rem;

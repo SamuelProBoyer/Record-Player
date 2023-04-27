@@ -14,6 +14,7 @@ import {
   faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import HeaderSmaller from "./HeaderSmaller";
 
 function FileImport() {
   const [file, setFile] = useState("");
@@ -33,6 +34,12 @@ function FileImport() {
   const handleUpload = async () => {
     if (!file) {
       alert("Ajoute une chanson avant !");
+    }
+    if (!inputValue) {
+      alert("Ajoute un nom avant !");
+    }
+    if (!imageSrc) {
+      alert("Ajoute une image avant !");
     }
 
     const storageRef = ref(storage, `/musiques/${file.name}`);
@@ -93,6 +100,7 @@ function FileImport() {
 
   return (
     <>
+      <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
           <h1>Importer mes Tunes</h1>

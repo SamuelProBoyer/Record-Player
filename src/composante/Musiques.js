@@ -15,6 +15,7 @@ import "./musiques.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
+import HeaderSmaller from "./HeaderSmaller";
 const Musiques = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
@@ -50,9 +51,13 @@ const Musiques = () => {
 
   return (
     <>
+        <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
           <h1>Ma Bibliothèque</h1>
+          <span className="link-to-file">
+            <Link to="/fileimport">Importer une Tune</Link>
+          </span>
           <p>
             <Link to="/">Accueil</Link> / <span>Bibliothèque</span>
           </p>

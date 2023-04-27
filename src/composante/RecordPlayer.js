@@ -6,20 +6,22 @@ import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
 import ComposanteInfoImport from "./ComposanteInfoImport";
 import ConsulteMusiques from "./ConsulteMusiques";
+import Header from "./Header";
 
 const RecordPlayer = () => {
-  const {songs} = useContext(songsContext);
+  const { songs } = useContext(songsContext);
   console.log(songs);
   return (
     <>
-        <h1>Accueil</h1>
-        <AnimatedPage>
+    <Header />
+      <h1>Accueil</h1>
+      <AnimatedPage>
         <div className="container-accueil">
           <div className="img-accueil">
             <img
               src="https://cdn.pixabay.com/photo/2023/02/14/23/57/sunset-7790623_960_720.jpg"
               alt="img"
-              />
+            />
           </div>
           <div className="text-accueil">
             <p>
@@ -34,13 +36,13 @@ const RecordPlayer = () => {
           </div>
         </div>
       </AnimatedPage>
-        <div className="chansonsVedettes">
-          <ChansonsVedettes />
-        </div>
-        <div className="container-accueil">
-          <ComposanteInfoImport />
-        </div>
-        <ConsulteMusiques />
+      <div className="chansonsVedettes">
+        <ChansonsVedettes />
+      </div>
+      <div className="container-accueil">
+        <ComposanteInfoImport />
+      </div>
+      <ConsulteMusiques />
     </>
   );
 };

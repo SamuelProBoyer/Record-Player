@@ -1,13 +1,14 @@
 .bottom-nav-player {
     position: fixed;
-    bottom: 0;
-    left: 50%;
+    top: 0;
+    /* bottom: 0;*/
+    left: 50%; 
     transform: translateX(-50%);
-    border-radius: 2rem 2rem 0 0;
-    height: 130px;
+    border-radius:0 0 2rem 2rem ;
+    height: 120px;
     padding: 2rem;
     background-color: #222222b0;
-    width: 100%;
+    width: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;

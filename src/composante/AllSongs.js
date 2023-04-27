@@ -6,7 +6,8 @@ import { useContext } from "react";
 import { authContext } from "../Providers/authContext";
 // import { songsContext } from "../SongContext/SongProvider";
 import { Link } from "react-router-dom";
-import BottomNavPlayer from "./BottomNavPlayer";
+import HeaderSmaller from "./HeaderSmaller";
+// import BottomNavPlayer from "./BottomNavPlayer";
 
 const AllSongs = () => {
   const [songs, setSongs] = useState([]);
@@ -26,7 +27,7 @@ const AllSongs = () => {
 
     fetchSongs();
   }, [user.uid]);
-  // Permet d'afficher les chansons upload par lutilisateur
+
   const handleSongClick = (song) => {
     setCurrentSong(song);
     setIsAble(!isAble);
@@ -36,6 +37,7 @@ const AllSongs = () => {
 
   return (
     <>
+        <HeaderSmaller/>
       <AnimatedPage>
         <div className="title-ari-container">
           <h1 className="feature-title">Toutes les Tunes</h1>
@@ -67,15 +69,6 @@ const AllSongs = () => {
             </div>
           ))}
         </ul>
-        {isAble && (
-          <BottomNavPlayer
-            songs={songs}
-            currentSong={currentSong}
-            setCurrentSong={setCurrentSong}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-          />
-        )}
       </AnimatedPage>
     </>
   );

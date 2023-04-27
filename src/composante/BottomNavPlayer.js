@@ -3,6 +3,7 @@ import { faPlayCircle, faPauseCircle } from "@fortawesome/free-solid-svg-icons";
 import "./BottomNavPlayer.css";
 
 const BottomNavPlayer = ({ isPlaying, setIsPlaying, currentSong }) => {
+  console.log(currentSong);
   // const togglePlayPause = () => {
   //   setIsPlaying(!isPlaying);
   // };
@@ -39,9 +40,6 @@ const BottomNavPlayer = ({ isPlaying, setIsPlaying, currentSong }) => {
         <button className="play-pause" onClick={() => setIsPlaying(false)}>
           <FontAwesomeIcon icon={isPlaying ? faPauseCircle : faPlayCircle} />
         </button>
-        <audio onPlay={() => setIsPlaying(false)}>
-          <source src={currentSong?.audio} type="audio/mpeg" />
-        </audio>
       </div>
     </div>
   );

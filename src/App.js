@@ -17,7 +17,6 @@ import { songsContext } from "./Providers/SongProvider";
 function App() {
   const { user } = useContext(authContext);
   const {songs} = useContext(songsContext);
-  console.log(songs);
 
   const routes = user
     ? [
