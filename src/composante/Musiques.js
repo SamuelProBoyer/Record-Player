@@ -17,13 +17,14 @@ import "./musiques.css";
 import { authContext } from "../AuthContext/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-
+// import { songsContext } from "../SongContext/SongProvider";
 const Musiques = () => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
-  const [isAble, setIsAble] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
+  const [modalTextValue, setModalTextValue] = useState("");
+  // const {songs} = useContext(songsContext);
+  // console.log(songs);
   // Permet d'aller chercher les chansons uploadées par l'utilisateur
   useEffect(() => {
     const fetchSongs = async () => {
@@ -53,18 +54,16 @@ const Musiques = () => {
     const q = query(collection(db, "musiques"), where("url", "==", song.url));
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
-      // setShowModal(true);
-      setIsAble(false);
       return;
     }
-    setIsAble(true);
     const docRef = await addDoc(collection(db, "musiques"), {
       namesong: song.namesong,
       url: song.url,
       image: song.image,
     });
     console.log("Document written with ID: ", docRef.id);
-    // setShowModal(true);
+    setModalTextValue("Tune ajouté dans la bibliothèque publique");
+    setShowModal(true);
   };
 
   // Retirer une de mes musiques dans toutes les musiques
@@ -73,7 +72,8 @@ const Musiques = () => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       await deleteDoc(doc.ref);
-      // setShowModal(true);
+      setShowModal(true);
+      setModalTextValue("Tune retiré de la bibliothèque publique");
     });
   };
 
@@ -96,7 +96,6 @@ const Musiques = () => {
               >
                 <div className="btn-add-remove">
                   <button
-                    disabled={isAble}
                     className="btn-small"
                     onClick={() => handleAddSongs({ url, namesong, image })}
                   >
@@ -120,8 +119,18 @@ const Musiques = () => {
             ))}
           </ul>
         </div>
-
-     
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h3>{modalTextValue}</h3>
+              </div>
+              <button className="btn" onClick={() => setShowModal(false)}>
+                Fermer
+              </button>
+            </div>
+          </div>
+        )}
       </AnimatedPage>
     </>
   );

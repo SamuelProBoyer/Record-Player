@@ -3,12 +3,16 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { authContext } from "../AuthContext/authContext";
 
-export const SongsContext = createContext([]);
+const songsContext = createContext([]);
+
+const {Provider} = songsContext;
 
 const SongsProvider = ({ children }) => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
   
+
+
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -41,8 +45,10 @@ const SongsProvider = ({ children }) => {
 
 
   return (
-    <SongsContext.Provider value={songs}>{children}</SongsContext.Provider>
+    <Provider value={{songs}}>
+      {children}
+      </Provider>
   );
 };
 
-export default SongsProvider;
+export {SongsProvider, songsContext};

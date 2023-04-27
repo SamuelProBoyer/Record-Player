@@ -41,8 +41,7 @@ a {
   display: flex;
   padding: 0 1.5rem;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .card-container {
@@ -50,7 +49,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 400px;
   height: 350px;
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -138,6 +137,27 @@ audio::-webkit-media-controls-current-time-display {
 audio::-webkit-media-controls-time-remaining-display {
   color: #FFF;
   font-family: 'DynaPuff', cursive;
+}
+
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding: 2rem 0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color_bleu-75p);
+}
+.modal  .modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'DynaPuff', cursive;
+
 }
 
 

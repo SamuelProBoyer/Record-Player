@@ -26,14 +26,6 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    /* background-color: var(--color_charcoal_50p); */
-    /* background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(2.5px);
-    -webkit-backdrop-filter: blur(2.5px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18); */
-    /* border-radius: 2rem; */
     width: 600px;
     height: 600px;
 }
@@ -83,4 +75,8 @@
     color: #fff;
     cursor: pointer;
 
+}
+
+span {
+    margin-top: 3rem;
 }

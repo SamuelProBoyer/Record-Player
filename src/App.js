@@ -12,15 +12,17 @@ import AllSongs from "./composante/AllSongs";
 import "./App.css";
 import { authContext } from "./AuthContext/authContext";
 import FileImport from "./composante/FileImport";
+import { songsContext } from "./SongContext/SongProvider";
 
 function App() {
   const { user } = useContext(authContext);
-  
+  const {songs} = useContext(songsContext);
+
   const routes = user
     ? [
         {
           path: "/",
-          element: <Layout />,
+          element: <Layout songs={songs}/>,
           children: [
             {
               index: true,
@@ -28,15 +30,15 @@ function App() {
             },
             {
               path: "/recordplayer",
-              element: <RecordPlayer />,
+              element: <RecordPlayer songs={songs}/>,
             },
             {
               path: "/musiques",
-              element: <Musiques />,
+              element: <Musiques  songs={songs}/>,
             },
             {
               path: "/allsongs",
-              element: <AllSongs />,
+              element: <AllSongs songs={songs}/>,
             },
             {
               path: "/fileimport",
@@ -70,7 +72,7 @@ function App() {
         },
       ];
   return (
-    
+
       <RouterProvider router={createBrowserRouter(routes)} />
 
   );

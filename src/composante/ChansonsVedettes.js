@@ -26,7 +26,6 @@ const ChansonsVedettes = () => {
       }
       const userSongs = docSnap.data().songs;
       const sortedSongs = userSongs.sort((a, b) => b.timestamp - a.timestamp);
-      console.log(sortedSongs);
       const latestSongs = sortedSongs.slice(0, 4);
 
       const songUrls = latestSongs.map((song) => {

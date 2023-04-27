@@ -12,6 +12,7 @@ const AllSongs = () => {
   const { user } = useContext(authContext);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isAble, setIsAble] = useState(false);
 
   // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
@@ -27,16 +28,17 @@ const AllSongs = () => {
   // Permet d'afficher les chansons upload par lutilisateur
   const handleSongClick = (song) => {
     setCurrentSong(song);
-    setIsPlaying(true);
+    setIsAble(!isAble);
+    setIsPlaying(!isPlaying);
   };
 
   return (
     <>
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1 className="feature-title">Toutes les musiques</h1>
+          <h1 className="feature-title">Toutes les Tunes</h1>
           <p>
-            <Link to="/">Accueil</Link> / <span>Toutes les musiques</span>
+            <Link to="/">Accueil</Link> / <span>Toutes les Tunes</span>
           </p>
         </div>
         <ul className="container container-last-song">
@@ -63,13 +65,14 @@ const AllSongs = () => {
             </div>
           ))}
         </ul>
-        {isPlaying && (
+        {isAble && (
           <BottomNavPlayer
             songs={songs}
             currentSong={currentSong}
             setCurrentSong={setCurrentSong}
             isPlaying={isPlaying}
             setIsPlaying={setIsPlaying}
+            handleSongClickFn={() => handleSongClick()}
           />
         )}
       </AnimatedPage>
