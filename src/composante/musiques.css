@@ -100,7 +100,7 @@ a {
 audio {
   background-color: var(--color_bleu);
   width: 110%;
-  
+
 }
 
 
@@ -152,12 +152,13 @@ audio::-webkit-media-controls-time-remaining-display {
   align-items: center;
   position: fixed;
   padding: 2rem 0;
-  left:0;
+  left: 0;
   bottom: 0;
   right: 0;
   background-color: var(--color_bleu-75p);
 }
-.modal  .modal-content {
+
+.modal .modal-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -165,7 +166,3 @@ audio::-webkit-media-controls-time-remaining-display {
   font-family: 'DynaPuff', cursive;
 
 }
-
-
-
-

@@ -1,28 +1,28 @@
-
 .parallax {
-    background-image: url("../img/sunset.jpg");
-    height: 650px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-image: url("../img/sunset.jpg");
+  height: 650px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .parallax .waves {
-    position: relative;
-    top: 230px;
-  }
+.parallax .waves {
+  position: relative;
+  top: 230px;
+}
+
 .parallax-small {
-    background-image: url("../img/sunset-last.jpg");
-    /* background-color: var(--color_bleu-75p); */
-    height: 500px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-image: url("../img/sunset-last.jpg");
+  /* background-color: var(--color_bleu-75p); */
+  height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .parallax-small .waves {
-    position: relative;
-    top: 130px;
-  }
+.parallax-small .waves {
+  position: relative;
+  top: 130px;
+}
