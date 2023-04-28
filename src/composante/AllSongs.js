@@ -37,7 +37,7 @@ const AllSongs = () => {
 
   return (
     <>
-        <HeaderSmaller/>
+      <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
           <h1 className="feature-title">Toutes les Tunes</h1>
@@ -54,7 +54,7 @@ const AllSongs = () => {
             >
               <div className="btn-add-remove">
                 <button className="btn-small"></button>
-              <h3 className="title-songs">{namesong}</h3>
+                <h3 className="title-songs">{namesong}</h3>
                 <button className="btn-small"></button>
               </div>
               <div className="audio-container">
