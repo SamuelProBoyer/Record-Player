@@ -9,20 +9,23 @@ import {
   query,
   addDoc,
   deleteDoc,
-  updateDoc
 } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import "./musiques.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus, faTrash,faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faMinus,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
 import HeaderSmaller from "./HeaderSmaller";
-import { authContext } from "../Providers/authContext";
+// import { authContext } from "../Providers/authContext";
 const Musiques = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
-  const { songs, setSongs } = useContext(songsContext);
-  const { user } = useContext(authContext);
+  const { songs } = useContext(songsContext);
+  // const { user } = useContext(authContext);
 
   // Ajouter une musique à toutes les musiques
   const handleAddSongs = async (song) => {
@@ -52,29 +55,35 @@ const Musiques = () => {
     });
   };
 
-  const songUserDeleteHandler = async (song) => {
-    const q = query(collection(db, "users"), where("id", "==", user.uid));
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-      return;
-    }
+  // const songUserDeleteHandler = async (song) => {
+  //   try {
+  //     const q = query(collection(db, "users"), where("id", "==", user.uid));
+  //     const querySnapshot = await getDocs(q);
+  //     if (querySnapshot.empty) {
+  //       return;
+  //     }
 
-    const userDoc = querySnapshot.docs[0];
-    const songIndex = userDoc.data().songs.findIndex((s) => s.id === song.id);
-    if (songIndex === -1) {
-      return;
-    }
+  //     const userDoc = querySnapshot.docs[0];
+  //     const songs = userDoc.data().songs;
+  //     if (!songs || songs.length === 0) {
+  //       return;
+  //     }
 
-    const newSongs = [...userDoc.data().songs];
-    newSongs.splice(songIndex, 1);
+  //     const newSongs = songs.filter((s) => s.id !== song.id);
+  //     if (newSongs.length === songs.length) {
+  //       return;
+  //     }
 
-    await updateDoc(userDoc.ref, { songs: newSongs });
+  //     await updateDoc(userDoc.ref, { songs: newSongs });
 
-    setSongs(newSongs);
+  //     setSongs(newSongs);
 
-    setModalTextValue("Tune retirer de votre bibliothèque");
-    setShowModal(true);
-  };
+  //     setModalTextValue("Tune retirer de votre bibliothèque");
+  //     setShowModal(true);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -98,14 +107,17 @@ const Musiques = () => {
                 style={{ backgroundImage: `url(${image})` }}
               >
                 <div className="btn-add-remove">
-                  <button
+                  {/* <button
                     className="btn-small deleteSong"
                     onClick={() =>
                       songUserDeleteHandler({ url, namesong, image })
                     }
                   >
-                    <FontAwesomeIcon icon={faTrash} style={{color: "#ffffff",}} />
-                  </button>
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      style={{ color: "#ffffff" }}
+                    />
+                  </button> */}
                   <button
                     className="btn-small"
                     onClick={() => handleAddSongs({ url, namesong, image })}
@@ -137,7 +149,10 @@ const Musiques = () => {
                 <h3>{modalTextValue}</h3>
               </div>
               <button className="btn-modal" onClick={() => setShowModal(false)}>
-              <FontAwesomeIcon icon={faCircleXmark} style={{color: "#ffffff",}} />
+                <FontAwesomeIcon
+                  icon={faCircleXmark}
+                  style={{ color: "#ffffff" }}
+                />
               </button>
             </div>
           </div>

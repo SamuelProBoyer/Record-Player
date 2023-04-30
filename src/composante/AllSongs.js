@@ -1,6 +1,6 @@
 import AnimatedPage from "./AnimatedPage";
 import { useState, useEffect } from "react";
-import { collection, getDocs } from "@firebase/firestore";
+import { collection, getDocs, getDoc, doc, updateDoc } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import { useContext } from "react";
 import { authContext } from "../Providers/authContext";
@@ -8,13 +8,16 @@ import { authContext } from "../Providers/authContext";
 import { Link } from "react-router-dom";
 import HeaderSmaller from "./HeaderSmaller";
 // import BottomNavPlayer from "./BottomNavPlayer";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquarePlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 const AllSongs = () => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAble, setIsAble] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalTextValue, setModalTextValue] = useState("");
 
   // Permet daller chercher les chansons upload par lutilisateur
   useEffect(() => {
@@ -35,6 +38,22 @@ const AllSongs = () => {
   };
   console.log(currentSong);
 
+  const handleAddSongs = async (song) => {
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
+    if (!userDoc.exists()) {
+      return;
+    }
+    const userData = userDoc.data();
+    const userSongs = userData.songs || [];
+    userSongs.push(song);
+    await updateDoc(userRef, { songs: userSongs });
+    
+    setShowModal(true);
+    setModalTextValue("Tune ajouté dans votre bilbiothèque");
+  };
+
+
   return (
     <>
       <HeaderSmaller />
@@ -53,6 +72,9 @@ const AllSongs = () => {
               style={{ backgroundImage: `url(${image})` }}
             >
               <div className="btn-add-remove">
+                <button className="btn-small btn-add" onClick={() => handleAddSongs({ image, namesong, url })}>
+                <FontAwesomeIcon icon={faSquarePlus} />
+                </button>
                 <button className="btn-small"></button>
                 <h3 className="title-songs">{namesong}</h3>
                 <button className="btn-small"></button>
@@ -70,6 +92,18 @@ const AllSongs = () => {
           ))}
         </ul>
       </AnimatedPage>
+      {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h3>{modalTextValue}</h3>
+              </div>
+              <button className="btn-modal" onClick={() => setShowModal(false)}>
+              <FontAwesomeIcon icon={faCircleXmark} style={{color: "#ffffff",}} />
+              </button>
+            </div>
+          </div>
+        )}
     </>
   );
 };
