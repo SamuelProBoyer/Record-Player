@@ -9,17 +9,20 @@ import {
   query,
   addDoc,
   deleteDoc,
+  updateDoc
 } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import "./musiques.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faTrash,faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
 import HeaderSmaller from "./HeaderSmaller";
+import { authContext } from "../Providers/authContext";
 const Musiques = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
-  const { songs } = useContext(songsContext);
+  const { songs, setSongs } = useContext(songsContext);
+  const { user } = useContext(authContext);
 
   // Ajouter une musique à toutes les musiques
   const handleAddSongs = async (song) => {
@@ -49,9 +52,33 @@ const Musiques = () => {
     });
   };
 
+  const songUserDeleteHandler = async (song) => {
+    const q = query(collection(db, "users"), where("id", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      return;
+    }
+
+    const userDoc = querySnapshot.docs[0];
+    const songIndex = userDoc.data().songs.findIndex((s) => s.id === song.id);
+    if (songIndex === -1) {
+      return;
+    }
+
+    const newSongs = [...userDoc.data().songs];
+    newSongs.splice(songIndex, 1);
+
+    await updateDoc(userDoc.ref, { songs: newSongs });
+
+    setSongs(newSongs);
+
+    setModalTextValue("Tune retirer de votre bibliothèque");
+    setShowModal(true);
+  };
+
   return (
     <>
-        <HeaderSmaller />
+      <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
           <h1>Ma Bibliothèque</h1>
@@ -71,6 +98,14 @@ const Musiques = () => {
                 style={{ backgroundImage: `url(${image})` }}
               >
                 <div className="btn-add-remove">
+                  <button
+                    className="btn-small deleteSong"
+                    onClick={() =>
+                      songUserDeleteHandler({ url, namesong, image })
+                    }
+                  >
+                    <FontAwesomeIcon icon={faTrash} style={{color: "#ffffff",}} />
+                  </button>
                   <button
                     className="btn-small"
                     onClick={() => handleAddSongs({ url, namesong, image })}
@@ -101,8 +136,8 @@ const Musiques = () => {
               <div className="modal-header">
                 <h3>{modalTextValue}</h3>
               </div>
-              <button className="btn" onClick={() => setShowModal(false)}>
-                Fermer
+              <button className="btn-modal" onClick={() => setShowModal(false)}>
+              <FontAwesomeIcon icon={faCircleXmark} style={{color: "#ffffff",}} />
               </button>
             </div>
           </div>

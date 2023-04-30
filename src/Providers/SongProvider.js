@@ -35,7 +35,7 @@ const SongsProvider = ({ children }) => {
     fetchSongs();
   }, [user.uid]);
 
-  return <Provider value={{ songs }}>{children}</Provider>;
+  return <Provider value={{ songs, setSongs }}>{children}</Provider>;
 };
 
 export { SongsProvider, songsContext };
