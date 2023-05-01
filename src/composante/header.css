@@ -14,7 +14,6 @@
 
 .parallax-small {
   background-image: url("../img/sunset-last.jpg");
-  /* background-color: var(--color_bleu-75p); */
   height: 500px;
   background-attachment: fixed;
   background-position: center;

@@ -12,6 +12,7 @@ import {
   faMusic,
   faPlus,
   faMinus,
+  faCircleXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import HeaderSmaller from "./HeaderSmaller";
@@ -21,6 +22,8 @@ function FileImport() {
   const [inputValue, setInputValue] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalTextValue, setModalTextValue] = useState("");
   const { user } = useContext(authContext);
 
   let i = 0;
@@ -79,8 +82,9 @@ function FileImport() {
           setFile("");
           setInputValue("");
           setImageSrc("");
-
+          setShowModal(true);
           console.log("Song ajouter a ma collection user");
+          setModalTextValue("Tune importé avec succès");
         } catch (error) {
           console.log(error);
         }
@@ -169,6 +173,21 @@ function FileImport() {
           </div>
         </div>
       </AnimatedPage>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>{modalTextValue}</h3>
+            </div>
+            <button className="btn-modal" onClick={() => setShowModal(false)}>
+              <FontAwesomeIcon
+                icon={faCircleXmark}
+                style={{ color: "#ffffff" }}
+              />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

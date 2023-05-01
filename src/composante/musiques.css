@@ -103,15 +103,20 @@ a {
 }
 
 .audio-container {
-  position: relative;
-  top: 280px;
-  width: 100%;
+  position: absolute;
+  bottom: 30%;
+}
+
+.playPauseBtn {
+  font-size: 2rem;
+  background-color: var(--color_bleu);
+  border-radius: 3rem;
+  padding: 10px 1rem;
 }
 
 audio {
   background-color: var(--color_bleu);
   width: 110%;
-
 }
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
-import Spline from "@splinetool/react-spline";
+// import Spline from "@splinetool/react-spline";
 
 
 
