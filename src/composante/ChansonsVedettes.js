@@ -2,7 +2,7 @@ import AnimatedPage from "./AnimatedPage";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useRef} from "react";
+import { useContext, useRef } from "react";
 import { songsContext } from "../Providers/SongProvider";
 import { Link } from "react-router-dom";
 
@@ -17,34 +17,23 @@ const ChansonsVedettes = () => {
   const sortedLastFourSongs = [...lastFourSongs].sort((a, b) =>
     a.namesong.localeCompare(b.namesong)
   );
-  // console.log(currentSong);
 
-  // const handleSongClick = (song) => {
-  //   setCurrentSong(song);
-  //   setIsPlaying(!isPlaying);
-  // };
-
-  const handlePlay = (url) => {
-    if (currentAudioUrl) {
+  const handleAudio = (url, play) => {
+    if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-    }
-
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(true);
-    audioRef.current = new Audio(url);
-    audioRef.current.play();
-  };
-
-  const handlePause = (url) => {
-    if (currentAudioUrl) {
+      setTuneIsPlaying(false);
+    } else if (currentAudioUrl !== url) {
+      setCurrentAudioUrl(url);
+      setTuneIsPlaying(true);
+      audioRef.current.pause();
+      audioRef.current = new Audio(url);
+      audioRef.current.play();
+    } else if (!play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      setTuneIsPlaying(false);
     }
-
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(false);
-    audioRef.current.pause();
   };
 
   return (
@@ -77,10 +66,10 @@ const ChansonsVedettes = () => {
                   <button className="btn-small"></button>
                 </div>
                 <div className="audio-container">
-                  {tuneIsPlaying ? (
+                  {tuneIsPlaying && currentAudioUrl === url ? (
                     <button
                       className="btn-small playPauseBtn"
-                      onClick={() => handlePause(url)}
+                      onClick={() => handleAudio(url, false)}
                     >
                       <FontAwesomeIcon
                         icon={faPause}
@@ -90,7 +79,7 @@ const ChansonsVedettes = () => {
                   ) : (
                     <button
                       className="btn-small playPauseBtn"
-                      onClick={() => handlePlay(url)}
+                      onClick={() => handleAudio(url, true)}
                     >
                       <FontAwesomeIcon
                         icon={faPlay}

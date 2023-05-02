@@ -1,5 +1,5 @@
 .parallax {
-  background-image: url("../img/sunset.jpg");
+  background-image: url("../img/BCHEADER.png");
   height: 650px;
   background-attachment: fixed;
   background-position: center;
@@ -13,7 +13,7 @@
 }
 
 .parallax-small {
-  background-image: url("../img/sunset-last.jpg");
+  background-image: url("../img/bcheader2.png"); 
   height: 500px;
   background-attachment: fixed;
   background-position: center;

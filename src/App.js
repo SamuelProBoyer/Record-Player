@@ -13,16 +13,19 @@ import "./App.css";
 import { authContext } from "./Providers/authContext";
 import FileImport from "./composante/FileImport";
 import { songsContext } from "./Providers/SongProvider";
+import AdminPage from "./composante/AdminPage";
 
 function App() {
   const { user } = useContext(authContext);
-  const {songs} = useContext(songsContext);
+  const { songs } = useContext(songsContext);
+
+  const isAdmin = user && user.email === "drtimo69@gmail.com";
 
   const routes = user
     ? [
         {
           path: "/",
-          element: <Layout songs={songs}/>,
+          element: <Layout songs={songs} />,
           children: [
             {
               index: true,
@@ -30,16 +33,22 @@ function App() {
             },
             {
               path: "/recordplayer",
-              element: <RecordPlayer songs={songs}/>,
+              element: <RecordPlayer songs={songs} />,
             },
             {
               path: "/musiques",
-              element: <Musiques  songs={songs}/>,
+              element: <Musiques songs={songs} />,
             },
             {
               path: "/allsongs",
-              element: <AllSongs songs={songs}/>,
+              element: <AllSongs songs={songs} />,
             },
+            isAdmin
+              ? {
+                  path: "/admin",
+                  element: <AdminPage />,
+                }
+              : null,
             {
               path: "/fileimport",
               element: <FileImport />,
@@ -71,10 +80,7 @@ function App() {
           element: <Navigate to="/login" replace />,
         },
       ];
-  return (
 
-      <RouterProvider router={createBrowserRouter(routes)} />
-
-  );
+  return <RouterProvider router={createBrowserRouter(routes)} />;
 }
 export default App;

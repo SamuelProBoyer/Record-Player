@@ -17,9 +17,9 @@ h1 {
   font-family: 'DynaPuff', cursive;
 }
 
-.title-ari-container .link-to-file{
+.title-ari-container .link-to-file {
   position: absolute;
-  left: 20%;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  left: 20%;
 }
 
 .title-ari-container p span {
@@ -60,8 +60,8 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
-  height: 350px;
+  width: 301px;
+  height: 282px;
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   background-size: cover;
@@ -162,18 +162,19 @@ audio::-webkit-media-controls-time-remaining-display {
   margin: 10px;
   left: 0;
   bottom: 0;
-  border-radius:3rem;
+  border-radius: 3rem;
   background-color: var(--color_bleu-75p);
 }
 
 .modal .modal-content {
   display: flex;
-  padding:0 5px;
+  padding: 0 5px;
   justify-content: center;
   align-items: center;
   font-family: 'DynaPuff', cursive;
 
 }
+
 .btn-modal {
   position: absolute;
   top: 0;
@@ -183,6 +184,7 @@ audio::-webkit-media-controls-time-remaining-display {
   border: none;
   color: white;
 }
+
 .btn-modal:hover {
   cursor: pointer;
 }

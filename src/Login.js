@@ -5,11 +5,10 @@ import { faRecordVinyl } from "@fortawesome/free-solid-svg-icons";
 import "./login.css";
 
 const Login = () => {
-  const [auth, setAuth] = useState({
+  const [auth] = useState({
     email: "",
     password: "",
   });
-  console.log(setAuth);
 
   const { login } = useContext(authContext);
 

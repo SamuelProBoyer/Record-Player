@@ -42,3 +42,8 @@ span {
 .nav-menu-footer .socials li {
     margin: 2rem;
 }
+
+#footer-nav a.active {
+    color: var(--color_bleu);
+    border-bottom: 2px solid var(--color_bleu);
+  }

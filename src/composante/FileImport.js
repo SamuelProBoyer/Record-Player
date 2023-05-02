@@ -10,9 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faImage,
   faMusic,
-  faPlus,
-  faMinus,
-  faCircleXmark
+  faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import HeaderSmaller from "./HeaderSmaller";
@@ -25,6 +23,8 @@ function FileImport() {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const { user } = useContext(authContext);
+  const initalImg =
+    "http://localhost:3000/static/media/BCHEADER.7f836e60bd59f33529ae.png";
 
   let i = 0;
   const handleIncrementation = () => {
@@ -40,9 +40,6 @@ function FileImport() {
     }
     if (!inputValue) {
       alert("Ajoute un nom avant !");
-    }
-    if (!imageSrc) {
-      alert("Ajoute une image avant !");
     }
 
     const storageRef = ref(storage, `/musiques/${file.name}`);
@@ -81,7 +78,6 @@ function FileImport() {
 
           setFile("");
           setInputValue("");
-          setImageSrc("");
           setShowModal(true);
           console.log("Song ajouter a ma collection user");
           setModalTextValue("Tune importé avec succès");
@@ -93,6 +89,7 @@ function FileImport() {
   };
 
   const handleImg = (e) => {
+
     const file = e.target.files[i];
     const reader = new FileReader();
 
@@ -119,13 +116,7 @@ function FileImport() {
               style={{ backgroundImage: `url(${imageSrc})` }}
             >
               <div className="btn-add-remove">
-                <button className="btn-small">
-                  <FontAwesomeIcon icon={faPlus} />
-                </button>
                 <h3 className="title-songs">{inputValue}</h3>
-                <button className="btn-small">
-                  <FontAwesomeIcon icon={faMinus} />
-                </button>
               </div>
             </div>
             <div className="input-container">
@@ -163,6 +154,7 @@ function FileImport() {
                     type="file"
                     onChange={handleImg}
                   />
+
                 </label>
               </div>
               <button className="btn" onClick={handleUpload}>

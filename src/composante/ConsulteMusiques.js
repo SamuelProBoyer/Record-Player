@@ -10,7 +10,7 @@ const ConsulteMusiques = () => {
         </div>
         <div className="link-musiques">
           <Link to="/allsongs">
-            <button className="btn">Voir toutes les Tunes</button>
+            <button className="btn">Voir la bibliothèque publique</button>
           </Link>
         </div>
       </div>

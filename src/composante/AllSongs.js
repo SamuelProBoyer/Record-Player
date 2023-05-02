@@ -21,12 +21,11 @@ import {
   faPlay,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import "./AllSongs.css";
+
 const AllSongs = () => {
   const [songs, setSongs] = useState([]);
   const { user } = useContext(authContext);
-  // const [currentSong, setCurrentSong] = useState(null);
-  // const [isPlaying, setIsPlaying] = useState(false);
-  // const [isAble, setIsAble] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
@@ -46,33 +45,23 @@ const AllSongs = () => {
     fetchSongs();
   }, [user.uid]);
 
-  // const handleSongClick = (song) => {
-  //   setCurrentSong(song);
-  //   setIsAble(!isAble);
-  //   setIsPlaying(!isPlaying);
-  // };
-  // console.log(currentSong);
-  const handlePlay = (url) => {
-    if (currentAudioUrl) {
+  const handleAudio = (url, play) => {
+    if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-    }
-
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(true);
-    audioRef.current = new Audio(url);
-    audioRef.current.play();
-  };
-
-  const handlePause = (url) => {
-    if (currentAudioUrl) {
+      setTuneIsPlaying(false);
+    } else if (currentAudioUrl !== url) {
+      setCurrentAudioUrl(url);
+      setTuneIsPlaying(true);
+      audioRef.current.pause();
+      audioRef.current = new Audio(url);
+      audioRef.current.play();
+    } else if (!play) {
+      audioRef.current = new Audio(null);
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      setTuneIsPlaying(false);
     }
-
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(false);
-    audioRef.current.pause();
   };
 
   const handleAddSongs = async (song) => {
@@ -95,34 +84,24 @@ const AllSongs = () => {
       <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1 className="feature-title">Toutes les Tunes</h1>
+          <h1 className="feature-title">Bibliothèque publique</h1>
           <p>
-            <Link to="/">Accueil</Link> / <span>Toutes les Tunes</span>
+            <Link to="/">Accueil</Link> / <span>Bibliothèque publique</span>
           </p>
         </div>
-        <ul className="container container-last-song">
+        <ul className="container-allsongs">
           {songs.map(({ image, namesong, url }) => (
-            <div
-              className="card-container"
-              key={url}
-              style={{ backgroundImage: `url(${image})` }}
-            >
-              <div className="btn-add-remove">
-                <button
-                  className="btn-small btn-add"
-                  onClick={() => handleAddSongs({ image, namesong, url })}
-                >
-                  <FontAwesomeIcon icon={faSquarePlus} />
-                </button>
-                <button className="btn-small"></button>
-                <h3 className="title-songs">{namesong}</h3>
-                <button className="btn-small"></button>
-              </div>
-              <div className="audio-container">
-                {tuneIsPlaying ? (
+            <div className="wrapper-card">
+              <div
+                className="card-allsongs"
+                key={url}
+                style={{ backgroundImage: `url(${image})` }}
+              ></div>
+              <div className="audio-container-allsongs">
+                {tuneIsPlaying && currentAudioUrl === url ? (
                   <button
                     className="btn-small playPauseBtn"
-                    onClick={() => handlePause(url)}
+                    onClick={() => handleAudio(url, false)}
                   >
                     <FontAwesomeIcon
                       icon={faPause}
@@ -132,7 +111,7 @@ const AllSongs = () => {
                 ) : (
                   <button
                     className="btn-small playPauseBtn"
-                    onClick={() => handlePlay(url)}
+                    onClick={() => handleAudio(url, true)}
                   >
                     <FontAwesomeIcon
                       icon={faPlay}
@@ -140,11 +119,19 @@ const AllSongs = () => {
                     />
                   </button>
                 )}
-
                 <audio className="primaryAudio" ref={audioRef}>
                   <source src={url} type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
+              </div>
+              <div className="allsongs-btn-add-remove">
+                <h3 className="title-allsongs">{namesong}</h3>
+                <button
+                  className="btn-small btn-add"
+                  onClick={() => handleAddSongs({ image, namesong, url })}
+                >
+                  <FontAwesomeIcon icon={faSquarePlus} />
+                </button>
               </div>
             </div>
           ))}

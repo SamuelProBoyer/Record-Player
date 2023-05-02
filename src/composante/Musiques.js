@@ -18,7 +18,7 @@ import {
   faMinus,
   faCircleXmark,
   faPlay,
-  faPause
+  faPause,
 } from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
 import HeaderSmaller from "./HeaderSmaller";
@@ -27,28 +27,29 @@ const Musiques = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
+  const [astroImg, setAstroImg] = useState("");
   // const [currentTime, setCurrentTime] = useState(0);
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
   const { songs } = useContext(songsContext);
   const audioRef = useRef(null);
-  // console.log(audio.current);
 
+  
   // const { user } = useContext(authContext);
-
+  
   // Ajouter une musique à toutes les musiques
   const handleAddSongs = async (song) => {
-    const q = query(collection(db, "musiques"), where("url", "==", song.url));
+    const q = query(collection(db, "flagMusiques"), where("url", "==", song.url));
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
       return;
     }
-    const docRef = await addDoc(collection(db, "musiques"), {
+    const docRef = await addDoc(collection(db, "flagMusiques"), {
       namesong: song.namesong,
       url: song.url,
       image: song.image,
     });
     console.log("Document written with ID: ", docRef.id);
-    setModalTextValue("Tune ajouté dans la bibliothèque publique");
+    setModalTextValue("Tune ajouté dans la liste d'attente de l'admin");
     setShowModal(true);
   };
 
@@ -63,32 +64,25 @@ const Musiques = () => {
     });
   };
 
-  const handlePlay = (url) => {
-
-    if (currentAudioUrl) {
+  const handleAudio = (url, play) => {
+    if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      setTuneIsPlaying(false);
+    } else if (currentAudioUrl !== url) {
+      setCurrentAudioUrl(url);
+      setTuneIsPlaying(true);
+      audioRef.current.pause();
+      audioRef.current = new Audio(url);
+      audioRef.current.play();
+    } else if (!play) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setTuneIsPlaying(false);
     }
-    // setCurrentTime(audioRef.current.currentTime);
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(!tuneIsPlaying);
-    audioRef.current = new Audio(url);
-    audioRef.current.play();
   };
 
-  const handlePause = (url) => {
-    if (currentAudioUrl) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
-    // setCurrentTime(audioRef.current.currentTime);
-    setCurrentAudioUrl(url);
-    setTuneIsPlaying(!tuneIsPlaying);
-    audioRef.current.pause();
-  }
-
   console.log(currentAudioUrl);
-  console.log(tuneIsPlaying);
   return (
     <>
       <HeaderSmaller />
@@ -112,6 +106,7 @@ const Musiques = () => {
               >
                 <div className="btn-add-remove">
                   <button
+                    title="Ajouter à la bibliothèque publique"
                     className="btn-small"
                     onClick={() => handleAddSongs({ url, namesong, image })}
                   >
@@ -119,6 +114,7 @@ const Musiques = () => {
                   </button>
                   <h3 className="title-songs">{namesong}</h3>
                   <button
+                    title="Retirer de la bibliothèque publique"
                     className="btn-small"
                     onClick={() => handleDeleteSong(url)}
                   >
@@ -127,23 +123,34 @@ const Musiques = () => {
                 </div>
 
                 <div className="audio-container">
-                  {tuneIsPlaying ? (<button className="btn-small playPauseBtn" onClick={(e) => handlePause(url)}>
-                    <FontAwesomeIcon icon={faPause} style={{ color: "#ffffff", }} />
-                  </button>) : (<button className="btn-small playPauseBtn" onClick={(e) => handlePlay(url)}>
-                    <FontAwesomeIcon icon={faPlay} style={{ color: "#ffffff", }} />
-                  </button>)}
+                  {tuneIsPlaying && currentAudioUrl === url ? (
+                    <button
+                      className="btn-small playPauseBtn"
+                      onClick={(e) => handleAudio(url, false)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faPause}
+                        style={{ color: "#ffffff" }}
+                      />
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-small playPauseBtn"
+                      onClick={(e) => handleAudio(url, true)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faPlay}
+                        style={{ color: "#ffffff" }}
+                      />
+                    </button>
+                  )}
                   {/* <input type="range" value={currentTime} max={audioRef.current?.duration} onChange={(e) => audioRef.current.currentTime = e.target.value}/> */}
 
-                  <audio
-                    className="primaryAudio"
-                    ref={audioRef}
-                  >
+                  <audio className="primaryAudio" ref={audioRef}>
                     <source src={url} type="audio/mpeg" />
                     Votre fureteur ne support pas l'élément audio.
                   </audio>
                 </div>
-
-
               </div>
             ))}
           </ul>

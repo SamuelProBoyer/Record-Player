@@ -1,7 +1,7 @@
 import "./recordPlayer.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { songsContext } from "../Providers/SongProvider";
+// import { useContext } from "react";
+// import { songsContext } from "../Providers/SongProvider";
 import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
 import ComposanteInfoImport from "./ComposanteInfoImport";
@@ -9,8 +9,7 @@ import ConsulteMusiques from "./ConsulteMusiques";
 import Header from "./Header";
 
 const RecordPlayer = () => {
-  const { songs } = useContext(songsContext);
-  console.log(songs);
+  // const { songs } = useContext(songsContext);
   return (
     <>
     <Header />
