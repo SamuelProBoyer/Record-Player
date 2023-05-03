@@ -1,17 +1,20 @@
 import AnimatedPage from "./AnimatedPage";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { songsContext } from "../Providers/SongProvider";
 import { Link } from "react-router-dom";
+import BottomNavPlayer from "./BottomNavPlayer";
 
 const ChansonsVedettes = () => {
-  // const [currentSong, setCurrentSong] = useState(null);
-  // const [isPlaying, setIsPlaying] = useState(false);
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
   const { songs } = useContext(songsContext);
+  const [currentSong, setCurrentSong] = useState({
+    namesong: "",
+    url: "",
+    image: "",
+  });
   const audioRef = useRef(null);
   const lastFourSongs = songs.slice(-4);
   const sortedLastFourSongs = [...lastFourSongs].sort((a, b) =>
@@ -23,21 +26,28 @@ const ChansonsVedettes = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
-      setCurrentAudioUrl(null); 
+      setCurrentAudioUrl(null);
     } else if (currentAudioUrl !== url) {
       setCurrentAudioUrl(url);
       setTuneIsPlaying(true);
       audioRef.current.pause();
       audioRef.current = new Audio(url);
       audioRef.current.play();
+      setCurrentSong({
+        namesong: "",
+        url: "",
+        image: "",
+      });
     } else if (!play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
-      setCurrentAudioUrl(null); 
+      setCurrentAudioUrl(null);
     }
+    const song = songs.find((song) => song.url === url);
+    setCurrentSong(song);
   };
-
+  // console.log(sortedLastFourSongs);
   return (
     <>
       <div className="vedette-title-section">
@@ -45,7 +55,7 @@ const ChansonsVedettes = () => {
           Les ajouts récents
           <Link to="/musiques">
             <span className="icon-music">
-              <FontAwesomeIcon icon={faMusic} />
+              <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
             </span>
           </Link>
         </h2>
@@ -95,11 +105,25 @@ const ChansonsVedettes = () => {
                     Your browser does not support the audio element.
                   </audio>
                 </div>
+                {tuneIsPlaying ? (
+              <BottomNavPlayer
+                currentSong={currentSong}
+                tuneIsPlaying={tuneIsPlaying}
+                url={currentAudioUrl}
+                audioRef={audioRef}
+              />
+            ) : null}
               </div>
             ))}
+        
           </ul>
         ) : (
-          <p>Chargement des musiques...</p>
+          <>
+            <p>Vous n'avez pas de Tune encore !</p>
+            <button className="btn">
+              <Link to="/fileimport">Ajouter des tunes !</Link>
+            </button>
+          </>
         )}
       </AnimatedPage>
     </>

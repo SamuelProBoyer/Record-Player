@@ -1,11 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import {
-  collection,
-  getDocs,
-  where,
-  query,
-  addDoc,
-} from "firebase/firestore";
+import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import Header from "./Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,7 +41,6 @@ const AdminPage = () => {
       image: songs.image,
     });
     console.log("Document written with ID: ", docRef.id);
-
   };
 
   const handleAudio = (url, play) => {
@@ -86,7 +79,10 @@ const AdminPage = () => {
                   className="btn-small playPauseBtn"
                   onClick={() => handleAudio(url, false)}
                 >
-                  <FontAwesomeIcon icon={faPause} style={{ color: "#ffffff" }} />
+                  <FontAwesomeIcon
+                    icon={faPause}
+                    style={{ color: "#ffffff" }}
+                  />
                 </button>
               ) : (
                 <button

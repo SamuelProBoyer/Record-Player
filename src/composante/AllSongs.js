@@ -20,8 +20,10 @@ import {
   faCircleXmark,
   faPlay,
   faPause,
+  faMusic
 } from "@fortawesome/free-solid-svg-icons";
 import "./AllSongs.css";
+import BottomNavPlayer from "./BottomNavPlayer";
 
 const AllSongs = () => {
   const [songs, setSongs] = useState([]);
@@ -30,7 +32,11 @@ const AllSongs = () => {
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
-
+  const [currentSong, setCurrentSong] = useState({
+    namesong: "",
+    url: "",
+    image: "",
+  });
   const audioRef = useRef(null);
 
   // Permet daller chercher les chansons upload par lutilisateur
@@ -50,19 +56,26 @@ const AllSongs = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
-      setCurrentAudioUrl(null); 
+      setCurrentAudioUrl(null);
     } else if (currentAudioUrl !== url) {
       setCurrentAudioUrl(url);
       setTuneIsPlaying(true);
       audioRef.current.pause();
       audioRef.current = new Audio(url);
       audioRef.current.play();
+      setCurrentSong({
+        namesong: "",
+        url: "",
+        image: "",
+      });
     } else if (!play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
-      setCurrentAudioUrl(null); 
+      setCurrentAudioUrl(null);
     }
+    const song = songs.find((song) => song.url === url);
+    setCurrentSong(song);
   };
 
   const handleAddSongs = async (song) => {
@@ -85,7 +98,7 @@ const AllSongs = () => {
       <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1 className="feature-title">Bibliothèque publique</h1>
+          <h1 className="feature-title">Bibliothèque publique <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
           <p>
             <Link to="/">Accueil</Link> / <span>Bibliothèque publique</span>
           </p>
@@ -134,6 +147,14 @@ const AllSongs = () => {
                   <FontAwesomeIcon icon={faSquarePlus} />
                 </button>
               </div>
+              {tuneIsPlaying ? (
+              <BottomNavPlayer
+                currentSong={currentSong}
+                tuneIsPlaying={tuneIsPlaying}
+                url={currentAudioUrl}
+                audioRef={audioRef}
+              />
+            ) : null}
             </div>
           ))}
         </ul>

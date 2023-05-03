@@ -19,7 +19,7 @@ h1 {
 
 .title-ari-container .link-to-file {
   position: absolute;
-  left: 20%;
+  left: 25%;
 }
 
 .title-ari-container p span {
@@ -53,6 +53,7 @@ a {
   padding: 0 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 4rem 0;
 }
 
 .card-container {
@@ -104,7 +105,8 @@ a {
 
 .audio-container {
   position: absolute;
-  bottom: 30%;
+  text-align: center;
+  top: 25%;
 }
 
 .playPauseBtn {
@@ -112,17 +114,17 @@ a {
   background-color: var(--color_bleu);
   border-radius: 3rem;
   padding: 10px 1rem;
+  margin: 2rem 0;
 }
 
 audio {
-  background-color: var(--color_bleu);
-  width: 110%;
+  background-color: var(--color_bleu-fonce);
 }
 
 
 
 audio::-webkit-media-controls-panel {
-  background-color: var(--color_bleu);
+  background-color: var(--color_bleu-fonce);
   outline: none;
 
 }
@@ -130,10 +132,7 @@ audio::-webkit-media-controls-panel {
 
 
 audio::-webkit-media-controls-play-button {
-  display: -webkit-box;
-  width: 16px;
-  height: 16px;
-  /* background-color: #fff; */
+  display: none;
 }
 
 
@@ -142,14 +141,18 @@ audio::-webkit-media-controls-play-button {
 
 
 
-audio::-webkit-media-controls-current-time-display {
-  font-family: 'DynaPuff', cursive;
-  color: #FFF;
-}
 
 audio::-webkit-media-controls-time-remaining-display {
-  color: #FFF;
+  color: #222;
   font-family: 'DynaPuff', cursive;
+}
+
+audio::-webkit-media-controls-mute-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  display: none;
 }
 
 

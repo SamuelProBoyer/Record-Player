@@ -32,6 +32,12 @@
   --fontLarge: 64px;
 }
 
+.title-name {
+  color: var(--color_bleu);
+  font-family: 'Gloria Hallelujah', cursive;
+
+}
+
 
 
 .container-layout {
@@ -124,7 +130,13 @@
 }
 
 .container-title .fa-icon:hover {
-  color: var(--color_bleu);
+  color: var(--color_mauve);
+}
+
+
+.icon-music {
+  margin: 0 2rem;
+  font-size: 2rem;
 }
 
 

@@ -19,10 +19,9 @@ const ComposanteInfoImport = () => {
           </div>
           <div className="img-accueil">
             <div className="parallax-inPage">
-            {/* <img className="img-parallax" src="./importImg.png" alt="img" /> */}
+              {/* <Spline scene="https://prod.spline.design/P8dlKhjbHujM5uup/scene.splinecode" /> */}
             </div>
           </div>
-          {/* <Spline scene="https://prod.spline.design/P8dlKhjbHujM5uup/scene.splinecode" /> */}
         </div>
       </AnimatedPage>
     </>

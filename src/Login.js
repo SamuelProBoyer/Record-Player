@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { authContext } from "./Providers/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRecordVinyl } from "@fortawesome/free-solid-svg-icons";
+import { faCompactDisc } from "@fortawesome/free-solid-svg-icons";
 import "./login.css";
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
       <div className="page-wrapper">
         <div className="container-login">
           <div className="fa-icon-login">
-            <FontAwesomeIcon icon={faRecordVinyl} />
+          <FontAwesomeIcon icon={faCompactDisc} style={{color: "#56aeff",}} />
           </div>
           <div className="container-title-login">
             <h1>LofiTunes</h1>

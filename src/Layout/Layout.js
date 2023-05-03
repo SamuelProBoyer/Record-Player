@@ -4,28 +4,25 @@ import { SongsProvider } from "../Providers/SongProvider";
 import { authContext } from "../Providers/authContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faRecordVinyl,
+  faCompactDisc,
   faUserAstronaut,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../composante/Footer";
 import "./layout.css";
-// import BottomNavPlayer from "../composante/BottomNavPlayer";
 
 const Layout = () => {
   const { user, logout } = useContext(authContext);
   const isAdmin = user && user.email === "drtimo69@gmail.com";
-  // const { songs } = useContext(songsContext);
-  // console.log(songs);
 
   return (
     <>
       <SongsProvider>
         <div className="container-layout">
           <div className="container-title">
-            <h1 className="title-layout">LofiTunes de {user.displayName}</h1>
+            <h1 className="title-layout">LofiTunes de :  <span className="title-name">{user.displayName}</span></h1>
             <NavLink to="/">
               <span className="fa-icon">
-                <FontAwesomeIcon icon={faRecordVinyl} />
+              <FontAwesomeIcon icon={faCompactDisc} style={{color: "#56aeff",}} />
               </span>
             </NavLink>
           </div>
@@ -65,11 +62,7 @@ const Layout = () => {
                 <img
                   className="img-profil"
                   src={
-                    user.photoURL === undefined ? (
-                      <FontAwesomeIcon icon={faUserAstronaut} />
-                    ) : (
-                      user.photoURL
-                    )
+                    user.photoURL || <FontAwesomeIcon icon={faUserAstronaut} />
                   }
                   alt={user.displayName}
                 />
@@ -77,10 +70,8 @@ const Layout = () => {
             </ul>
           </nav>
         </div>
-        {/* <Header /> */}
         <div className="container-outlet">
           <Outlet />
-          {/* <BottomNavPlayer /> */}
         </div>
         <Footer />
       </SongsProvider>

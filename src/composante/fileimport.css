@@ -4,9 +4,10 @@
   color: var(--color_bleu);
   border-bottom: 2px solid var(--color-dark);
 }
+
 label:hover {
   border-bottom: 2px solid var(--color_bleu);
-  
+
 }
 
 .label-name span {
@@ -20,123 +21,108 @@ label:hover {
 }
 
 .wrapper .card-container .audio-container {
-    margin-top: 60px;
-} 
+  margin-top: 60px;
+}
 
 .upload-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 700px;
-  }
-  
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    flex-grow: 1;
-    padding: 2rem 0;
-    background-color: #222;
-    border-radius: 3rem;
-    /* box-shadow: 10px 10px 10px var(--color-dark); */
-  }
-  
-  .wrapper .card-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 300px;
-    height: 350px;
-    border-radius: 10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    background-size: cover;
-    background-position: center;
-    background-repeat: space;
-    position: relative;
-    overflow: hidden;
-    margin: 20px;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 700px;
+}
 
-  /* .title-song {
-    margin: 16px;
-    font-size: 16px;
-  } */
-  
-  .audio-container {
-    margin: 16px;
-  }
-  
-  .container-input {
-    margin: 16px 0;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    cursor: pointer;
-  }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-grow: 1;
+  padding: 2rem 0;
+  background-color: #222;
+  border-radius: 3rem;
+}
 
- 
-  
-  .upload-input {
-    /* margin-bottom: 16px; */
-    margin-left: 10px;
-    /* display: none; */
-  }
-  
-  .input-title {
-    margin-bottom: 16px;
-    padding: 8px;
-    border: none;
-    border-radius: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-family: 'Gloria Hallelujah', cursive;
-  }
-  .input-title:focus {
-    outline: none;
-  }
-  
-  
-  .uplaod-percent {
-    margin-top: 16px;
-    font-size: 14px;
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-
-    align-items: stretch;
-    margin: 3rem;
-  }
-
-/* 
-  #fileimport .wrapper .card-container {
-    background-image: url("../img/bcheader2.png");
-    background-size: cover;
-    background-position: center;
-  }
-  */
-
-  .important {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .important h5 {
-    font-size: 2rem;
-    font-family: 'Gloria Hallelujah', cursive;
-    color: var(--color_bleu);
-  }
+.wrapper .card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  height: 350px;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: space;
+  position: relative;
+  overflow: hidden;
+  margin: 20px;
+}
 
 
-  .important p {
-    line-height: 1.5;
-    text-align: center;
-    width: 300px;
-  }
+.audio-container {
+  margin: 16px;
+}
+
+.container-input {
+  margin: 16px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+
+
+.upload-input {
+  margin-left: 10px;
+}
+
+.input-title {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+.input-title:focus {
+  outline: none;
+}
+
+
+.uplaod-percent {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+  margin: 3rem;
+}
+
+
+
+.important {
+  display: flex;
+  flex-direction: column;
+}
+
+.important h5 {
+  font-size: 2rem;
+  font-family: 'Gloria Hallelujah', cursive;
+  color: var(--color_bleu);
+  margin: 0px;
+}
+
+
+.important p {
+  line-height: 1.5;
+  width: 428px;
+}

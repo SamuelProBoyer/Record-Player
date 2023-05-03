@@ -1,27 +1,22 @@
 import "./recordPlayer.css";
 import { Link } from "react-router-dom";
-// import { useContext } from "react";
-// import { songsContext } from "../Providers/SongProvider";
 import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
 import ComposanteInfoImport from "./ComposanteInfoImport";
 import ConsulteMusiques from "./ConsulteMusiques";
 import Header from "./Header";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMusic,
+} from "@fortawesome/free-solid-svg-icons";
 
 const RecordPlayer = () => {
-  // const { songs } = useContext(songsContext);
   return (
     <>
-    <Header />
-      <h1>Accueil</h1>
+      <Header />
+      <h1>Accueil <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
       <AnimatedPage>
         <div className="container-accueil">
-          {/* <div className="img-accueil">
-            <img
-              src="https://cdn.pixabay.com/photo/2023/02/14/23/57/sunset-7790623_960_720.jpg"
-              alt="img"
-            />
-          </div> */}
           <div className="text-accueil">
             <p>
               Bienvenue dans LofiTunes, l'application web ultime pour les
@@ -42,8 +37,6 @@ const RecordPlayer = () => {
         <ComposanteInfoImport />
       </div>
       <ConsulteMusiques />
-
-
     </>
   );
 };

@@ -45,5 +45,4 @@ span {
 
 #footer-nav a.active {
     color: var(--color_bleu);
-    border-bottom: 2px solid var(--color_bleu);
   }

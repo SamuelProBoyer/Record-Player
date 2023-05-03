@@ -48,14 +48,14 @@ function App() {
                   path: "/admin",
                   element: <AdminPage />,
                 }
-              : {
-                path: "/",
-                element: <Layout songs={songs} />,
-                children: [
-                  {
-                    index: true,
-                    element: <Navigate to="/recordplayer" replace />,
-                  },
+              : 
+                // path: "/",
+                // element: <Layout songs={songs} />,
+                // children: [
+                //   {
+                //     index: true,
+                //     element: <Navigate to="/recordplayer" replace />,
+                //   },
                   {
                     path: "/recordplayer",
                     element: <RecordPlayer songs={songs} />,
@@ -77,8 +77,8 @@ function App() {
                     path: "*",
                     element: <Navigate to="/recordplayer" replace />,
                   },
-                ],
-              },
+                // ],
+              
             {
               path: "/fileimport",
               element: <FileImport />,

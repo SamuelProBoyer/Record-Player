@@ -1,8 +1,7 @@
 import { useState, useContext } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db } from "../config/firebase";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import { storage } from "../config/firebase";
+import { db,storage } from "../config/firebase";
 import { authContext } from "../Providers/authContext";
 import "./fileimport.css";
 import AnimatedPage from "./AnimatedPage";
@@ -103,15 +102,12 @@ function FileImport() {
       <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1>Importer mes Tunes</h1>
+          <h1>Importer mes Tunes <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
           <p>
             <Link to="/">Accueil</Link> / <span>Importer Tunes</span>
           </p>
         </div>
-          <div className="important">
-              <h5>Important</h5>
-              <p>Tous les nouveaux titres importés seront évalués avant d'être acceptés dans la bibliothèque publique. Merci d'être civile dans vos choix de nom et d'utiliser des images originales. </p>
-          </div>
+          
         <div id="fileimport" className="upload-container">
           <div className="wrapper">
             <div
@@ -165,6 +161,10 @@ function FileImport() {
               </button>
               <p className="uplaod-percent">{percent} "% complété"</p>
             </div>
+            <div className="important">
+              <h5>Important</h5>
+              <p>Tous les nouveaux titres importés seront évalués avant d'être acceptés dans la bibliothèque publique. Merci d'être civile dans vos choix de nom et d'utiliser des images originales. </p>
+          </div>
           </div>
         </div>
       </AnimatedPage>
