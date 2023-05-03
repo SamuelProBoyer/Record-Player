@@ -23,6 +23,7 @@ const ChansonsVedettes = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null); 
     } else if (currentAudioUrl !== url) {
       setCurrentAudioUrl(url);
       setTuneIsPlaying(true);
@@ -33,6 +34,7 @@ const ChansonsVedettes = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null); 
     }
   };
 

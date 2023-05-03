@@ -23,8 +23,7 @@ function FileImport() {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const { user } = useContext(authContext);
-  const initalImg =
-    "http://localhost:3000/static/media/BCHEADER.7f836e60bd59f33529ae.png";
+
 
   let i = 0;
   const handleIncrementation = () => {
@@ -109,6 +108,10 @@ function FileImport() {
             <Link to="/">Accueil</Link> / <span>Importer Tunes</span>
           </p>
         </div>
+          <div className="important">
+              <h5>Important</h5>
+              <p>Tous les nouveaux titres importés seront évalués avant d'être acceptés dans la bibliothèque publique. Merci d'être civile dans vos choix de nom et d'utiliser des images originales. </p>
+          </div>
         <div id="fileimport" className="upload-container">
           <div className="wrapper">
             <div

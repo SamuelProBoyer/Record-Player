@@ -27,7 +27,6 @@ const Musiques = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
-  const [astroImg, setAstroImg] = useState("");
   // const [currentTime, setCurrentTime] = useState(0);
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
   const { songs } = useContext(songsContext);
@@ -69,6 +68,7 @@ const Musiques = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null);
     } else if (currentAudioUrl !== url) {
       setCurrentAudioUrl(url);
       setTuneIsPlaying(true);
@@ -79,6 +79,7 @@ const Musiques = () => {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null); 
     }
   };
 

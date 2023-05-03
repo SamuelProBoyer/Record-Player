@@ -48,7 +48,37 @@ function App() {
                   path: "/admin",
                   element: <AdminPage />,
                 }
-              : null,
+              : {
+                path: "/",
+                element: <Layout songs={songs} />,
+                children: [
+                  {
+                    index: true,
+                    element: <Navigate to="/recordplayer" replace />,
+                  },
+                  {
+                    path: "/recordplayer",
+                    element: <RecordPlayer songs={songs} />,
+                  },
+                  {
+                    path: "/musiques",
+                    element: <Musiques songs={songs} />,
+                  },
+                  {
+                    path: "/allsongs",
+                    element: <AllSongs songs={songs} />,
+                  },
+                 
+                  {
+                    path: "/fileimport",
+                    element: <FileImport />,
+                  },
+                  {
+                    path: "*",
+                    element: <Navigate to="/recordplayer" replace />,
+                  },
+                ],
+              },
             {
               path: "/fileimport",
               element: <FileImport />,

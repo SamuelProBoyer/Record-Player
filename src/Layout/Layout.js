@@ -13,6 +13,7 @@ import "./layout.css";
 
 const Layout = () => {
   const { user, logout } = useContext(authContext);
+  const isAdmin = user && user.email === "drtimo69@gmail.com";
   // const { songs } = useContext(songsContext);
   // console.log(songs);
 
@@ -50,11 +51,13 @@ const Layout = () => {
                   Importer une Tune
                 </NavLink>
               </li>
-              <li>
-                <NavLink className="menu-link" to="/admin">
-                  Page d'administration
-                </NavLink>
-              </li>
+              {isAdmin ? (
+                <li>
+                  <NavLink className="menu-link" to="/admin">
+                    Admin
+                  </NavLink>
+                </li>
+              ) : null}
               <li className="btn-img-profil">
                 <button className="btn" onClick={logout}>
                   Déconnexion

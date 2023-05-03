@@ -16,12 +16,12 @@ const RecordPlayer = () => {
       <h1>Accueil</h1>
       <AnimatedPage>
         <div className="container-accueil">
-          <div className="img-accueil">
+          {/* <div className="img-accueil">
             <img
               src="https://cdn.pixabay.com/photo/2023/02/14/23/57/sunset-7790623_960_720.jpg"
               alt="img"
             />
-          </div>
+          </div> */}
           <div className="text-accueil">
             <p>
               Bienvenue dans LofiTunes, l'application web ultime pour les
