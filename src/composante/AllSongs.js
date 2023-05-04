@@ -20,7 +20,7 @@ import BottomNavPlayer from "./BottomNavPlayer";
 
 const AllSongs = () => {
   const { user } = useContext(authContext);
-  const { allSongs } = useContext(songsContext);
+  const { allSongs, setAllSongs } = useContext(songsContext);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
@@ -71,7 +71,6 @@ const AllSongs = () => {
     const userSongs = userData.songs || [];
     userSongs.push(song);
     await updateDoc(userRef, { songs: userSongs });
-
     setShowModal(true);
     setModalTextValue("Tune ajouté dans votre bilbiothèque");
   };

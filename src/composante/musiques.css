@@ -17,6 +17,29 @@ h1 {
   font-family: 'DynaPuff', cursive;
 }
 
+.btn-x {
+  position: absolute;
+  top: 5%;
+  right: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.btn-x:hover {
+  cursor: pointer;
+}
+
+.btn-x .icon-x {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.btn-x .icon-x:hover {
+  color: var(--color_bleu-fonce);
+ 
+}
+
 .title-ari-container .link-to-file {
   position: absolute;
   left: 25%;
@@ -165,8 +188,8 @@ audio::-webkit-media-controls-current-time-display {
   margin: 10px;
   left: 0;
   bottom: 0;
-  border-radius: 3rem;
-  background-color: var(--color_bleu-75p);
+  border-radius: 1rem;
+  background-color: var(--color_bleu-fonce);
 }
 
 .modal .modal-content {
@@ -175,6 +198,7 @@ audio::-webkit-media-controls-current-time-display {
   justify-content: center;
   align-items: center;
   font-family: 'DynaPuff', cursive;
+  margin: 0 2rem;
 
 }
 

@@ -60,7 +60,7 @@ const Layout = () => {
               {isAdmin ? (
                 <li>
                   <NavLink className="menu-link" to="/admin">
-                    Admin
+                    Administration
                   </NavLink>
                 </li>
               ) : null}

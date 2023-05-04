@@ -13,9 +13,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import HeaderSmaller from "./HeaderSmaller";
-
+import { songsContext } from "../Providers/SongProvider";
 function FileImport() {
   const [file, setFile] = useState("");
+  const { setSongs } = useContext(songsContext);
   const [inputValue, setInputValue] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [percent, setPercent] = useState(0);
@@ -74,7 +75,7 @@ function FileImport() {
           const songsArray = Object.values(userSongs); // conversion en tableau
           const updatedSongs = [...songsArray, newSong]; // ajout de la nouvelle chanson
           await updateDoc(userRef, { songs: updatedSongs });
-
+          setSongs(updatedSongs);
           setFile("");
           setInputValue("");
           setShowModal(true);

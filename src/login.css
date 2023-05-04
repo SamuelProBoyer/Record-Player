@@ -35,13 +35,23 @@
     font-family: 'DynaPuff', cursive;
     margin-bottom: 4rem;
     font-size: 3rem;
+    text-align: center;
+    line-height: 1.5;
 
 }
 
 .container-login .fa-icon-login {
-    margin-top: -150px;
-    padding: 2rem;
-    font-size: 60px;
+    /* margin-top: -150px; */
+    /* padding: 2rem; */
+    font-size: 5rem;
+    animation: tourne 1s infinite linear;
+}
+
+
+
+@keyframes tourne {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 
 .container-form .btn-login {

@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {
   collection,
   getDocs,
+  getDoc,
   where,
   query,
   addDoc,
   deleteDoc,
+  doc,
+  updateDoc,
 } from "@firebase/firestore";
 import { db } from "../config/firebase";
 import BottomNavPlayer from "./BottomNavPlayer";
@@ -23,9 +26,12 @@ import {
   faMusic,
 } from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
+import { authContext } from "../Providers/authContext";
 import HeaderSmaller from "./HeaderSmaller";
 const Musiques = () => {
+  const [tune, setTune] = useState([]);
   const { songs } = useContext(songsContext);
+  const { user } = useContext(authContext);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
@@ -33,6 +39,9 @@ const Musiques = () => {
   const [currentSong, setCurrentSong] = useState("");
   const audioRef = useRef(null);
 
+  useEffect(() => {
+    setTune(songs);
+  },[songs]);  
   // Ajouter une musique à dans la liste d'attente de l'admin
   const handleAddSongs = async (song) => {
     const q = query(
@@ -62,6 +71,20 @@ const Musiques = () => {
       setShowModal(true);
       setModalTextValue("Tune retiré de la bibliothèque publique");
     });
+  };
+
+  const handleDeleteUserSong = async (url) => {
+    const userDocRef = doc(db, "users", user.uid); // replace `userId` with the ID of the user's document
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      const updatedSongs = userDoc
+        .data()
+        .songs.filter((song) => song.url !== url);
+      await updateDoc(userDocRef, { songs: updatedSongs });
+      setTune(updatedSongs);
+      setShowModal(true);
+      setModalTextValue("Tune retiré de votre bibliothèque");
+    }
   };
 
   // Handler qui permet de faire jouer la Tune
@@ -111,13 +134,20 @@ const Musiques = () => {
         </div>
         <div className="wrapper-musique">
           <ul className="container-muse">
-            {songs.map(({ namesong, url, image }) => (
+            {tune.map(({ namesong, url, image }) => (
               <div
                 className="card-container"
                 key={namesong}
                 style={{ backgroundImage: `url(${image})` }}
               >
                 <div className="btn-add-remove">
+                  <button
+                    title="Retirer de mes Tunes"
+                    className="btn-x"
+                    onClick={() => handleDeleteUserSong(url)}
+                  >
+                    <FontAwesomeIcon className="icon-x" icon={faCircleXmark} />
+                  </button>
                   <button
                     title="Ajouter à la bibliothèque publique"
                     className="btn-small"
@@ -172,9 +202,7 @@ const Musiques = () => {
                 audioRef={audioRef}
                 handleAudio={handleAudio}
               />
-            ) : (
-              <BottomNavPlayer />
-            )}
+            ) : null}
           </ul>
         </div>
         {showModal && (

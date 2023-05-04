@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
+import { collection, getDocs, where, query, addDoc, deleteDoc } from "firebase/firestore";
 import BottomNavPlayer from "./BottomNavPlayer";
 import { db } from "../config/firebase";
 import Header from "./Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquarePlus,
+  faSquareMinus,
   faPlay,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
@@ -31,19 +32,39 @@ const AdminPage = () => {
     fetchSongs();
   }, []);
 
-  const handleAddFlaggedSong = async (songs) => {
-    const q = query(collection(db, "musiques"), where("url", "==", songs.url));
-    const querySnap = await getDocs(q);
-    if (!querySnap.empty) {
+  const handleAddFlaggedSong = async (song) => {
+    const musiquesQuery = query(collection(db, "musiques"), where("url", "==", song.url));
+    const musiquesQuerySnap = await getDocs(musiquesQuery);
+    if (!musiquesQuerySnap.empty) {
       return;
     }
+    
+    const flagMusiquesQuery = query(collection(db, "flagMusiques"), where("url", "==", song.url));
+    const flagMusiquesQuerySnap = await getDocs(flagMusiquesQuery);
+    if (!flagMusiquesQuerySnap.empty) {
+      flagMusiquesQuerySnap.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+      });
+    }
+  
     const docRef = await addDoc(collection(db, "musiques"), {
-      namesong: songs.namesong,
-      url: songs.url,
-      image: songs.image,
+      namesong: song.namesong,
+      url: song.url,
+      image: song.image,
     });
     console.log("Document written with ID: ", docRef.id);
   };
+
+  const handleDeleteFlaggedSong = async(song) => {
+    const tuneQuery = query(collection(db, "flagMusiques"), where("url", "==", song.url));
+    const tuneQuerySnap = await getDocs(tuneQuery);
+    if(!tuneQuerySnap.empty) {
+      tuneQuerySnap.forEach(async (doc) => {
+        await deleteDoc(doc.ref);
+      })
+    }
+  }
+  
 
   const handleAudio = (url, play) => {
     const song = songs.find((song) => song.url === url);
@@ -106,6 +127,12 @@ const AdminPage = () => {
                 <source src={url} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
+              <button
+                className="btn-small btn-add"
+                onClick={() => handleDeleteFlaggedSong({ image, namesong, url })}
+              >
+                <FontAwesomeIcon icon={faSquareMinus} />
+              </button>
             </div>
             <div className="allsongs-btn-add-remove">
               <h3 className="title-allsongs">{namesong}</h3>
@@ -127,7 +154,7 @@ const AdminPage = () => {
                 handleAudio={handleAudio}
               />
             ) : (
-              <BottomNavPlayer />
+              null
             )}
       </ul>
     </>

@@ -6,7 +6,7 @@ import ComposanteInfoImport from "./ComposanteInfoImport";
 import ConsulteMusiques from "./ConsulteMusiques";
 import Header from "./Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { faMusic, faRadio } from "@fortawesome/free-solid-svg-icons";
 
 const RecordPlayer = () => {
   return (
@@ -21,6 +21,7 @@ const RecordPlayer = () => {
       <AnimatedPage>
         <div className="container-accueil">
           <div className="text-accueil">
+          <FontAwesomeIcon className="icon-radio" icon={faRadio} beatFade style={{color: "#56aeff",}} />
             <p>
               Bienvenue dans LofiTunes, l'application web ultime pour les
               amateurs de musique lofi ! Si vous êtes passionné par les rythmes

@@ -44,12 +44,12 @@
   display: flex;
   justify-content: space-between;
   min-height: 150px;
-  /* background-color: ;     */
   background: linear-gradient(20deg, var(--color-dark), var(--color-dark_50p));
 
 
 
 }
+
 .container-layout #primary-nav {
   display: flex;
   align-items: center;
@@ -129,9 +129,7 @@
   font-family: 'DynaPuff', cursive;
 }
 
-.container-title .fa-icon:hover {
-  color: var(--color_mauve);
-}
+
 
 
 .icon-music {
@@ -164,10 +162,9 @@
 
 .container-title .fa-icon {
   font-size: 3rem;
-  margin-left: 20px;
-  color: var(--color_mauve);
-  transition: background-color 0.3s ease-in-out;
 }
+
+
 
 @media (max-width: 1600px) {
   .parallax .waves {

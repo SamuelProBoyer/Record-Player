@@ -10,6 +10,10 @@
   margin: 0 2.5rem;
 }
 
+.icon-radio {
+  font-size: 4rem;
+}
+
 .container-accueil {
   display: flex;
   justify-content: center;
