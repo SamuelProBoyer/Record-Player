@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
+import BottomNavPlayer from "./BottomNavPlayer";
 import { db } from "../config/firebase";
 import Header from "./Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +13,7 @@ const AdminPage = () => {
   const [songs, setSongs] = useState([]);
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(null);
 
   const audioRef = useRef(null);
 
@@ -44,22 +46,30 @@ const AdminPage = () => {
   };
 
   const handleAudio = (url, play) => {
+    const song = songs.find((song) => song.url === url);
     if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null);
     } else if (currentAudioUrl !== url) {
       setCurrentAudioUrl(url);
       setTuneIsPlaying(true);
       audioRef.current.pause();
       audioRef.current = new Audio(url);
       audioRef.current.play();
+      setCurrentSong({
+        namesong: song.namesong,
+        url: song.url,
+        image: song.image,
+      });
     } else if (!play) {
-      audioRef.current = new Audio(null);
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
+      setCurrentAudioUrl(null);
     }
+    setCurrentSong(song);
   };
 
   return (
@@ -108,6 +118,17 @@ const AdminPage = () => {
             </div>
           </div>
         ))}
+        {tuneIsPlaying ? (
+              <BottomNavPlayer
+                currentSong={currentSong}
+                tuneIsPlaying={tuneIsPlaying}
+                currentAudioUrl={currentAudioUrl}
+                audioRef={audioRef}
+                handleAudio={handleAudio}
+              />
+            ) : (
+              <BottomNavPlayer />
+            )}
       </ul>
     </>
   );

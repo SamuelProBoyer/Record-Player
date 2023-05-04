@@ -6,15 +6,18 @@ import ComposanteInfoImport from "./ComposanteInfoImport";
 import ConsulteMusiques from "./ConsulteMusiques";
 import Header from "./Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMusic,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
 const RecordPlayer = () => {
   return (
     <>
       <Header />
-      <h1>Accueil <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
+      <h1>
+        Accueil{" "}
+        <span className="icon-music">
+          <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
+        </span>
+      </h1>
       <AnimatedPage>
         <div className="container-accueil">
           <div className="text-accueil">

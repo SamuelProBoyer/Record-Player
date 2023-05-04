@@ -22,6 +22,7 @@ const ChansonsVedettes = () => {
   );
 
   const handleAudio = (url, play) => {
+    const song = songs.find((song) => song.url === url);
     if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -34,9 +35,9 @@ const ChansonsVedettes = () => {
       audioRef.current = new Audio(url);
       audioRef.current.play();
       setCurrentSong({
-        namesong: "",
-        url: "",
-        image: "",
+        namesong: song.namesong,
+        url: song.url,
+        image: song.image,
       });
     } else if (!play) {
       audioRef.current.pause();
@@ -44,10 +45,8 @@ const ChansonsVedettes = () => {
       setTuneIsPlaying(false);
       setCurrentAudioUrl(null);
     }
-    const song = songs.find((song) => song.url === url);
     setCurrentSong(song);
   };
-  // console.log(sortedLastFourSongs);
   return (
     <>
       <div className="vedette-title-section">
@@ -106,16 +105,16 @@ const ChansonsVedettes = () => {
                   </audio>
                 </div>
                 {tuneIsPlaying ? (
-              <BottomNavPlayer
-                currentSong={currentSong}
-                tuneIsPlaying={tuneIsPlaying}
-                url={currentAudioUrl}
-                audioRef={audioRef}
-              />
-            ) : null}
+                  <BottomNavPlayer
+                  currentSong={currentSong}
+                  tuneIsPlaying={tuneIsPlaying}
+                  currentAudioUrl={currentAudioUrl}
+                  audioRef={audioRef}
+                  handleAudio={handleAudio}
+                  />
+                ) : null}
               </div>
             ))}
-        
           </ul>
         ) : (
           <>

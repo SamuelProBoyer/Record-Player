@@ -7,35 +7,43 @@
 .container-allsongs  .card-allsongs{
     display: flex;
     align-items: center;
-    width: 200px;
-    height: 200px;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 2rem 0 0 2rem;
+    border-radius: 1rem;
+    margin-right: 10px;
+    margin-left: 20px;
 }
 
 .wrapper-card {
     display: flex;
     align-items: center;
+    /* border: 3px solid red; */
     background-color: var(--color_bleu-75p);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     margin: 1rem 0;
-    border-radius: 2rem;
+    border-radius: 1rem;
     width: 50%;
+    height: 70px;
 }
 
 .allsongs-btn-add-remove {
     display: flex;
+    align-items: center;
 }
 
 .allsongs-btn-add-remove .title-allsongs {
     font-family: "DynaPuff", cursive;
     font-size: 1.5rem;
+    margin-left: 1.5rem;
 }
 
 .audio-container-allsongs {
     margin: 0 2rem;
+    display: flex;
 }
 
 .btn-add {

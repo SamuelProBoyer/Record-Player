@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
-// import Spline from "@splinetool/react-spline";
 
 const ComposanteInfoImport = () => {
   return (
@@ -18,9 +17,7 @@ const ComposanteInfoImport = () => {
             </Link>
           </div>
           <div className="img-accueil">
-            <div className="parallax-inPage">
-              {/* <Spline scene="https://prod.spline.design/P8dlKhjbHujM5uup/scene.splinecode" /> */}
-            </div>
+            <div className="parallax-inPage"></div>
           </div>
         </div>
       </AnimatedPage>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { SongsProvider } from "../Providers/SongProvider";
 import { authContext } from "../Providers/authContext";
+// import BottomNavPlayer from "../composante/BottomNavPlayer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCompactDisc,
@@ -12,8 +13,16 @@ import "./layout.css";
 
 const Layout = () => {
   const { user, logout } = useContext(authContext);
+  // const {
+  //   songs,
+  //   currentAudioUrl,
+  //   currentSong,
+  //   tuneIsPlaying,
+  //   audioRef,
+  //   handleAudio,
+  // } = useContext(songsContext);
   const isAdmin = user && user.email === "drtimo69@gmail.com";
-
+  
   return (
     <>
       <SongsProvider>
@@ -72,6 +81,15 @@ const Layout = () => {
         </div>
         <div className="container-outlet">
           <Outlet />
+          {/* {tuneIsPlaying ? (
+              <BottomNavPlayer
+                currentSong={currentSong}
+                tuneIsPlaying={tuneIsPlaying}
+                url={currentAudioUrl}
+                audioRef={audioRef}
+                handleAudio={handleAudio}
+              />
+            ) : null} */}
         </div>
         <Footer />
       </SongsProvider>

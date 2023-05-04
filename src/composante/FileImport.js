@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, doc, updateDoc, getDoc } from "firebase/firestore";
-import { db,storage } from "../config/firebase";
+import { db, storage } from "../config/firebase";
 import { authContext } from "../Providers/authContext";
 import "./fileimport.css";
 import AnimatedPage from "./AnimatedPage";
@@ -23,15 +23,16 @@ function FileImport() {
   const [modalTextValue, setModalTextValue] = useState("");
   const { user } = useContext(authContext);
 
-
   let i = 0;
   const handleIncrementation = () => {
     i++;
   };
+  // Définie le fichier selectionné
   function handleChange(event) {
     setFile(event.target.files[i]);
   }
 
+  // Handler qui permet de faire l'upload du nom, de l'image et de la source audio de la Tune
   const handleUpload = async () => {
     if (!file) {
       alert("Ajoute une chanson avant !");
@@ -86,8 +87,8 @@ function FileImport() {
     );
   };
 
+  // Handle qui gère l'image choisi par l'utilisateur
   const handleImg = (e) => {
-
     const file = e.target.files[i];
     const reader = new FileReader();
 
@@ -102,12 +103,17 @@ function FileImport() {
       <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1>Importer mes Tunes <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
+          <h1>
+            Importer mes Tunes{" "}
+            <span className="icon-music">
+              <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
+            </span>
+          </h1>
           <p>
             <Link to="/">Accueil</Link> / <span>Importer Tunes</span>
           </p>
         </div>
-          
+
         <div id="fileimport" className="upload-container">
           <div className="wrapper">
             <div
@@ -153,7 +159,6 @@ function FileImport() {
                     type="file"
                     onChange={handleImg}
                   />
-
                 </label>
               </div>
               <button className="btn" onClick={handleUpload}>
@@ -163,8 +168,12 @@ function FileImport() {
             </div>
             <div className="important">
               <h5>Important</h5>
-              <p>Tous les nouveaux titres importés seront évalués avant d'être acceptés dans la bibliothèque publique. Merci d'être civile dans vos choix de nom et d'utiliser des images originales. </p>
-          </div>
+              <p>
+                Tous les nouveaux titres importés seront évalués avant d'être
+                acceptés dans la bibliothèque publique. Merci d'être civile dans
+                vos choix de nom et d'utiliser des images originales.{" "}
+              </p>
+            </div>
           </div>
         </div>
       </AnimatedPage>

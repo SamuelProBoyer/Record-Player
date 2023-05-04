@@ -20,21 +20,17 @@ import {
   faCircleXmark,
   faPlay,
   faPause,
-  faMusic
+  faMusic,
 } from "@fortawesome/free-solid-svg-icons";
 import { songsContext } from "../Providers/SongProvider";
 import HeaderSmaller from "./HeaderSmaller";
 const Musiques = () => {
+  const { songs } = useContext(songsContext);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
-  const [currentSong, setCurrentSong] = useState({
-    namesong: "",
-    url: "",
-    image: "",
-  });
   const [tuneIsPlaying, setTuneIsPlaying] = useState(false);
-  const { songs } = useContext(songsContext);
+  const [currentSong, setCurrentSong] = useState("");
   const audioRef = useRef(null);
 
   // Ajouter une musique à dans la liste d'attente de l'admin
@@ -68,7 +64,9 @@ const Musiques = () => {
     });
   };
 
+  // Handler qui permet de faire jouer la Tune
   const handleAudio = (url, play) => {
+    const song = songs.find((song) => song.url === url);
     if (currentAudioUrl && currentAudioUrl !== url && !play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
@@ -81,9 +79,9 @@ const Musiques = () => {
       audioRef.current = new Audio(url);
       audioRef.current.play();
       setCurrentSong({
-        namesong: "",
-        url: "",
-        image: "",
+        namesong: song.namesong,
+        url: song.url,
+        image: song.image,
       });
     } else if (!play) {
       audioRef.current.pause();
@@ -91,16 +89,19 @@ const Musiques = () => {
       setTuneIsPlaying(false);
       setCurrentAudioUrl(null);
     }
-    const song = songs.find((song) => song.url === url);
     setCurrentSong(song);
   };
-  console.log(currentSong);
   return (
     <>
       <HeaderSmaller />
       <AnimatedPage>
         <div className="title-ari-container">
-          <h1>Ma Bibliothèque <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{color: "#56aeff",}} /></span></h1>
+          <h1>
+            Ma Bibliothèque{" "}
+            <span className="icon-music">
+              <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
+            </span>
+          </h1>
           <span className="link-to-file">
             <Link to="/fileimport">Importer une Tune</Link>
           </span>
@@ -113,7 +114,7 @@ const Musiques = () => {
             {songs.map(({ namesong, url, image }) => (
               <div
                 className="card-container"
-                key={url}
+                key={namesong}
                 style={{ backgroundImage: `url(${image})` }}
               >
                 <div className="btn-add-remove">
@@ -156,7 +157,7 @@ const Musiques = () => {
                       />
                     </button>
                   )}
-                  <audio controls className="primaryAudio" ref={audioRef}>
+                  <audio className="primaryAudio" ref={audioRef}>
                     <source src={url} type="audio/mpeg" />
                     Votre fureteur ne support pas l'élément audio.
                   </audio>
@@ -167,10 +168,13 @@ const Musiques = () => {
               <BottomNavPlayer
                 currentSong={currentSong}
                 tuneIsPlaying={tuneIsPlaying}
-                url={currentAudioUrl}
+                currentAudioUrl={currentAudioUrl}
                 audioRef={audioRef}
+                handleAudio={handleAudio}
               />
-            ) : null}
+            ) : (
+              <BottomNavPlayer />
+            )}
           </ul>
         </div>
         {showModal && (

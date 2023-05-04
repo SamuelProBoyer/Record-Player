@@ -8,7 +8,12 @@ const ConsulteMusiques = () => {
     <>
       <div className="container-musiques">
         <div className="text-accueil">
-          <p>Consulté toutes les Tunes <span className="icon-music"><FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff", }} /></span></p>
+          <p>
+            Consulté toutes les Tunes{" "}
+            <span className="icon-music">
+              <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
+            </span>
+          </p>
         </div>
         <div className="link-musiques">
           <Link to="/allsongs">
