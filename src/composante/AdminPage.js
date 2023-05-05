@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { collection, getDocs, where, query, addDoc, deleteDoc } from "firebase/firestore";
 import BottomNavPlayer from "./BottomNavPlayer";
 import { db } from "../config/firebase";
-// import Header from "./Header";
 import HeaderSmaller from "./HeaderSmaller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +9,7 @@ import {
   faSquareMinus,
   faPlay,
   faPause,
+  faMusic
 } from "@fortawesome/free-solid-svg-icons";
 const AdminPage = () => {
   const [songs, setSongs] = useState([]);
@@ -97,6 +97,14 @@ const AdminPage = () => {
   return (
     <>
       <HeaderSmaller />
+      <div className="title-ari-container">
+          <h1 className="feature-title">
+            Administration{" "}
+            <span className="icon-music">
+              <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
+            </span>
+          </h1>
+        </div>
       <ul className="container-allsongs">
         {songs.map(({ image, namesong, url }) => (
           <div className="wrapper-card">

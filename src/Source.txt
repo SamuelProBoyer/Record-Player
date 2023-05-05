@@ -1,14 +1,6 @@
-Image de fond header 
-https://pixabay.com/fr/illustrations/le-coucher-du-soleil-oc%c3%a9an-plage-7790626/
 
-Deuxieme image de font 
-https://pixabay.com/fr/illustrations/new-york-horizon-paysage-urbain-7819721/
-
-Image Accueil 
-https://pixabay.com/fr/illustrations/le-coucher-du-soleil-oc%c3%a9an-plage-7790623/
-
-Image importation de Tune
-https://pixabay.com/fr/illustrations/double-journ%c3%a9e-nuit-cozy-domicile-7526360/
-
-Icones utilisés 
+Icones utilisés dans la listes des icones de Font Awesome 
 https://fontawesome.com/icons
+
+Waves svg créé à partir de GetWaves: 
+https://getwaves.io/

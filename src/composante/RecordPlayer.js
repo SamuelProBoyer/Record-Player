@@ -4,7 +4,6 @@ import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
 import ComposanteInfoImport from "./ComposanteInfoImport";
 import AllSongs from "./AllSongs";
-import ConsulteMusiques from "./ConsulteMusiques";
 import HeaderSmaller from "./HeaderSmaller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faRadio } from "@fortawesome/free-solid-svg-icons";
@@ -41,7 +40,6 @@ const RecordPlayer = () => {
       <div className="container-accueil">
         <ComposanteInfoImport />
       </div>
-      {/* <ConsulteMusiques /> */}
       <AllSongs />
       
     </>

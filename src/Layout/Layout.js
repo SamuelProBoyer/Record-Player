@@ -47,11 +47,6 @@ const Layout = () => {
                   Accueil
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink className="menu-link" to="/allsongs">
-                  Bibliothèque publique
-                </NavLink>
-              </li> */}
               <li>
                 <NavLink className="menu-link" to="/musiques">
                   Ma Bibliothèque

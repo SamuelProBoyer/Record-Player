@@ -25,7 +25,7 @@ const Login = () => {
           <FontAwesomeIcon icon={faCompactDisc} style={{color: "#56aeff",}} />
           </div>
           <div className="container-title-login">
-            <h1>Bienvenue dans LofiTunes</h1>
+            <h1>LofiTunes</h1>
           </div>
           <div className="container-form">
             <form noValidate onSubmit={submitHandler}>

@@ -5,8 +5,6 @@ import { db } from "../config/firebase";
 import { useContext } from "react";
 import { songsContext } from "../Providers/SongProvider";
 import { authContext } from "../Providers/authContext";
-import { Link } from "react-router-dom";
-import HeaderSmaller from "./HeaderSmaller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquarePlus,
@@ -78,7 +76,6 @@ const AllSongs = () => {
 
   return (
     <>
-      {/* <HeaderSmaller /> */}
       <AnimatedPage>
         <div className="title-ari-container">
           <h1 className="feature-title">
@@ -87,9 +84,6 @@ const AllSongs = () => {
               <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
             </span>
           </h1>
-          {/* <p>
-            <Link to="/">Accueil</Link> / <span>Bibliothèque publique</span>
-          </p> */}
         </div>
         <ul className="container-allsongs">
           {allSongs.map(({ image, namesong, url }) => {

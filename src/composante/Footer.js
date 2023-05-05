@@ -13,11 +13,11 @@ const Footer = () => {
               Accueil
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink className="menu-link-footer" to="/allsongs">
               Bibliothèque publique
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink className="menu-link-footer" to="/musiques">
               Ma Bibliothèque
