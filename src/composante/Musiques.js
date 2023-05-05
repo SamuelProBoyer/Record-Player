@@ -41,7 +41,8 @@ const Musiques = () => {
 
   useEffect(() => {
     setTune(songs);
-  },[songs]);  
+  }, [songs]);
+
   // Ajouter une musique à dans la liste d'attente de l'admin
   const handleAddSongs = async (song) => {
     const q = query(
@@ -72,9 +73,9 @@ const Musiques = () => {
       setModalTextValue("Tune retiré de la bibliothèque publique");
     });
   };
-
+  // Retirer une tune de mes tunes
   const handleDeleteUserSong = async (url) => {
-    const userDocRef = doc(db, "users", user.uid); // replace `userId` with the ID of the user's document
+    const userDocRef = doc(db, "users", user.uid);
     const userDoc = await getDoc(userDocRef);
     if (userDoc.exists()) {
       const updatedSongs = userDoc
@@ -109,6 +110,7 @@ const Musiques = () => {
     } else if (!play) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
+      audioRef.current = new Audio(null);
       setTuneIsPlaying(false);
       setCurrentAudioUrl(null);
     }

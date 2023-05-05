@@ -51,7 +51,7 @@ const ChansonsVedettes = () => {
     <>
       <div className="vedette-title-section">
         <h2 className="featured-title">
-          Les ajouts récents
+          Vos ajouts récents
           <Link to="/musiques">
             <span className="icon-music">
               <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />

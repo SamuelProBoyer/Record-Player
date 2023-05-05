@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import AnimatedPage from "./AnimatedPage";
 import ChansonsVedettes from "./ChansonsVedettes";
 import ComposanteInfoImport from "./ComposanteInfoImport";
+import AllSongs from "./AllSongs";
 import ConsulteMusiques from "./ConsulteMusiques";
-import Header from "./Header";
+import HeaderSmaller from "./HeaderSmaller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faRadio } from "@fortawesome/free-solid-svg-icons";
 
 const RecordPlayer = () => {
   return (
     <>
-      <Header />
+      <HeaderSmaller />
       <h1>
         Accueil{" "}
         <span className="icon-music">
@@ -21,7 +22,7 @@ const RecordPlayer = () => {
       <AnimatedPage>
         <div className="container-accueil">
           <div className="text-accueil">
-          <FontAwesomeIcon className="icon-radio" icon={faRadio} beatFade style={{color: "#56aeff",}} />
+          <FontAwesomeIcon className="icon-radio" icon={faRadio} style={{color: "#56aeff",}} />
             <p>
               Bienvenue dans LofiTunes, l'application web ultime pour les
               amateurs de musique lofi ! Si vous êtes passionné par les rythmes
@@ -40,7 +41,9 @@ const RecordPlayer = () => {
       <div className="container-accueil">
         <ComposanteInfoImport />
       </div>
-      <ConsulteMusiques />
+      {/* <ConsulteMusiques /> */}
+      <AllSongs />
+      
     </>
   );
 };

@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { collection, getDocs, where, query, addDoc, deleteDoc } from "firebase/firestore";
 import BottomNavPlayer from "./BottomNavPlayer";
 import { db } from "../config/firebase";
-import Header from "./Header";
+// import Header from "./Header";
+import HeaderSmaller from "./HeaderSmaller";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquarePlus,
@@ -95,7 +96,7 @@ const AdminPage = () => {
 
   return (
     <>
-      <Header />
+      <HeaderSmaller />
       <ul className="container-allsongs">
         {songs.map(({ image, namesong, url }) => (
           <div className="wrapper-card">

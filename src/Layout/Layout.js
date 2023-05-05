@@ -22,16 +22,21 @@ const Layout = () => {
   //   handleAudio,
   // } = useContext(songsContext);
   const isAdmin = user && user.email === "drtimo69@gmail.com";
-  
   return (
     <>
       <SongsProvider>
         <div className="container-layout">
           <div className="container-title">
-            <h1 className="title-layout">LofiTunes de :  <span className="title-name">{user.displayName}</span></h1>
+            <h1 className="title-layout">
+              LofiTunes de :{" "}
+              <span className="title-name">{user.displayName}</span>
+            </h1>
             <NavLink to="/">
               <span className="fa-icon">
-              <FontAwesomeIcon icon={faCompactDisc} style={{color: "#56aeff",}} />
+                <FontAwesomeIcon
+                  icon={faCompactDisc}
+                  style={{ color: "#56aeff" }}
+                />
               </span>
             </NavLink>
           </div>
@@ -42,11 +47,11 @@ const Layout = () => {
                   Accueil
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink className="menu-link" to="/allsongs">
                   Bibliothèque publique
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink className="menu-link" to="/musiques">
                   Ma Bibliothèque
@@ -82,14 +87,14 @@ const Layout = () => {
         <div className="container-outlet">
           <Outlet />
           {/* {tuneIsPlaying ? (
-              <BottomNavPlayer
-                currentSong={currentSong}
-                tuneIsPlaying={tuneIsPlaying}
-                url={currentAudioUrl}
-                audioRef={audioRef}
-                handleAudio={handleAudio}
-              />
-            ) : null} */}
+            <BottomNavPlayer
+              currentSong={currentSong}
+              tuneIsPlaying={tuneIsPlaying}
+              url={currentAudioUrl}
+              audioRef={audioRef}
+              handleAudio={handleAudio}
+            />
+          ) : null} */}
         </div>
         <Footer />
       </SongsProvider>

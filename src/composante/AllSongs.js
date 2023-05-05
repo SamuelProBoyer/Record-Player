@@ -20,7 +20,7 @@ import BottomNavPlayer from "./BottomNavPlayer";
 
 const AllSongs = () => {
   const { user } = useContext(authContext);
-  const { allSongs, setAllSongs } = useContext(songsContext);
+  const { allSongs } = useContext(songsContext);
   const [showModal, setShowModal] = useState(false);
   const [modalTextValue, setModalTextValue] = useState("");
   const [currentAudioUrl, setCurrentAudioUrl] = useState(null);
@@ -31,7 +31,7 @@ const AllSongs = () => {
     image: "",
   });
   const audioRef = useRef(null);
-  
+
   // Joue une Tune
   const handleAudio = (url, play) => {
     const song = allSongs.find((song) => song.url === url);
@@ -56,6 +56,7 @@ const AllSongs = () => {
       audioRef.current.currentTime = 0;
       setTuneIsPlaying(false);
       setCurrentAudioUrl(null);
+      setCurrentSong(null);
     }
     setCurrentSong(song);
   };
@@ -77,7 +78,7 @@ const AllSongs = () => {
 
   return (
     <>
-      <HeaderSmaller />
+      {/* <HeaderSmaller /> */}
       <AnimatedPage>
         <div className="title-ari-container">
           <h1 className="feature-title">
@@ -86,65 +87,74 @@ const AllSongs = () => {
               <FontAwesomeIcon icon={faMusic} style={{ color: "#56aeff" }} />
             </span>
           </h1>
-          <p>
+          {/* <p>
             <Link to="/">Accueil</Link> / <span>Bibliothèque publique</span>
-          </p>
+          </p> */}
         </div>
         <ul className="container-allsongs">
-          {allSongs.map(({ image, namesong, url }) => (
-            <div className="wrapper-card">
+          {allSongs.map(({ image, namesong, url }) => {
+            const isInUserSongs =
+              user.songs?.findIndex((song) => song.url === url) > -1;
+            return (
               <div
-                className="card-allsongs"
-                key={namesong}
-                style={{ backgroundImage: `url(${image})` }}
-              ></div>
-              <div className="audio-container-allsongs">
-                <div className="allsongs-btn-add-remove">
-                  {tuneIsPlaying && currentAudioUrl === url ? (
+                className={`wrapper-card ${
+                  isInUserSongs ? "wrapper-card-red" : ""
+                }`}
+              >
+                <div
+                  className="card-allsongs"
+                  key={namesong}
+                  style={{ backgroundImage: `url(${image})` }}
+                ></div>
+                <div className="audio-container-allsongs">
+                  <div className="allsongs-btn-add-remove">
+                    {tuneIsPlaying && currentAudioUrl === url ? (
+                      <button
+                        className="btn-small playPauseBtn"
+                        onClick={() => handleAudio(url, false)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faPause}
+                          style={{ color: "#ffffff" }}
+                        />
+                      </button>
+                    ) : (
+                      <button
+                        className="btn-small playPauseBtn"
+                        onClick={() => handleAudio(url, true)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faPlay}
+                          style={{ color: "#ffffff" }}
+                        />
+                      </button>
+                    )}
+                    <h3 className="title-allsongs">{namesong}</h3>
                     <button
-                      className="btn-small playPauseBtn"
-                      onClick={() => handleAudio(url, false)}
+                      title="Ajouté dans ma Bibliothèque"
+                      className="btn-small btn-add"
+                      onClick={() => handleAddSongs({ image, namesong, url })}
                     >
-                      <FontAwesomeIcon
-                        icon={faPause}
-                        style={{ color: "#ffffff" }}
-                      />
+                      <FontAwesomeIcon icon={faSquarePlus} />
                     </button>
-                  ) : (
-                    <button
-                      className="btn-small playPauseBtn"
-                      onClick={() => handleAudio(url, true)}
-                    >
-                      <FontAwesomeIcon
-                        icon={faPlay}
-                        style={{ color: "#ffffff" }}
-                      />
-                    </button>
-                  )}
-                  <h3 className="title-allsongs">{namesong}</h3>
-                  <button
-                    className="btn-small btn-add"
-                    onClick={() => handleAddSongs({ image, namesong, url })}
-                  >
-                    <FontAwesomeIcon icon={faSquarePlus} />
-                  </button>
+                  </div>
+                  <audio className="primaryAudio" ref={audioRef}>
+                    <source src={url} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
                 </div>
-                <audio className="primaryAudio" ref={audioRef}>
-                  <source src={url} type="audio/mpeg" />
-                  Your browser does not support the audio element.
-                </audio>
+                {tuneIsPlaying ? (
+                  <BottomNavPlayer
+                    currentSong={currentSong}
+                    tuneIsPlaying={tuneIsPlaying}
+                    url={currentAudioUrl}
+                    audioRef={audioRef}
+                    handleAudio={handleAudio}
+                  />
+                ) : null}
               </div>
-              {tuneIsPlaying ? (
-                <BottomNavPlayer
-                  currentSong={currentSong}
-                  tuneIsPlaying={tuneIsPlaying}
-                  url={currentAudioUrl}
-                  audioRef={audioRef}
-                  handleAudio={handleAudio}
-                />
-              ) : null}
-            </div>
-          ))}
+            );
+          })}
         </ul>
       </AnimatedPage>
       {showModal && (

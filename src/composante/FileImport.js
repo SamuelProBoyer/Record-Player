@@ -126,7 +126,7 @@ function FileImport() {
               </div>
             </div>
             <div className="input-container">
-              <label className="label-name">Choisir votre nom de la Tune</label>
+              <label className="label-name">1. Choisir votre nom de la Tune</label>
               <input
                 className="input-title"
                 type="text"
@@ -137,7 +137,7 @@ function FileImport() {
               />
               <div className="container-input">
                 <label className="label-name">
-                  Choisir votre Tune
+                  2. Choisir votre Tune
                   <span>
                     <FontAwesomeIcon icon={faMusic} />
                   </span>
@@ -151,7 +151,7 @@ function FileImport() {
               </div>
               <div className="container-input">
                 <label className="label-name">
-                  Choisir votre image
+                  3. Choisir votre image
                   <span>
                     <FontAwesomeIcon icon={faImage} />
                   </span>
