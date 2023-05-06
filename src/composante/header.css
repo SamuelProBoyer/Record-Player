@@ -1,5 +1,4 @@
 .parallax {
-  background-image: url("../img/BCHEADER.png");
   height: 564px;
   background-attachment: fixed;
   background-position: center;
@@ -13,14 +12,9 @@
 }
 
 .parallax-small {
-  /* background-image: url("../img/bcheader2.png");  */
   background: linear-gradient(45deg, #56AEFF, #44428C, #3e7eb9,  #3e7db9c4, #B2ABFF, #F2858E, #F28066 );
-  
   animation: color 12s ease-in-out infinite;
   height: 500px;
-  /* background-attachment: fixed; */
-  /* background-position: center; */
-  /* background-repeat: no-repeat; */
   background-size: 500% 500%;
 }
 
