@@ -136,15 +136,15 @@ const AdminPage = () => {
                 <source src={url} type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
+            </div>
+            <div className="allsongs-btn-add-remove">
+              <h3 className="title-allsongs">{namesong}</h3>
               <button
-                className="btn-small btn-add"
+                className="btn-small btn-remove"
                 onClick={() => handleDeleteFlaggedSong({ image, namesong, url })}
               >
                 <FontAwesomeIcon icon={faSquareMinus} />
               </button>
-            </div>
-            <div className="allsongs-btn-add-remove">
-              <h3 className="title-allsongs">{namesong}</h3>
               <button
                 className="btn-small btn-add"
                 onClick={() => handleAddFlaggedSong({ image, namesong, url })}
